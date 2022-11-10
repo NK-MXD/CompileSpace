@@ -1,0 +1,398 @@
+               token              lexeme              lineno              offset            scope_no    pointer_to_scope
+                 INT                 int                   1                   0
+                  ID                   N                   1                   4                   0      0x7f84d0640e47
+           SEMICOLON                   ;                   1                   5
+                 INT                 int                   2                   0
+                  ID                   M                   2                   4                   0      0x7f84d03b94a0
+           SEMICOLON                   ;                   2                   5
+                 INT                 int                   3                   0
+                  ID                   L                   3                   4                   0      0x7fffc0015218
+           SEMICOLON                   ;                   3                   5
+                 INT                 int                   5                   0
+                  ID                 sub                   5                   4                   0      0x7fffc0015368
+              LPAREN                   (                   5                   7
+               FLOAT               float                   5                   8
+                  ID                  a0                   5                  14                   0      0x7fffc00154b8
+            LBRACKET                   [                   5                  16
+            RBRACKET                   ]                   5                  17
+               COMMA                   ,                   5                  18
+               FLOAT               float                   5                  19
+                  ID                  a1                   5                  25                   0      0x7fffc0015528
+            LBRACKET                   [                   5                  27
+            RBRACKET                   ]                   5                  28
+               COMMA                   ,                   5                  29
+               FLOAT               float                   5                  31
+                  ID                  a2                   5                  37                   0      0x7fffc0015008
+            LBRACKET                   [                   5                  39
+            RBRACKET                   ]                   5                  40
+               COMMA                   ,                   5                  41
+               FLOAT               float                   5                  42
+                  ID                  b0                   5                  48                   0      0x7fffc0015288
+            LBRACKET                   [                   5                  50
+            RBRACKET                   ]                   5                  51
+               COMMA                   ,                   5                  52
+               FLOAT               float                   5                  53
+                  ID                  b1                   5                  59                   0      0x7fffc00153d8
+            LBRACKET                   [                   5                  61
+            RBRACKET                   ]                   5                  62
+               COMMA                   ,                   5                  63
+               FLOAT               float                   5                  64
+                  ID                  b2                   5                  70                   0      0x7fffc0015918
+            LBRACKET                   [                   5                  72
+            RBRACKET                   ]                   5                  73
+               COMMA                   ,                   5                  74
+               FLOAT               float                   5                  75
+                  ID                  c0                   5                  81                   0      0x7fffc0015598
+            LBRACKET                   [                   5                  83
+            RBRACKET                   ]                   5                  84
+               COMMA                   ,                   5                  85
+               FLOAT               float                   5                  86
+                  ID                  c1                   5                  92                   0      0x7fffc0015678
+            LBRACKET                   [                   5                  94
+            RBRACKET                   ]                   5                  95
+               COMMA                   ,                   5                  96
+               FLOAT               float                   5                  97
+                  ID                  c2                   5                 103                   0      0x7fffc0014f98
+            LBRACKET                   [                   5                 105
+            RBRACKET                   ]                   5                 106
+              RPAREN                   )                   5                 107
+              LBRACE                   {                   6                   0
+                 INT                 int                   7                   4
+                  ID                   i                   7                   8                   1      0x7fffc83d8050
+           SEMICOLON                   ;                   7                   9
+                  ID                   i                   8                   4                   1      0x7fffc83d8050
+              ASSIGN                   =                   8                   5
+            DECIMIAL                   0                   8                   6
+           SEMICOLON                   ;                   8                   7
+               WHILE               while                   9                   4
+              LPAREN                   (                   9                   9
+                  ID                   i                   9                  10                   1      0x7fffc83d8050
+                LESS                   <                   9                  11
+            DECIMIAL                   3                   9                  12
+              RPAREN                   )                   9                  13
+              LBRACE                   {                  10                   4
+                  ID                  c0                  11                   8                   2      0x7fffc0016088
+            LBRACKET                   [                  11                  10
+                  ID                   i                  11                  11                   2      0x7fffc0015838
+            RBRACKET                   ]                  11                  12
+              ASSIGN                   =                  11                  13
+                  ID                  a0                  11                  14                   2      0x7fffc00158a8
+            LBRACKET                   [                  11                  16
+                  ID                   i                  11                  17                   2      0x7fffc0015838
+            RBRACKET                   ]                  11                  18
+               MINUS                   -                  11                  19
+                  ID                  b0                  11                  20                   2      0x7fffc0015448
+            LBRACKET                   [                  11                  22
+                  ID                   i                  11                  23                   2      0x7fffc0015838
+            RBRACKET                   ]                  11                  24
+           SEMICOLON                   ;                  11                  25
+                  ID                  c1                  12                   8                   2      0x7fffc00152f8
+            LBRACKET                   [                  12                  10
+                  ID                   i                  12                  11                   2      0x7fffc0015838
+            RBRACKET                   ]                  12                  12
+              ASSIGN                   =                  12                  13
+                  ID                  a1                  12                  14                   2      0x7fffc00159f8
+            LBRACKET                   [                  12                  16
+                  ID                   i                  12                  17                   2      0x7fffc0015838
+            RBRACKET                   ]                  12                  18
+               MINUS                   -                  12                  19
+                  ID                  b1                  12                  20                   2      0x7fffc0015988
+            LBRACKET                   [                  12                  22
+                  ID                   i                  12                  23                   2      0x7fffc0015838
+            RBRACKET                   ]                  12                  24
+           SEMICOLON                   ;                  12                  25
+                  ID                  c2                  13                   8                   2      0x7fffc00157c8
+            LBRACKET                   [                  13                  10
+                  ID                   i                  13                  11                   2      0x7fffc0015838
+            RBRACKET                   ]                  13                  12
+              ASSIGN                   =                  13                  13
+                  ID                  a2                  13                  14                   2      0x7fffc0015ec8
+            LBRACKET                   [                  13                  16
+                  ID                   i                  13                  17                   2      0x7fffc0015838
+            RBRACKET                   ]                  13                  18
+               MINUS                   -                  13                  19
+                  ID                  b2                  13                  20                   2      0x7fffc0015c28
+            LBRACKET                   [                  13                  22
+                  ID                   i                  13                  23                   2      0x7fffc0015838
+            RBRACKET                   ]                  13                  24
+           SEMICOLON                   ;                  13                  25
+                  ID                   i                  14                   8                   2      0x7fffc0015838
+              ASSIGN                   =                  14                   9
+                  ID                   i                  14                  10                   2      0x7fffc0015838
+                PLUS                   +                  14                  11
+            DECIMIAL                   1                  14                  12
+           SEMICOLON                   ;                  14                  13
+              RBRACE                   }                  15                   4
+              RETURN              return                  17                   4
+            DECIMIAL                   0                  17                  11
+           SEMICOLON                   ;                  17                  12
+              RBRACE                   }                  19                   0
+                 INT                 int                  21                   0
+                  ID                main                  21                   4                   0      0x7fffc00161d8
+              LPAREN                   (                  21                   8
+              RPAREN                   )                  21                   9
+              LBRACE                   {                  22                   0
+                  ID                   N                  23                   4                   3      0x7fffc83d8050
+              ASSIGN                   =                  23                   5
+            DECIMIAL                   3                  23                   6
+           SEMICOLON                   ;                  23                   7
+                  ID                   M                  24                   4                   3      0x7fffc0015e58
+              ASSIGN                   =                  24                   5
+            DECIMIAL                   3                  24                   6
+           SEMICOLON                   ;                  24                   7
+                  ID                   L                  25                   4                   3      0x7fffc0016458
+              ASSIGN                   =                  25                   5
+            DECIMIAL                   3                  25                   6
+           SEMICOLON                   ;                  25                   7
+               FLOAT               float                  26                   4
+                  ID                  a0                  26                  10                   3      0x7fffc0015de8
+            LBRACKET                   [                  26                  12
+            DECIMIAL                   3                  26                  13
+            RBRACKET                   ]                  26                  14
+               COMMA                   ,                  26                  15
+                  ID                  a1                  26                  17                   3      0x7fffc0015d08
+            LBRACKET                   [                  26                  19
+            DECIMIAL                   3                  26                  20
+            RBRACKET                   ]                  26                  21
+               COMMA                   ,                  26                  22
+                  ID                  a2                  26                  24                   3      0x7fffc0015608
+            LBRACKET                   [                  26                  26
+            DECIMIAL                   3                  26                  27
+            RBRACKET                   ]                  26                  28
+               COMMA                   ,                  26                  29
+                  ID                  b0                  26                  31                   3      0x7fffc0015138
+            LBRACKET                   [                  26                  33
+            DECIMIAL                   3                  26                  34
+            RBRACKET                   ]                  26                  35
+               COMMA                   ,                  26                  36
+                  ID                  b1                  26                  38                   3      0x7fffc00156e8
+            LBRACKET                   [                  26                  40
+            DECIMIAL                   3                  26                  41
+            RBRACKET                   ]                  26                  42
+               COMMA                   ,                  26                  43
+                  ID                  b2                  26                  45                   3      0x7fffc0016ac8
+            LBRACKET                   [                  26                  47
+            DECIMIAL                   3                  26                  48
+            RBRACKET                   ]                  26                  49
+               COMMA                   ,                  26                  50
+                  ID                  c0                  26                  52                   3      0x7fffc0015f38
+            LBRACKET                   [                  26                  54
+            DECIMIAL                   6                  26                  55
+            RBRACKET                   ]                  26                  56
+               COMMA                   ,                  26                  57
+                  ID                  c1                  26                  59                   3      0x7fffc00163e8
+            LBRACKET                   [                  26                  61
+            DECIMIAL                   3                  26                  62
+            RBRACKET                   ]                  26                  63
+               COMMA                   ,                  26                  64
+                  ID                  c2                  26                  66                   3      0x7fffc0016908
+            LBRACKET                   [                  26                  68
+            DECIMIAL                   3                  26                  69
+            RBRACKET                   ]                  26                  70
+           SEMICOLON                   ;                  26                  71
+                 INT                 int                  27                   4
+                  ID                   i                  27                   8                   3      0x7fffc0015bb8
+           SEMICOLON                   ;                  27                   9
+                  ID                   i                  28                   4                   3      0x7fffc0015bb8
+              ASSIGN                   =                  28                   5
+            DECIMIAL                   0                  28                   6
+           SEMICOLON                   ;                  28                   7
+               WHILE               while                  29                   4
+              LPAREN                   (                  29                   9
+                  ID                   i                  29                  10                   3      0x7fffc0015bb8
+                LESS                   <                  29                  11
+            DECIMIAL                   3                  29                  12
+              RPAREN                   )                  29                  13
+              LBRACE                   {                  30                   4
+                  ID                  a0                  31                   8                   4      0x7fffc83d8050
+            LBRACKET                   [                  31                  10
+                  ID                   i                  31                  11                   4      0x7fffc0015a68
+            RBRACKET                   ]                  31                  12
+              ASSIGN                   =                  31                  13
+                  ID                   i                  31                  14                   4      0x7fffc0015a68
+           SEMICOLON                   ;                  31                  15
+                  ID                  a1                  32                   8                   4      0x7fffc0015ad8
+            LBRACKET                   [                  32                  10
+                  ID                   i                  32                  11                   4      0x7fffc0015a68
+            RBRACKET                   ]                  32                  12
+              ASSIGN                   =                  32                  13
+                  ID                   i                  32                  14                   4      0x7fffc0015a68
+           SEMICOLON                   ;                  32                  15
+                  ID                  a2                  33                   8                   4      0x7fffc0015b48
+            LBRACKET                   [                  33                  10
+                  ID                   i                  33                  11                   4      0x7fffc0015a68
+            RBRACKET                   ]                  33                  12
+              ASSIGN                   =                  33                  13
+                  ID                   i                  33                  14                   4      0x7fffc0015a68
+           SEMICOLON                   ;                  33                  15
+                  ID                  b0                  34                   8                   4      0x7fffc0017058
+            LBRACKET                   [                  34                  10
+                  ID                   i                  34                  11                   4      0x7fffc0015a68
+            RBRACKET                   ]                  34                  12
+              ASSIGN                   =                  34                  13
+                  ID                   i                  34                  14                   4      0x7fffc0015a68
+           SEMICOLON                   ;                  34                  15
+                  ID                  b1                  35                   8                   4      0x7fffc0015d78
+            LBRACKET                   [                  35                  10
+                  ID                   i                  35                  11                   4      0x7fffc0015a68
+            RBRACKET                   ]                  35                  12
+              ASSIGN                   =                  35                  13
+                  ID                   i                  35                  14                   4      0x7fffc0015a68
+           SEMICOLON                   ;                  35                  15
+                  ID                  b2                  36                   8                   4      0x7fffc00164c8
+            LBRACKET                   [                  36                  10
+                  ID                   i                  36                  11                   4      0x7fffc0015a68
+            RBRACKET                   ]                  36                  12
+              ASSIGN                   =                  36                  13
+                  ID                   i                  36                  14                   4      0x7fffc0015a68
+           SEMICOLON                   ;                  36                  15
+                  ID                   i                  37                   8                   4      0x7fffc0015a68
+              ASSIGN                   =                  37                   9
+                  ID                   i                  37                  10                   4      0x7fffc0015a68
+                PLUS                   +                  37                  11
+            DECIMIAL                   1                  37                  12
+           SEMICOLON                   ;                  37                  13
+              RBRACE                   }                  38                   4
+                  ID                   i                  39                   4                   3      0x7fffc0015bb8
+              ASSIGN                   =                  39                   5
+                  ID                 sub                  39                   6                   3      0x7fffc0017138
+              LPAREN                   (                  39                   9
+                  ID                  a0                  39                  11                   3      0x7fffc0015de8
+               COMMA                   ,                  39                  13
+                  ID                  a1                  39                  15                   3      0x7fffc0015d08
+               COMMA                   ,                  39                  17
+                  ID                  a2                  39                  20                   3      0x7fffc0015608
+               COMMA                   ,                  39                  22
+                  ID                  b0                  39                  24                   3      0x7fffc0015138
+               COMMA                   ,                  39                  26
+                  ID                  b1                  39                  28                   3      0x7fffc00156e8
+               COMMA                   ,                  39                  30
+                  ID                  b2                  39                  32                   3      0x7fffc0016ac8
+               COMMA                   ,                  39                  34
+                  ID                  c0                  39                  36                   3      0x7fffc0015f38
+               COMMA                   ,                  39                  38
+                  ID                  c1                  39                  40                   3      0x7fffc00163e8
+               COMMA                   ,                  39                  42
+                  ID                  c2                  39                  44                   3      0x7fffc0016908
+              RPAREN                   )                  39                  46
+           SEMICOLON                   ;                  39                  47
+                 INT                 int                  40                   4
+                  ID                   x                  40                   8                   3      0x7fffc0016898
+           SEMICOLON                   ;                  40                   9
+               WHILE               while                  41                   4
+              LPAREN                   (                  41                   9
+                  ID                   i                  41                  10                   3      0x7fffc0015bb8
+                LESS                   <                  41                  11
+            DECIMIAL                   3                  41                  12
+              RPAREN                   )                  41                  13
+              LBRACE                   {                  42                   4
+                  ID                   x                  43                   8                   5      0x7fffc83d8050
+              ASSIGN                   =                  43                  10
+                  ID                  c0                  43                  12                   5      0x7fffc0016378
+            LBRACKET                   [                  43                  14
+                  ID                   i                  43                  15                   5      0x7fffc00177c8
+            RBRACKET                   ]                  43                  16
+           SEMICOLON                   ;                  43                  17
+                  ID              putint                  44                   8                   5      0x7fffc0016f08
+              LPAREN                   (                  44                  14
+                  ID                   x                  44                  15                   5      0x7fffc83d8050
+              RPAREN                   )                  44                  16
+           SEMICOLON                   ;                  44                  17
+                  ID                   i                  46                   8                   5      0x7fffc00177c8
+              ASSIGN                   =                  46                   9
+                  ID                   i                  46                  10                   5      0x7fffc00177c8
+                PLUS                   +                  46                  11
+            DECIMIAL                   1                  46                  12
+           SEMICOLON                   ;                  46                  13
+              RBRACE                   }                  47                   4
+                  ID                   x                  48                   4                   3      0x7fffc0016898
+              ASSIGN                   =                  48                   6
+            DECIMIAL                  10                  48                   8
+           SEMICOLON                   ;                  48                  10
+                  ID                   i                  49                   4                   3      0x7fffc0015bb8
+              ASSIGN                   =                  49                   5
+            DECIMIAL                   0                  49                   6
+           SEMICOLON                   ;                  49                   7
+                  ID               putch                  50                   4                   3      0x7fffc0016e28
+              LPAREN                   (                  50                   9
+                  ID                   x                  50                  10                   3      0x7fffc0016898
+              RPAREN                   )                  50                  11
+           SEMICOLON                   ;                  50                  12
+               WHILE               while                  51                   4
+              LPAREN                   (                  51                   9
+                  ID                   i                  51                  10                   3      0x7fffc0015bb8
+                LESS                   <                  51                  11
+            DECIMIAL                   3                  51                  12
+              RPAREN                   )                  51                  13
+              LBRACE                   {                  52                   4
+                  ID                   x                  53                   8                   6      0x7fffc83d8050
+              ASSIGN                   =                  53                  10
+                  ID                  c1                  53                  12                   6      0x7fffc0016168
+            LBRACKET                   [                  53                  14
+                  ID                   i                  53                  15                   6      0x7fffc00172d8
+            RBRACKET                   ]                  53                  16
+           SEMICOLON                   ;                  53                  17
+                  ID              putint                  54                   8                   6      0x7fffc0016e98
+              LPAREN                   (                  54                  14
+                  ID                   x                  54                  15                   6      0x7fffc83d8050
+              RPAREN                   )                  54                  16
+           SEMICOLON                   ;                  54                  17
+                  ID                   i                  56                   8                   6      0x7fffc00172d8
+              ASSIGN                   =                  56                   9
+                  ID                   i                  56                  10                   6      0x7fffc00172d8
+                PLUS                   +                  56                  11
+            DECIMIAL                   1                  56                  12
+           SEMICOLON                   ;                  56                  13
+              RBRACE                   }                  57                   4
+                  ID                   x                  58                   4                   3      0x7fffc0016898
+              ASSIGN                   =                  58                   6
+            DECIMIAL                  10                  58                   8
+           SEMICOLON                   ;                  58                  10
+                  ID                   i                  59                   4                   3      0x7fffc0015bb8
+              ASSIGN                   =                  59                   5
+            DECIMIAL                   0                  59                   6
+           SEMICOLON                   ;                  59                   7
+                  ID               putch                  60                   4                   3      0x7fffc0016e28
+              LPAREN                   (                  60                   9
+                  ID                   x                  60                  10                   3      0x7fffc0016898
+              RPAREN                   )                  60                  11
+           SEMICOLON                   ;                  60                  12
+               WHILE               while                  61                   4
+              LPAREN                   (                  61                   9
+                  ID                   i                  61                  10                   3      0x7fffc0015bb8
+                LESS                   <                  61                  11
+            DECIMIAL                   3                  61                  12
+              RPAREN                   )                  61                  13
+              LBRACE                   {                  62                   4
+                  ID                   x                  63                   8                   7      0x7fffc83d8050
+              ASSIGN                   =                  63                  10
+                  ID                  c2                  63                  12                   7      0x7fffc0016978
+            LBRACKET                   [                  63                  14
+                  ID                   i                  63                  15                   7      0x7fffc0017348
+            RBRACKET                   ]                  63                  16
+           SEMICOLON                   ;                  63                  17
+                  ID              putint                  64                   8                   7      0x7fffc0017498
+              LPAREN                   (                  64                  14
+                  ID                   x                  64                  15                   7      0x7fffc83d8050
+              RPAREN                   )                  64                  16
+           SEMICOLON                   ;                  64                  17
+                  ID                   i                  66                   8                   7      0x7fffc0017348
+              ASSIGN                   =                  66                   9
+                  ID                   i                  66                  10                   7      0x7fffc0017348
+                PLUS                   +                  66                  11
+            DECIMIAL                   1                  66                  12
+           SEMICOLON                   ;                  66                  13
+              RBRACE                   }                  67                   4
+                  ID                   x                  68                   4                   3      0x7fffc0016898
+              ASSIGN                   =                  68                   6
+            DECIMIAL                  10                  68                   7
+           SEMICOLON                   ;                  68                   9
+                  ID               putch                  69                   4                   3      0x7fffc0016e28
+              LPAREN                   (                  69                   9
+                  ID                   x                  69                  10                   3      0x7fffc0016898
+              RPAREN                   )                  69                  11
+           SEMICOLON                   ;                  69                  12
+              RETURN              return                  71                   4
+            DECIMIAL                   0                  71                  11
+           SEMICOLON                   ;                  71                  12
+              RBRACE                   }                  72                   0

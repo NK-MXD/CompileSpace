@@ -1,0 +1,100 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID         a         1         4         0      0x7fc54d4ebe47
+ SEMICOLON         ;         1         5
+       INT       int         2         0
+        ID         b         2         4         0      0x7fc54d2694a0
+ SEMICOLON         ;         2         5
+       INT       int         3         0
+        ID         c         3         4         0      0x7fffb8da2218
+ SEMICOLON         ;         3         5
+       INT       int         4         0
+        ID         d         4         4         0      0x7fffb8da2368
+ SEMICOLON         ;         4         5
+       INT       int         5         0
+        ID         e         5         4         0      0x7fffb8da24b8
+ SEMICOLON         ;         5         5
+       INT       int         6         0
+        ID      main         6         4         0      0x7fffb8da2528
+    LPAREN         (         6         8
+    RPAREN         )         6         9
+    LBRACE         {         7         0
+        ID         a         8         1         1      0x7fffc0c01310
+    ASSIGN         =         8         2
+        ID    getint         8         3         1      0x7fffb8da2008
+    LPAREN         (         8         9
+    RPAREN         )         8        10
+ SEMICOLON         ;         8        11
+        ID         b         9         1         1      0x7fffb8da2598
+    ASSIGN         =         9         2
+        ID    getint         9         3         1      0x7fffb8da2008
+    LPAREN         (         9         9
+    RPAREN         )         9        10
+ SEMICOLON         ;         9        11
+        ID         c        10         1         1      0x7fffb8da2758
+    ASSIGN         =        10         2
+        ID    getint        10         3         1      0x7fffb8da2008
+    LPAREN         (        10         9
+    RPAREN         )        10        10
+ SEMICOLON         ;        10        11
+        ID         d        11         1         1      0x7fffb8da1f98
+    ASSIGN         =        11         2
+        ID    getint        11         3         1      0x7fffb8da2008
+    LPAREN         (        11         9
+    RPAREN         )        11        10
+ SEMICOLON         ;        11        11
+        ID         e        12         1         1      0x7fffb8da28a8
+    ASSIGN         =        12         2
+        ID    getint        12         3         1      0x7fffb8da2008
+    LPAREN         (        12         9
+    RPAREN         )        12        10
+ SEMICOLON         ;        12        11
+       INT       int        13         1
+        ID      flag        13         5         1      0x7fffb8da2608
+    ASSIGN         =        13         9
+  DECIMIAL         0        13        10
+ SEMICOLON         ;        13        11
+        IF        if        14         1
+    LPAREN         (        14         3
+        ID         a        14         4         1      0x7fffc0c01310
+     MINUS         -        14         5
+        ID         b        14         6         1      0x7fffb8da2598
+       MUL         *        14         7
+        ID         c        14         8         1      0x7fffb8da2758
+  NOTEQUAL        !=        14         9
+        ID         d        14        11         1      0x7fffb8da1f98
+     MINUS         -        14        12
+        ID         a        14        13         1      0x7fffc0c01310
+       DIV         /        14        14
+        ID         c        14        15         1      0x7fffb8da2758
+        OR        ||        14        16
+        ID         a        14        18         1      0x7fffc0c01310
+       MUL         *        14        19
+        ID         b        14        20         1      0x7fffb8da2598
+       DIV         /        14        21
+        ID         c        14        22         1      0x7fffb8da2758
+     EQUAL        ==        14        23
+        ID         e        14        25         1      0x7fffb8da28a8
+      PLUS         +        14        26
+        ID         d        14        27         1      0x7fffb8da1f98
+        OR        ||        14        28
+        ID         a        14        30         1      0x7fffc0c01310
+      PLUS         +        14        31
+        ID         b        14        32         1      0x7fffb8da2598
+      PLUS         +        14        33
+        ID         c        14        34         1      0x7fffb8da2758
+     EQUAL        ==        14        35
+        ID         d        14        37         1      0x7fffb8da1f98
+      PLUS         +        14        38
+        ID         e        14        39         1      0x7fffb8da28a8
+    RPAREN         )        14        40
+    LBRACE         {        15         1
+        ID      flag        16         2         2      0x7fffc0c01310
+    ASSIGN         =        16         6
+  DECIMIAL         1        16         7
+ SEMICOLON         ;        16         8
+    RBRACE         }        17         1
+    RETURN    return        18         1
+        ID      flag        18         8         1      0x7fffb8da2608
+ SEMICOLON         ;        18        12
+    RBRACE         }        19         0

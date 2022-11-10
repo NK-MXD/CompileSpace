@@ -1,0 +1,70 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int        11         0
+        ID      main        11         4         0      0x7f1533ed4e47
+    LPAREN         (        11         8
+    RPAREN         )        11         9
+    LBRACE         {        11        11
+       INT       int        12         2
+        ID       arr        12         6         1      0x7fffc6bac1a8
+  LBRACKET         [        12         9
+  DECIMIAL       100        12        10
+  RBRACKET         ]        12        13
+     COMMA         ,        12        14
+        ID         i        12        16         1      0x7f1533c594a0
+    ASSIGN         =        12        18
+  DECIMIAL         0        12        20
+     COMMA         ,        12        21
+        ID       sum        12        23         1      0x7fffc6bac368
+    ASSIGN         =        12        27
+  DECIMIAL         0        12        29
+ SEMICOLON         ;        12        30
+     WHILE     while        13         2
+    LPAREN         (        13         8
+        ID    getint        13         9         1      0x7fffc6bac4b8
+    LPAREN         (        13        15
+    RPAREN         )        13        16
+    RPAREN         )        13        17
+    LBRACE         {        13        19
+        ID       arr        14         3         2      0x7fffcebd4670
+  LBRACKET         [        14         6
+        ID         i        14         7         2      0x7fffc6bac608
+  RBRACKET         ]        14         8
+    ASSIGN         =        14        10
+        ID    getint        14        12         2      0x7fffc6bac6e8
+    LPAREN         (        14        18
+    RPAREN         )        14        19
+ SEMICOLON         ;        14        20
+        ID         i        15         4         2      0x7fffc6bac608
+    ASSIGN         =        15         6
+        ID         i        15         8         2      0x7fffc6bac608
+      PLUS         +        15        10
+  DECIMIAL         1        15        12
+ SEMICOLON         ;        15        13
+    RBRACE         }        16         2
+     WHILE     while        17         1
+    LPAREN         (        17         7
+        ID         i        17         8         1      0x7f1533c594a0
+    RPAREN         )        17         9
+    LBRACE         {        17        11
+        ID         i        18         4         3      0x7fffcebd4670
+    ASSIGN         =        18         6
+        ID         i        18         8         3      0x7fffcebd4670
+     MINUS         -        18        10
+  DECIMIAL         1        18        12
+ SEMICOLON         ;        18        13
+        ID       sum        19         4         3      0x7fffc6babf98
+    ASSIGN         =        19         8
+        ID       sum        19        10         3      0x7fffc6babf98
+      PLUS         +        19        14
+        ID       arr        19        16         3      0x7fffc6bac968
+  LBRACKET         [        19        19
+        ID         i        19        20         3      0x7fffcebd4670
+  RBRACKET         ]        19        21
+ SEMICOLON         ;        19        22
+    RBRACE         }        20         2
+    RETURN    return        21         2
+        ID       sum        21         9         1      0x7fffc6bac368
+       MOD         %        21        13
+  DECIMIAL        79        21        15
+ SEMICOLON         ;        21        17
+    RBRACE         }        22         0

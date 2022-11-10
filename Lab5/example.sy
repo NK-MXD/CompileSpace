@@ -1,0 +1,7 @@
+//test the priority of add and mul
+int main(int d){
+    const int a = 1;
+    const int b = 2;
+    const int c = a + b;
+    return c; 
+}

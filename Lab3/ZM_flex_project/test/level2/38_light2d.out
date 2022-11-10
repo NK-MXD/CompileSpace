@@ -1,0 +1,769 @@
+               token              lexeme              lineno              offset            scope_no    pointer_to_scope
+               CONST               const                   3                   0
+                 INT                 int                   3                   6
+                  ID                   W                   3                  10                   0      0x7f465642ce47
+              ASSIGN                   =                   3                  12
+            DECIMIAL                 192                   3                  14
+               COMMA                   ,                   3                  17
+                  ID                   H                   3                  19                   0      0x7f46561a94a0
+              ASSIGN                   =                   3                  21
+            DECIMIAL                 192                   3                  23
+               COMMA                   ,                   3                  26
+                  ID                   N                   3                  28                   0      0x7fffe04cf218
+              ASSIGN                   =                   3                  30
+            DECIMIAL                  24                   3                  32
+           SEMICOLON                   ;                   3                  34
+               CONST               const                   5                   0
+               FLOAT               float                   5                   6
+                  ID                  PI                   5                  12                   0      0x7fffe04cf368
+              ASSIGN                   =                   5                  15
+       DECIMAL_FLOAT            3.141593                   5                  17
+               COMMA                   ,                   5                  30
+                  ID              TWO_PI                   5                  32                   0      0x7fffe04cf4b8
+              ASSIGN                   =                   5                  39
+       DECIMAL_FLOAT            6.283185                   5                  41
+           SEMICOLON                   ;                   5                  54
+               CONST               const                   6                   0
+                 INT                 int                   6                   6
+                  ID            MAX_STEP                   6                  10                   0      0x7fffe04cf528
+              ASSIGN                   =                   6                  19
+            DECIMIAL                  10                   6                  21
+           SEMICOLON                   ;                   6                  23
+               CONST               const                   7                   0
+               FLOAT               float                   7                   6
+                  ID        MAX_DISTANCE                   7                  12                   0      0x7fffe04cf008
+              ASSIGN                   =                   7                  25
+       DECIMAL_FLOAT            2.000000                   7                  27
+           SEMICOLON                   ;                   7                  30
+               CONST               const                   8                   0
+               FLOAT               float                   8                   6
+                  ID             EPSILON                   8                  12                   0      0x7fffe04cf288
+              ASSIGN                   =                   8                  20
+       DECIMAL_FLOAT            0.000001                   8                  22
+           SEMICOLON                   ;                   8                  26
+               CONST               const                  10                   0
+                 INT                 int                  10                   6
+                  ID            RAND_MAX                  10                  10                   0      0x7fffe04cf3d8
+              ASSIGN                   =                  10                  19
+            DECIMIAL           100000007                  10                  21
+               MINUS                   -                  10                  31
+            DECIMIAL                   1                  10                  33
+           SEMICOLON                   ;                  10                  34
+                 INT                 int                  11                   0
+                  ID                seed                  11                   4                   0      0x7fffe04cf918
+              ASSIGN                   =                  11                   9
+            DECIMIAL                   0                  11                  11
+           SEMICOLON                   ;                  11                  12
+                 INT                 int                  13                   0
+                  ID                rand                  13                   4                   0      0x7fffe04cf598
+              LPAREN                   (                  13                   8
+              RPAREN                   )                  13                   9
+              LBRACE                   {                  13                  11
+                  ID                seed                  14                   2                   1      0x7fffe7b07c20
+              ASSIGN                   =                  14                   7
+              LPAREN                   (                  14                   9
+                  ID                seed                  14                  10                   1      0x7fffe7b07c20
+                 MUL                   *                  14                  15
+            DECIMIAL            19980130                  14                  17
+                PLUS                   +                  14                  26
+            DECIMIAL               23333                  14                  28
+              RPAREN                   )                  14                  33
+                 MOD                   %                  14                  35
+            DECIMIAL           100000007                  14                  37
+           SEMICOLON                   ;                  14                  46
+                  IF                  if                  15                   2
+              LPAREN                   (                  15                   5
+                  ID                seed                  15                   6                   1      0x7fffe7b07c20
+                LESS                   <                  15                  11
+            DECIMIAL                   0                  15                  13
+              RPAREN                   )                  15                  14
+                  ID                seed                  15                  16                   1      0x7fffe7b07c20
+              ASSIGN                   =                  15                  21
+                  ID                seed                  15                  23                   1      0x7fffe7b07c20
+                PLUS                   +                  15                  28
+            DECIMIAL           100000007                  15                  30
+           SEMICOLON                   ;                  15                  39
+              RETURN              return                  16                   2
+                  ID                seed                  16                   9                   1      0x7fffe7b07c20
+           SEMICOLON                   ;                  16                  13
+              RBRACE                   }                  17                   0
+               FLOAT               float                  19                   0
+                  ID             my_fabs                  19                   6                   0      0x7fffe04cf678
+              LPAREN                   (                  19                  13
+               FLOAT               float                  19                  14
+                  ID                   x                  19                  20                   0      0x7fffe04cf6e8
+              RPAREN                   )                  19                  21
+              LBRACE                   {                  19                  23
+                  IF                  if                  20                   2
+              LPAREN                   (                  20                   5
+                  ID                   x                  20                   6                   2      0x7fffe7b07c20
+               GREAT                   >                  20                   8
+            DECIMIAL                   0                  20                  10
+              RPAREN                   )                  20                  11
+              RETURN              return                  20                  13
+                  ID                   x                  20                  20                   2      0x7fffe7b07c20
+           SEMICOLON                   ;                  20                  21
+              RETURN              return                  21                   2
+               MINUS                   -                  21                   9
+                  ID                   x                  21                  10                   2      0x7fffe7b07c20
+           SEMICOLON                   ;                  21                  11
+              RBRACE                   }                  22                   0
+               FLOAT               float                  24                   0
+                  ID             my_sqrt                  24                   6                   0      0x7fffe04cef98
+              LPAREN                   (                  24                  13
+               FLOAT               float                  24                  14
+                  ID                   x                  24                  20                   0      0x7fffe04cf6e8
+              RPAREN                   )                  24                  21
+              LBRACE                   {                  24                  23
+               FLOAT               float                  25                   2
+                  ID                   t                  25                   8                   3      0x7fffe7b07c20
+              ASSIGN                   =                  25                  10
+                  ID                   x                  25                  12                   3      0x7fffe04d02b8
+                 DIV                   /                  25                  14
+            DECIMIAL                   8                  25                  16
+                PLUS                   +                  25                  18
+       DECIMAL_FLOAT            0.500000                  25                  20
+                PLUS                   +                  25                  24
+            DECIMIAL                   2                  25                  26
+                 MUL                   *                  25                  28
+                  ID                   x                  25                  30                   3      0x7fffe04d02b8
+                 DIV                   /                  25                  32
+              LPAREN                   (                  25                  34
+            DECIMIAL                   4                  25                  35
+                PLUS                   +                  25                  37
+                  ID                   x                  25                  39                   3      0x7fffe04d02b8
+              RPAREN                   )                  25                  40
+           SEMICOLON                   ;                  25                  41
+                 INT                 int                  26                   2
+                  ID                   c                  26                   6                   3      0x7fffe04d0668
+              ASSIGN                   =                  26                   8
+            DECIMIAL                  10                  26                  10
+           SEMICOLON                   ;                  26                  12
+               WHILE               while                  27                   2
+              LPAREN                   (                  27                   8
+                  ID                   c                  27                   9                   3      0x7fffe04d0668
+              RPAREN                   )                  27                  10
+              LBRACE                   {                  27                  12
+                  ID                   t                  28                   4                   4      0x7fffe7b07c20
+              ASSIGN                   =                  28                   6
+              LPAREN                   (                  28                   8
+                  ID                   t                  28                   9                   4      0x7fffe7b07c20
+                PLUS                   +                  28                  11
+                  ID                   x                  28                  13                   4      0x7fffe04cf2f8
+                 DIV                   /                  28                  15
+                  ID                   t                  28                  17                   4      0x7fffe7b07c20
+              RPAREN                   )                  28                  18
+                 DIV                   /                  28                  20
+            DECIMIAL                   2                  28                  22
+           SEMICOLON                   ;                  28                  23
+                  ID                   c                  29                   4                   4      0x7fffe04cf988
+              ASSIGN                   =                  29                   6
+                  ID                   c                  29                   8                   4      0x7fffe04cf988
+               MINUS                   -                  29                  10
+            DECIMIAL                   1                  29                  12
+           SEMICOLON                   ;                  29                  13
+              RBRACE                   }                  30                   2
+              RETURN              return                  31                   2
+                  ID                   t                  31                   9                   3      0x7fffe7b07c20
+           SEMICOLON                   ;                  31                  10
+              RBRACE                   }                  32                   0
+               FLOAT               float                  34                   0
+                  ID                   p                  34                   6                   0      0x7fffe04cfbb8
+              LPAREN                   (                  34                   7
+               FLOAT               float                  34                   8
+                  ID                   x                  34                  14                   0      0x7fffe04cf6e8
+              RPAREN                   )                  34                  15
+              LBRACE                   {                  34                  17
+              RETURN              return                  34                  19
+            DECIMIAL                   3                  34                  26
+                 MUL                   *                  34                  28
+                  ID                   x                  34                  30                   5      0x7fffe7b07c20
+               MINUS                   -                  34                  32
+            DECIMIAL                   4                  34                  34
+                 MUL                   *                  34                  36
+                  ID                   x                  34                  38                   5      0x7fffe7b07c20
+                 MUL                   *                  34                  40
+                  ID                   x                  34                  42                   5      0x7fffe7b07c20
+                 MUL                   *                  34                  44
+                  ID                   x                  34                  46                   5      0x7fffe7b07c20
+           SEMICOLON                   ;                  34                  47
+              RBRACE                   }                  34                  49
+               FLOAT               float                  36                   0
+                  ID         my_sin_impl                  36                   6                   0      0x7fffe04cf9f8
+              LPAREN                   (                  36                  17
+               FLOAT               float                  36                  18
+                  ID                   x                  36                  24                   0      0x7fffe04cf6e8
+              RPAREN                   )                  36                  25
+              LBRACE                   {                  36                  27
+                  IF                  if                  37                   2
+              LPAREN                   (                  37                   5
+                  ID             my_fabs                  37                   6                   6      0x7fffe7b07c20
+              LPAREN                   (                  37                  13
+                  ID                   x                  37                  14                   6      0x7fffe04d0998
+              RPAREN                   )                  37                  15
+           LESSEQUAL                  <=                  37                  17
+                  ID             EPSILON                  37                  20                   6      0x7fffe04cfc98
+              RPAREN                   )                  37                  27
+              RETURN              return                  37                  29
+                  ID                   x                  37                  36                   6      0x7fffe04d0998
+           SEMICOLON                   ;                  37                  37
+              RETURN              return                  38                   2
+                  ID                   p                  38                   9                   6      0x7fffe04d00f8
+              LPAREN                   (                  38                  10
+                  ID         my_sin_impl                  38                  11                   6      0x7fffe04d0018
+              LPAREN                   (                  38                  22
+                  ID                   x                  38                  23                   6      0x7fffe04d0998
+                 DIV                   /                  38                  25
+       DECIMAL_FLOAT            3.000000                  38                  27
+              RPAREN                   )                  38                  30
+              RPAREN                   )                  38                  31
+           SEMICOLON                   ;                  38                  32
+              RBRACE                   }                  39                   0
+               FLOAT               float                  41                   0
+                  ID              my_sin                  41                   6                   0      0x7fffe04d0d88
+              LPAREN                   (                  41                  12
+               FLOAT               float                  41                  13
+                  ID                   x                  41                  19                   0      0x7fffe04cf6e8
+              RPAREN                   )                  41                  20
+              LBRACE                   {                  41                  22
+                  IF                  if                  42                   2
+              LPAREN                   (                  42                   5
+                  ID                   x                  42                   6                   7      0x7fffe7b07c20
+               GREAT                   >                  42                   8
+                  ID              TWO_PI                  42                  10                   7      0x7fffe04d0a78
+                  OR                  ||                  42                  17
+                  ID                   x                  42                  20                   7      0x7fffe7b07c20
+                LESS                   <                  42                  22
+               MINUS                   -                  42                  24
+                  ID              TWO_PI                  42                  25                   7      0x7fffe04d0a78
+              RPAREN                   )                  42                  31
+              LBRACE                   {                  42                  33
+                 INT                 int                  43                   4
+                  ID                  xx                  43                   8                   8      0x7fffe7b07c20
+              ASSIGN                   =                  43                  11
+                  ID                   x                  43                  13                   8      0x7fffe04d0248
+                 DIV                   /                  43                  15
+                  ID              TWO_PI                  43                  17                   8      0x7fffe04d0328
+           SEMICOLON                   ;                  43                  23
+                  ID                   x                  44                   4                   8      0x7fffe04d0248
+              ASSIGN                   =                  44                   6
+                  ID                   x                  44                   8                   8      0x7fffe04d0248
+               MINUS                   -                  44                  10
+                  ID                  xx                  44                  12                   8      0x7fffe7b07c20
+                 MUL                   *                  44                  15
+                  ID              TWO_PI                  44                  17                   8      0x7fffe04d0328
+           SEMICOLON                   ;                  44                  23
+              RBRACE                   }                  45                   2
+                  IF                  if                  46                   2
+              LPAREN                   (                  46                   5
+                  ID                   x                  46                   6                   7      0x7fffe7b07c20
+               GREAT                   >                  46                   8
+                  ID                  PI                  46                  10                   7      0x7fffe04d0088
+              RPAREN                   )                  46                  12
+                  ID                   x                  46                  14                   7      0x7fffe7b07c20
+              ASSIGN                   =                  46                  16
+                  ID                   x                  46                  18                   7      0x7fffe7b07c20
+               MINUS                   -                  46                  20
+                  ID              TWO_PI                  46                  22                   7      0x7fffe04d0a78
+           SEMICOLON                   ;                  46                  28
+                  IF                  if                  47                   2
+              LPAREN                   (                  47                   5
+                  ID                   x                  47                   6                   7      0x7fffe7b07c20
+                LESS                   <                  47                   8
+               MINUS                   -                  47                  10
+                  ID                  PI                  47                  11                   7      0x7fffe04d0088
+              RPAREN                   )                  47                  13
+                  ID                   x                  47                  15                   7      0x7fffe7b07c20
+              ASSIGN                   =                  47                  17
+                  ID                   x                  47                  19                   7      0x7fffe7b07c20
+                PLUS                   +                  47                  21
+                  ID              TWO_PI                  47                  23                   7      0x7fffe04d0a78
+           SEMICOLON                   ;                  47                  29
+              RETURN              return                  48                   2
+                  ID         my_sin_impl                  48                   9                   7      0x7fffe04d0e48
+              LPAREN                   (                  48                  20
+                  ID                   x                  48                  21                   7      0x7fffe7b07c20
+              RPAREN                   )                  48                  22
+           SEMICOLON                   ;                  48                  23
+              RBRACE                   }                  49                   0
+               FLOAT               float                  51                   0
+                  ID              my_cos                  51                   6                   0      0x7fffe04cf138
+              LPAREN                   (                  51                  12
+               FLOAT               float                  51                  13
+                  ID                   x                  51                  19                   0      0x7fffe04cf6e8
+              RPAREN                   )                  51                  20
+              LBRACE                   {                  51                  22
+              RETURN              return                  51                  24
+                  ID              my_sin                  51                  31                   9      0x7fffe7b07c20
+              LPAREN                   (                  51                  37
+                  ID                   x                  51                  38                   9      0x7fffe04d1218
+                PLUS                   +                  51                  40
+                  ID                  PI                  51                  42                   9      0x7fffe04d0928
+                 DIV                   /                  51                  45
+            DECIMIAL                   2                  51                  47
+              RPAREN                   )                  51                  48
+           SEMICOLON                   ;                  51                  49
+              RBRACE                   }                  51                  51
+               FLOAT               float                  53                   0
+                  ID          circle_sdf                  53                   6                   0      0x7fffe04d0ae8
+              LPAREN                   (                  53                  16
+               FLOAT               float                  53                  17
+                  ID                   x                  53                  23                   0      0x7fffe04cf6e8
+               COMMA                   ,                  53                  24
+               FLOAT               float                  53                  26
+                  ID                   y                  53                  32                   0      0x7fffe04d10c8
+               COMMA                   ,                  53                  33
+               FLOAT               float                  53                  35
+                  ID                  cx                  53                  41                   0      0x7fffe04d1138
+               COMMA                   ,                  53                  43
+               FLOAT               float                  53                  45
+                  ID                  cy                  53                  51                   0      0x7fffe04cff38
+               COMMA                   ,                  53                  53
+               FLOAT               float                  53                  55
+                  ID                   r                  53                  61                   0      0x7fffe04d0a08
+              RPAREN                   )                  53                  62
+              LBRACE                   {                  53                  64
+               FLOAT               float                  54                   2
+                  ID                  ux                  54                   8                  10      0x7fffe7b07c20
+              ASSIGN                   =                  54                  11
+                  ID                   x                  54                  13                  10      0x7fffe04d12f8
+               MINUS                   -                  54                  15
+                  ID                  cx                  54                  17                  10      0x7fffe04d20d8
+               COMMA                   ,                  54                  19
+                  ID                  uy                  54                  21                  10      0x7fffe04d0b58
+              ASSIGN                   =                  54                  24
+                  ID                   y                  54                  26                  10      0x7fffe04d0c38
+               MINUS                   -                  54                  28
+                  ID                  cy                  54                  30                  10      0x7fffe04d1288
+           SEMICOLON                   ;                  54                  32
+              RETURN              return                  55                   2
+                  ID             my_sqrt                  55                   9                  10      0x7fffe04d0eb8
+              LPAREN                   (                  55                  16
+                  ID                  ux                  55                  17                  10      0x7fffe7b07c20
+                 MUL                   *                  55                  20
+                  ID                  ux                  55                  22                  10      0x7fffe7b07c20
+                PLUS                   +                  55                  25
+                  ID                  uy                  55                  27                  10      0x7fffe04d0b58
+                 MUL                   *                  55                  30
+                  ID                  uy                  55                  32                  10      0x7fffe04d0b58
+              RPAREN                   )                  55                  34
+               MINUS                   -                  55                  36
+                  ID                   r                  55                  38                  10      0x7fffe04d1448
+           SEMICOLON                   ;                  55                  39
+              RBRACE                   }                  56                   0
+                VOID                void                  58                   0
+                  ID               scene                  58                   5                   0      0x7fffe04d1f88
+              LPAREN                   (                  58                  10
+               FLOAT               float                  58                  11
+                  ID                   x                  58                  17                   0      0x7fffe04cf6e8
+               COMMA                   ,                  58                  18
+               FLOAT               float                  58                  20
+                  ID                   y                  58                  26                   0      0x7fffe04d10c8
+               COMMA                   ,                  58                  27
+               FLOAT               float                  58                  29
+                  ID                 ret                  58                  35                   0      0x7fffe04d1c08
+            LBRACKET                   [                  58                  38
+            RBRACKET                   ]                  58                  39
+              RPAREN                   )                  58                  40
+              LBRACE                   {                  58                  42
+               FLOAT               float                  59                   2
+                  ID                 sd0                  59                   8                  11      0x7fffe7b07c20
+              ASSIGN                   =                  59                  12
+                  ID          circle_sdf                  59                  14                  11      0x7fffe04d2228
+              LPAREN                   (                  59                  24
+                  ID                   x                  59                  25                  11      0x7fffe04d0f98
+               COMMA                   ,                  59                  26
+                  ID                   y                  59                  28                  11      0x7fffe04cf758
+               COMMA                   ,                  59                  29
+       DECIMAL_FLOAT            0.400000                  59                  31
+               COMMA                   ,                  59                  34
+       DECIMAL_FLOAT            0.400000                  59                  36
+               COMMA                   ,                  59                  39
+       DECIMAL_FLOAT            0.100000                  59                  41
+              RPAREN                   )                  59                  45
+               COMMA                   ,                  59                  46
+                  ID                 sd1                  60                   8                  11      0x7fffe04d0f28
+              ASSIGN                   =                  60                  12
+                  ID          circle_sdf                  60                  14                  11      0x7fffe04d2228
+              LPAREN                   (                  60                  24
+                  ID                   x                  60                  25                  11      0x7fffe04d0f98
+               COMMA                   ,                  60                  26
+                  ID                   y                  60                  28                  11      0x7fffe04cf758
+               COMMA                   ,                  60                  29
+       DECIMAL_FLOAT            0.600000                  60                  31
+               COMMA                   ,                  60                  34
+       DECIMAL_FLOAT            0.600000                  60                  36
+               COMMA                   ,                  60                  39
+       DECIMAL_FLOAT            0.050000                  60                  41
+              RPAREN                   )                  60                  45
+           SEMICOLON                   ;                  60                  46
+                  IF                  if                  61                   2
+              LPAREN                   (                  61                   5
+                  ID                 sd0                  61                   6                  11      0x7fffe7b07c20
+                LESS                   <                  61                  10
+                  ID                 sd1                  61                  12                  11      0x7fffe04d0f28
+              RPAREN                   )                  61                  15
+              LBRACE                   {                  61                  17
+                  ID                 ret                  62                   4                  12      0x7fffe7b07c20
+            LBRACKET                   [                  62                   7
+            DECIMIAL                   0                  62                   8
+            RBRACKET                   ]                  62                   9
+              ASSIGN                   =                  62                  11
+                  ID                 sd0                  62                  13                  12      0x7fffe04d17a8
+           SEMICOLON                   ;                  62                  16
+                  ID                 ret                  63                   4                  12      0x7fffe7b07c20
+            LBRACKET                   [                  63                   7
+            DECIMIAL                   1                  63                   8
+            RBRACKET                   ]                  63                   9
+              ASSIGN                   =                  63                  11
+       DECIMAL_FLOAT            3.000000                  63                  13
+           SEMICOLON                   ;                  63                  16
+              RBRACE                   }                  64                   2
+                ELSE                else                  64                   4
+              LBRACE                   {                  64                   9
+                  ID                 ret                  65                   4                  13      0x7fffe7b07c20
+            LBRACKET                   [                  65                   7
+            DECIMIAL                   0                  65                   8
+            RBRACKET                   ]                  65                   9
+              ASSIGN                   =                  65                  11
+                  ID                 sd1                  65                  13                  13      0x7fffe04cfec8
+           SEMICOLON                   ;                  65                  16
+                  ID                 ret                  66                   4                  13      0x7fffe7b07c20
+            LBRACKET                   [                  66                   7
+            DECIMIAL                   1                  66                   8
+            RBRACKET                   ]                  66                   9
+              ASSIGN                   =                  66                  11
+       DECIMAL_FLOAT            0.000000                  66                  13
+           SEMICOLON                   ;                  66                  16
+              RBRACE                   }                  67                   2
+              RBRACE                   }                  68                   0
+               FLOAT               float                  70                   0
+                  ID               trace                  70                   6                  12      0x7fffe04d1818
+              LPAREN                   (                  70                  11
+               FLOAT               float                  70                  12
+                  ID                  ox                  70                  18                  12      0x7fffe04d1738
+               COMMA                   ,                  70                  20
+               FLOAT               float                  70                  22
+                  ID                  oy                  70                  28                  12      0x7fffe04d11a8
+               COMMA                   ,                  70                  30
+               FLOAT               float                  70                  32
+                  ID                  dx                  70                  38                  12      0x7fffe04d1f18
+               COMMA                   ,                  70                  40
+               FLOAT               float                  70                  42
+                  ID                  dy                  70                  48                  12      0x7fffe04d2828
+              RPAREN                   )                  70                  50
+              LBRACE                   {                  70                  52
+               FLOAT               float                  71                   2
+                  ID                   t                  71                   8                  14      0x7fffe7b07c20
+              ASSIGN                   =                  71                  10
+       DECIMAL_FLOAT            0.000000                  71                  12
+           SEMICOLON                   ;                  71                  15
+                 INT                 int                  72                   2
+                  ID                   i                  72                   6                  14      0x7fffe04d1008
+              ASSIGN                   =                  72                   8
+            DECIMIAL                   0                  72                  10
+           SEMICOLON                   ;                  72                  11
+               WHILE               while                  73                   2
+              LPAREN                   (                  73                   8
+                  ID                   i                  73                   9                  14      0x7fffe04d1008
+                LESS                   <                  73                  11
+                  ID            MAX_STEP                  73                  13                  14      0x7fffe04d2898
+                 AND                  &&                  73                  22
+                  ID                   t                  73                  25                  14      0x7fffe7b07c20
+                LESS                   <                  73                  27
+                  ID        MAX_DISTANCE                  73                  29                  14      0x7fffe04d21b8
+              RPAREN                   )                  73                  41
+              LBRACE                   {                  73                  43
+               FLOAT               float                  74                   4
+                  ID                 ret                  74                  10                  15      0x7fffe7b07c20
+            LBRACKET                   [                  74                  13
+            DECIMIAL                   2                  74                  14
+            RBRACKET                   ]                  74                  15
+           SEMICOLON                   ;                  74                  16
+                  ID               scene                  75                   4                  15      0x7fffe04d1968
+              LPAREN                   (                  75                   9
+                  ID                  ox                  75                  10                  15      0x7fffe04d1368
+                PLUS                   +                  75                  13
+                  ID                  dx                  75                  15                  15      0x7fffe04d2298
+                 MUL                   *                  75                  18
+                  ID                   t                  75                  20                  15      0x7fffe04d1a48
+               COMMA                   ,                  75                  21
+                  ID                  oy                  75                  23                  15      0x7fffe04d2908
+                PLUS                   +                  75                  26
+                  ID                  dy                  75                  28                  15      0x7fffe04d2978
+                 MUL                   *                  75                  31
+                  ID                   t                  75                  33                  15      0x7fffe04d1a48
+               COMMA                   ,                  75                  34
+                  ID                 ret                  75                  36                  15      0x7fffe7b07c20
+              RPAREN                   )                  75                  39
+           SEMICOLON                   ;                  75                  40
+                  IF                  if                  76                   4
+              LPAREN                   (                  76                   7
+                  ID                 ret                  76                   8                  15      0x7fffe7b07c20
+            LBRACKET                   [                  76                  11
+            DECIMIAL                   0                  76                  12
+            RBRACKET                   ]                  76                  13
+                LESS                   <                  76                  15
+                  ID             EPSILON                  76                  17                  15      0x7fffe04cf608
+              RPAREN                   )                  76                  24
+              RETURN              return                  76                  26
+                  ID                 ret                  76                  33                  15      0x7fffe7b07c20
+            LBRACKET                   [                  76                  36
+            DECIMIAL                   1                  76                  37
+            RBRACKET                   ]                  76                  38
+           SEMICOLON                   ;                  76                  39
+                  ID                   t                  77                   4                  15      0x7fffe04d1a48
+              ASSIGN                   =                  77                   6
+                  ID                   t                  77                   8                  15      0x7fffe04d1a48
+                PLUS                   +                  77                  10
+                  ID                 ret                  77                  12                  15      0x7fffe7b07c20
+            LBRACKET                   [                  77                  15
+            DECIMIAL                   0                  77                  16
+            RBRACKET                   ]                  77                  17
+           SEMICOLON                   ;                  77                  18
+                  ID                   i                  78                   4                  15      0x7fffe04d2518
+              ASSIGN                   =                  78                   6
+                  ID                   i                  78                   8                  15      0x7fffe04d2518
+                PLUS                   +                  78                  10
+            DECIMIAL                   1                  78                  12
+           SEMICOLON                   ;                  78                  13
+              RBRACE                   }                  79                   2
+              RETURN              return                  80                   2
+       DECIMAL_FLOAT            0.000000                  80                   9
+           SEMICOLON                   ;                  80                  12
+              RBRACE                   }                  81                   0
+               FLOAT               float                  83                   0
+                  ID              sample                  83                   6                  12      0x7fffe04d1b28
+              LPAREN                   (                  83                  12
+               FLOAT               float                  83                  13
+                  ID                   x                  83                  19                  12      0x7fffe04d1ea8
+               COMMA                   ,                  83                  20
+               FLOAT               float                  83                  22
+                  ID                   y                  83                  28                  12      0x7fffe04d2748
+              RPAREN                   )                  83                  29
+              LBRACE                   {                  83                  31
+               FLOAT               float                  84                   2
+                  ID                 sum                  84                   8                  16      0x7fffe7b07c20
+              ASSIGN                   =                  84                  12
+       DECIMAL_FLOAT            0.000000                  84                  14
+           SEMICOLON                   ;                  84                  17
+                 INT                 int                  85                   2
+                  ID                   i                  85                   6                  16      0x7fffe04d2438
+              ASSIGN                   =                  85                   8
+            DECIMIAL                   0                  85                  10
+           SEMICOLON                   ;                  85                  11
+               WHILE               while                  86                   2
+              LPAREN                   (                  86                   8
+                  ID                   i                  86                   9                  16      0x7fffe04d2438
+                LESS                   <                  86                  11
+                  ID                   N                  86                  13                  16      0x7fffe04d1b98
+              RPAREN                   )                  86                  14
+              LBRACE                   {                  86                  16
+               FLOAT               float                  87                   4
+                  ID                 rnd                  87                  10                  17      0x7fffe7b07c20
+              ASSIGN                   =                  87                  14
+                  ID                rand                  87                  16                  17      0x7fffe04d2588
+              LPAREN                   (                  87                  20
+              RPAREN                   )                  87                  21
+           SEMICOLON                   ;                  87                  22
+               FLOAT               float                  88                   4
+                  ID                   a                  88                  10                  17      0x7fffe04d25f8
+              ASSIGN                   =                  88                  12
+                  ID              TWO_PI                  88                  14                  17      0x7fffe04d2c58
+                 MUL                   *                  88                  21
+              LPAREN                   (                  88                  23
+                  ID                   i                  88                  24                  17      0x7fffe04d2068
+                PLUS                   +                  88                  26
+                  ID                 rnd                  88                  28                  17      0x7fffe7b07c20
+                 DIV                   /                  88                  32
+                  ID            RAND_MAX                  88                  34                  17      0x7fffe04d15e8
+              RPAREN                   )                  88                  42
+                 DIV                   /                  88                  44
+                  ID                   N                  88                  46                  17      0x7fffe04d16c8
+           SEMICOLON                   ;                  88                  47
+                  ID                 sum                  89                   4                  17      0x7fffe04d2668
+              ASSIGN                   =                  89                   8
+                  ID                 sum                  89                  10                  17      0x7fffe04d2668
+                PLUS                   +                  89                  14
+                  ID               trace                  89                  16                  17      0x7fffe04d1ab8
+              LPAREN                   (                  89                  21
+                  ID                   x                  89                  22                  17      0x7fffe04d2d38
+               COMMA                   ,                  89                  23
+                  ID                   y                  89                  25                  17      0x7fffe04d1dc8
+               COMMA                   ,                  89                  26
+                  ID              my_cos                  89                  28                  17      0x7fffe04d2b78
+              LPAREN                   (                  89                  34
+                  ID                   a                  89                  35                  17      0x7fffe04d25f8
+              RPAREN                   )                  89                  36
+               COMMA                   ,                  89                  37
+                  ID              my_sin                  89                  39                  17      0x7fffe04d3188
+              LPAREN                   (                  89                  45
+                  ID                   a                  89                  46                  17      0x7fffe04d25f8
+              RPAREN                   )                  89                  47
+              RPAREN                   )                  89                  48
+           SEMICOLON                   ;                  89                  49
+                  ID                   i                  90                   4                  17      0x7fffe04d2068
+              ASSIGN                   =                  90                   6
+                  ID                   i                  90                   8                  17      0x7fffe04d2068
+                PLUS                   +                  90                  10
+            DECIMIAL                   1                  90                  12
+           SEMICOLON                   ;                  90                  13
+              RBRACE                   }                  91                   2
+              RETURN              return                  92                   2
+                  ID                 sum                  92                   9                  16      0x7fffe7b07c20
+                 DIV                   /                  92                  13
+                  ID                   N                  92                  15                  16      0x7fffe04d1b98
+           SEMICOLON                   ;                  92                  16
+              RBRACE                   }                  93                   0
+                VOID                void                  95                   0
+                  ID           write_pgm                  95                   5                  12      0x7fffe04d1ce8
+              LPAREN                   (                  95                  14
+              RPAREN                   )                  95                  15
+              LBRACE                   {                  95                  17
+                  ID               putch                  96                   2                  18      0x7fffe7b07c20
+              LPAREN                   (                  96                   7
+            DECIMIAL                  80                  96                   8
+              RPAREN                   )                  96                  10
+           SEMICOLON                   ;                  96                  11
+                  ID               putch                  96                  13                  18      0x7fffe7b07c20
+              LPAREN                   (                  96                  18
+            DECIMIAL                  50                  96                  19
+              RPAREN                   )                  96                  21
+           SEMICOLON                   ;                  96                  22
+                  ID               putch                  96                  24                  18      0x7fffe7b07c20
+              LPAREN                   (                  96                  29
+            DECIMIAL                  10                  96                  30
+              RPAREN                   )                  96                  32
+           SEMICOLON                   ;                  96                  33
+                  ID              putint                  97                   2                  18      0x7fffe04d3348
+              LPAREN                   (                  97                   8
+                  ID                   W                  97                   9                  18      0x7fffe04d33b8
+              RPAREN                   )                  97                  10
+           SEMICOLON                   ;                  97                  11
+                  ID               putch                  97                  13                  18      0x7fffe7b07c20
+              LPAREN                   (                  97                  18
+            DECIMIAL                  32                  97                  19
+              RPAREN                   )                  97                  21
+           SEMICOLON                   ;                  97                  22
+                  ID              putint                  97                  24                  18      0x7fffe04d3348
+              LPAREN                   (                  97                  30
+                  ID                   H                  97                  31                  18      0x7fffe04d3818
+              RPAREN                   )                  97                  32
+           SEMICOLON                   ;                  97                  33
+                  ID               putch                  97                  35                  18      0x7fffe7b07c20
+              LPAREN                   (                  97                  40
+            DECIMIAL                  32                  97                  41
+              RPAREN                   )                  97                  43
+           SEMICOLON                   ;                  97                  44
+                  ID              putint                  97                  46                  18      0x7fffe04d3348
+              LPAREN                   (                  97                  52
+            DECIMIAL                 255                  97                  53
+              RPAREN                   )                  97                  56
+           SEMICOLON                   ;                  97                  57
+                  ID               putch                  97                  59                  18      0x7fffe7b07c20
+              LPAREN                   (                  97                  64
+            DECIMIAL                  10                  97                  65
+              RPAREN                   )                  97                  67
+           SEMICOLON                   ;                  97                  68
+                 INT                 int                  98                   2
+                  ID                   y                  98                   6                  18      0x7fffe04d38f8
+              ASSIGN                   =                  98                   8
+            DECIMIAL                   0                  98                  10
+           SEMICOLON                   ;                  98                  11
+               WHILE               while                  99                   2
+              LPAREN                   (                  99                   8
+                  ID                   y                  99                   9                  18      0x7fffe04d38f8
+                LESS                   <                  99                  11
+                  ID                   H                  99                  13                  18      0x7fffe04d3818
+              RPAREN                   )                  99                  14
+              LBRACE                   {                  99                  16
+                 INT                 int                 100                   4
+                  ID                   x                 100                   8                  19      0x7fffe7b07c20
+              ASSIGN                   =                 100                  10
+            DECIMIAL                   0                 100                  12
+           SEMICOLON                   ;                 100                  13
+               WHILE               while                 101                   4
+              LPAREN                   (                 101                  10
+                  ID                   x                 101                  11                  19      0x7fffe7b07c20
+                LESS                   <                 101                  13
+                  ID                   W                 101                  15                  19      0x7fffe04d1d58
+              RPAREN                   )                 101                  16
+              LBRACE                   {                 101                  18
+               FLOAT               float                 102                   6
+                  ID                  xx                 102                  12                  20      0x7fffe7b07c20
+              ASSIGN                   =                 102                  15
+                  ID                   x                 102                  17                  20      0x7fffe04d3658
+               COMMA                   ,                 102                  18
+                  ID                  yy                 102                  20                  20      0x7fffe04d3498
+              ASSIGN                   =                 102                  23
+                  ID                   y                 102                  25                  20      0x7fffe04d3578
+           SEMICOLON                   ;                 102                  26
+                 INT                 int                 103                   6
+                  ID                   p                 103                  10                  20      0x7fffe04d3268
+              ASSIGN                   =                 103                  12
+                  ID              sample                 103                  14                  20      0x7fffe04d36c8
+              LPAREN                   (                 103                  20
+                  ID                  xx                 103                  21                  20      0x7fffe7b07c20
+                 DIV                   /                 103                  24
+                  ID                   W                 103                  26                  20      0x7fffe04d3118
+               COMMA                   ,                 103                  27
+                  ID                  yy                 103                  29                  20      0x7fffe04d3498
+                 DIV                   /                 103                  32
+                  ID                   H                 103                  34                  20      0x7fffe04d39d8
+              RPAREN                   )                 103                  35
+                 MUL                   *                 103                  37
+       DECIMAL_FLOAT          255.000000                 103                  39
+           SEMICOLON                   ;                 103                  44
+                  IF                  if                 104                   6
+              LPAREN                   (                 104                   9
+                  ID                   p                 104                  10                  20      0x7fffe04d3268
+               GREAT                   >                 104                  12
+            DECIMIAL                 255                 104                  14
+              RPAREN                   )                 104                  17
+                  ID                   p                 104                  19                  20      0x7fffe04d3268
+              ASSIGN                   =                 104                  21
+            DECIMIAL                 255                 104                  23
+           SEMICOLON                   ;                 104                  26
+                  ID              putint                 105                   6                  20      0x7fffe04d3cf8
+              LPAREN                   (                 105                  12
+                  ID                   p                 105                  13                  20      0x7fffe04d3268
+              RPAREN                   )                 105                  14
+           SEMICOLON                   ;                 105                  15
+                  ID               putch                 106                   6                  20      0x7fffe04d3c88
+              LPAREN                   (                 106                  11
+            DECIMIAL                  32                 106                  12
+              RPAREN                   )                 106                  14
+           SEMICOLON                   ;                 106                  15
+                  ID                   x                 107                   6                  20      0x7fffe04d3658
+              ASSIGN                   =                 107                   8
+                  ID                   x                 107                  10                  20      0x7fffe04d3658
+                PLUS                   +                 107                  12
+            DECIMIAL                   1                 107                  14
+           SEMICOLON                   ;                 107                  15
+              RBRACE                   }                 108                   4
+                  ID               putch                 109                   4                  19      0x7fffe04d32d8
+              LPAREN                   (                 109                   9
+            DECIMIAL                  10                 109                  10
+              RPAREN                   )                 109                  12
+           SEMICOLON                   ;                 109                  13
+                  ID                   y                 110                   4                  19      0x7fffe04d3738
+              ASSIGN                   =                 110                   6
+                  ID                   y                 110                   8                  19      0x7fffe04d3738
+                PLUS                   +                 110                  10
+            DECIMIAL                   1                 110                  12
+           SEMICOLON                   ;                 110                  13
+              RBRACE                   }                 111                   2
+              RBRACE                   }                 112                   0
+                 INT                 int                 114                   0
+                  ID                main                 114                   4                  12      0x7fffe04d3dd8
+              LPAREN                   (                 114                   8
+              RPAREN                   )                 114                   9
+              LBRACE                   {                 114                  11
+                  ID           write_pgm                 115                   2                  21      0x7fffe7b07c20
+              LPAREN                   (                 115                  11
+              RPAREN                   )                 115                  12
+           SEMICOLON                   ;                 115                  13
+              RETURN              return                 116                   2
+            DECIMIAL                   0                 116                   9
+           SEMICOLON                   ;                 116                  10
+              RBRACE                   }                 117                   0

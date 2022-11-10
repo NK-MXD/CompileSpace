@@ -1,0 +1,31 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID         a         1         4         0      0x7fe74a453e47
+ SEMICOLON         ;         1         5
+       INT       int         2         0
+        ID      main         2         4         0      0x7fe74a1d94a0
+    LPAREN         (         2         8
+    RPAREN         )         2         9
+    LBRACE         {         2        10
+        ID         a         3         1         1      0x7fffe1adf840
+    ASSIGN         =         3         3
+  DECIMIAL        10         3         5
+ SEMICOLON         ;         3         7
+        IF        if         4         1
+    LPAREN         (         4         3
+        ID         a         4         5         1      0x7fffe1adf840
+     GREAT         >         4         6
+  DECIMIAL         0         4         7
+    RPAREN         )         4         9
+    LBRACE         {         4        10
+    RETURN    return         5         2
+  DECIMIAL         1         5         9
+ SEMICOLON         ;         5        10
+    RBRACE         }         6         1
+      ELSE      else         7         1
+    LBRACE         {         7         5
+    RETURN    return         8         2
+  DECIMIAL         0         8         9
+ SEMICOLON         ;         8        10
+    RBRACE         }         9         1
+    RBRACE         }        10         0

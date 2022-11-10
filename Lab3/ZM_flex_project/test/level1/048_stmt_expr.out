@@ -1,0 +1,59 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID         k         1         4         0      0x7f87c2d2be47
+ SEMICOLON         ;         1         5
+     CONST     const         2         0
+       INT       int         2         6
+        ID         n         2        10         0      0x7f87c2aa94a0
+    ASSIGN         =         2        12
+  DECIMIAL        10         2        14
+ SEMICOLON         ;         2        16
+       INT       int         3         0
+        ID      main         3         4         0      0x7fffbc649218
+    LPAREN         (         3         9
+    RPAREN         )         3        10
+    LBRACE         {         3        12
+       INT       int         4         1
+        ID         i         4         5         1      0x7fffc4831ee0
+    ASSIGN         =         4         7
+  DECIMIAL         0         4         9
+ SEMICOLON         ;         4        10
+        ID         k         5         1         1      0x7fffbc649368
+    ASSIGN         =         5         3
+  DECIMIAL         1         5         5
+ SEMICOLON         ;         5         6
+     WHILE     while         6         1
+    LPAREN         (         6         7
+        ID         i         6         8         1      0x7fffc4831ee0
+ LESSEQUAL        <=         6        10
+        ID         n         6        13         1      0x7fffbc6494b8
+     MINUS         -         6        15
+  DECIMIAL         1         6        17
+    RPAREN         )         6        18
+    LBRACE         {         6        20
+        ID         i         7         2         2      0x7fffc4831ee0
+    ASSIGN         =         7         4
+        ID         i         7         6         2      0x7fffc4831ee0
+      PLUS         +         7         8
+  DECIMIAL         1         7        10
+ SEMICOLON         ;         7        11
+        ID         k         8         2         2      0x7fffbc649598
+      PLUS         +         8         4
+  DECIMIAL         1         8         6
+ SEMICOLON         ;         8         7
+        ID         k         9         2         2      0x7fffbc649598
+    ASSIGN         =         9         4
+        ID         k         9         6         2      0x7fffbc649598
+      PLUS         +         9         8
+        ID         k         9        10         2      0x7fffbc649598
+ SEMICOLON         ;         9        11
+    RBRACE         }        10         1
+        ID    putint        11         1         1      0x7fffbc6496e8
+    LPAREN         (        11         7
+        ID         k        11         8         1      0x7fffbc649368
+    RPAREN         )        11         9
+ SEMICOLON         ;        11        10
+    RETURN    return        12         1
+        ID         k        12         8         1      0x7fffbc649368
+ SEMICOLON         ;        12         9
+    RBRACE         }        13         0

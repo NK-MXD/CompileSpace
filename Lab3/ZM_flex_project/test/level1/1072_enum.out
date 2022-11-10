@@ -1,0 +1,114 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID      main         1         4         0      0x7ff5ada53e47
+    LPAREN         (         1         8
+    RPAREN         )         1         9
+    LBRACE         {         2         0
+       INT       int         3         4
+        ID         i         3         8         1      0x7fffde1851a8
+ SEMICOLON         ;         3         9
+       INT       int         4         4
+        ID         j         4         8         1      0x7ff5ad7d94a0
+ SEMICOLON         ;         4         9
+       INT       int         5         4
+        ID         k         5         8         1      0x7fffde185368
+ SEMICOLON         ;         5         9
+       INT       int         6         4
+        ID         t         6         8         1      0x7fffde1854b8
+ SEMICOLON         ;         6         9
+        ID         i         7         4         1      0x7fffde1851a8
+    ASSIGN         =         7         5
+  DECIMIAL         0         7         6
+ SEMICOLON         ;         7         7
+        ID         j         7         8         1      0x7ff5ad7d94a0
+    ASSIGN         =         7         9
+  DECIMIAL         0         7        10
+ SEMICOLON         ;         7        11
+        ID         k         7        12         1      0x7fffde185368
+    ASSIGN         =         7        13
+  DECIMIAL         0         7        14
+ SEMICOLON         ;         7        15
+     WHILE     while         8         4
+    LPAREN         (         8         9
+        ID         i         8        10         1      0x7fffde1851a8
+      LESS         <         8        11
+  DECIMIAL        21         8        12
+    RPAREN         )         8        14
+    LBRACE         {         9         4
+     WHILE     while        10         8
+    LPAREN         (        10        13
+        ID         j        10        14         2      0x7fffe5dbbaf0
+      LESS         <        10        15
+  DECIMIAL       101        10        16
+     MINUS         -        10        19
+        ID         i        10        20         2      0x7fffde185608
+    RPAREN         )        10        21
+    LBRACE         {        11         8
+        ID         k        12        12         3      0x7fffe5dbbaf0
+    ASSIGN         =        12        13
+  DECIMIAL       100        12        14
+     MINUS         -        12        17
+        ID         i        12        18         3      0x7fffde1856e8
+     MINUS         -        12        19
+        ID         j        12        20         3      0x7fffde185528
+ SEMICOLON         ;        12        21
+        IF        if        13        12
+    LPAREN         (        13        14
+  DECIMIAL         5        13        15
+       MUL         *        13        16
+        ID         i        13        17         3      0x7fffde1856e8
+      PLUS         +        13        18
+  DECIMIAL         1        13        19
+       MUL         *        13        20
+        ID         j        13        21         3      0x7fffde185528
+      PLUS         +        13        22
+        ID         k        13        23         3      0x7fffe5dbbaf0
+       DIV         /        13        24
+  DECIMIAL         2        13        25
+     EQUAL        ==        13        26
+  DECIMIAL       100        13        28
+    RPAREN         )        13        31
+    LBRACE         {        14        12
+        ID    putint        15        16         4      0x7fffe5dbbaf0
+    LPAREN         (        15        22
+        ID         i        15        23         4      0x7fffde1858d8
+    RPAREN         )        15        24
+ SEMICOLON         ;        15        25
+        ID    putint        16        16         4      0x7fffe5dbbaf0
+    LPAREN         (        16        22
+        ID         j        16        23         4      0x7fffde1857c8
+    RPAREN         )        16        24
+ SEMICOLON         ;        16        25
+        ID    putint        17        16         4      0x7fffe5dbbaf0
+    LPAREN         (        17        22
+        ID         k        17        23         4      0x7fffde185a28
+    RPAREN         )        17        24
+ SEMICOLON         ;        17        25
+        ID         t        18        16         4      0x7fffde185cd8
+    ASSIGN         =        18        17
+  DECIMIAL        10        18        18
+ SEMICOLON         ;        18        20
+        ID     putch        19        16         4      0x7fffde1853d8
+    LPAREN         (        19        21
+        ID         t        19        22         4      0x7fffde185cd8
+    RPAREN         )        19        23
+ SEMICOLON         ;        19        24
+    RBRACE         }        20        12
+        ID         j        21        12         3      0x7fffde185528
+    ASSIGN         =        21        13
+        ID         j        21        14         3      0x7fffde185528
+      PLUS         +        21        15
+  DECIMIAL         1        21        16
+ SEMICOLON         ;        21        17
+    RBRACE         }        22         8
+        ID         i        23         8         2      0x7fffde185608
+    ASSIGN         =        23         9
+        ID         i        23        10         2      0x7fffde185608
+      PLUS         +        23        11
+  DECIMIAL         1        23        12
+ SEMICOLON         ;        23        13
+    RBRACE         }        24         4
+    RETURN    return        26         4
+  DECIMIAL         0        26        11
+ SEMICOLON         ;        26        12
+    RBRACE         }        27         0

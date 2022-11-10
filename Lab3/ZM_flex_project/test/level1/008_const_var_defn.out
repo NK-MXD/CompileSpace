@@ -1,0 +1,16 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+     CONST     const         2         0
+       INT       int         2         6
+        ID         a         2        10         0      0x7f50b28bce47
+    ASSIGN         =         2        12
+  DECIMIAL        10         2        14
+ SEMICOLON         ;         2        16
+       INT       int         4         0
+        ID      main         4         4         0      0x7f50b26394a0
+    LPAREN         (         4         8
+    RPAREN         )         4         9
+    LBRACE         {         4        10
+    RETURN    return         5         4
+        ID         a         5        11         1      0x7ffff5750520
+ SEMICOLON         ;         5        12
+    RBRACE         }         6         0

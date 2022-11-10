@@ -1,0 +1,668 @@
+               token              lexeme              lineno              offset            scope_no    pointer_to_scope
+                 INT                 int                   1                   0
+                  ID                func                   1                   4                   0      0x7f9f74539e47
+              LPAREN                   (                   1                   8
+                 INT                 int                   1                   9
+                  ID                   a                   1                  13                   0      0x7f9f742b94a0
+               COMMA                   ,                   1                  14
+                 INT                 int                   1                  16
+                  ID                   b                   1                  20                   0      0x7fffc7469218
+              RPAREN                   )                   1                  21
+              LBRACE                   {                   1                  22
+                 INT                 int                   2                   4
+                  ID                   i                   2                   8                   1      0x7fffcee67510
+           SEMICOLON                   ;                   2                   9
+                  ID                   i                   3                   4                   1      0x7fffcee67510
+              ASSIGN                   =                   3                   6
+                  ID                   a                   3                   8                   1      0x7fffc7469368
+                PLUS                   +                   3                  10
+                  ID                   b                   3                  12                   1      0x7fffc74694b8
+           SEMICOLON                   ;                   3                  13
+                 INT                 int                   5                   4
+                  ID                  c1                   5                   8                   1      0x7fffc7469598
+           SEMICOLON                   ;                   5                  10
+                 INT                 int                   5                  11
+                  ID                  c2                   5                  15                   1      0x7fffc74696e8
+           SEMICOLON                   ;                   5                  17
+                 INT                 int                   5                  18
+                  ID                  c3                   5                  22                   1      0x7fffc7469758
+           SEMICOLON                   ;                   5                  24
+                 INT                 int                   5                  25
+                  ID                  c4                   5                  29                   1      0x7fffc7469288
+           SEMICOLON                   ;                   5                  31
+                 INT                 int                   6                   4
+                  ID                  d1                   6                   8                   1      0x7fffc7469448
+           SEMICOLON                   ;                   6                  10
+                 INT                 int                   6                  11
+                  ID                  d2                   6                  15                   1      0x7fffc7469608
+           SEMICOLON                   ;                   6                  17
+                 INT                 int                   6                  18
+                  ID                  d3                   6                  22                   1      0x7fffc7469b48
+           SEMICOLON                   ;                   6                  24
+                 INT                 int                   6                  25
+                  ID                  d4                   6                  29                   1      0x7fffc74697c8
+           SEMICOLON                   ;                   6                  31
+                 INT                 int                   7                   4
+                  ID                  e1                   7                   8                   1      0x7fffc74698a8
+           SEMICOLON                   ;                   7                  10
+                 INT                 int                   7                  11
+                  ID                  e2                   7                  15                   1      0x7fffc7469008
+           SEMICOLON                   ;                   7                  17
+                 INT                 int                   7                  18
+                  ID                  e3                   7                  22                   1      0x7fffc7469a68
+           SEMICOLON                   ;                   7                  24
+                 INT                 int                   7                  25
+                  ID                  e4                   7                  29                   1      0x7fffc7469c28
+           SEMICOLON                   ;                   7                  31
+                 INT                 int                   8                   4
+                  ID                  f1                   8                   8                   1      0x7fffc7469bb8
+           SEMICOLON                   ;                   8                  10
+                 INT                 int                   8                  11
+                  ID                  f2                   8                  15                   1      0x7fffc7469c98
+           SEMICOLON                   ;                   8                  17
+                 INT                 int                   8                  18
+                  ID                  f3                   8                  22                   1      0x7fffc746a978
+           SEMICOLON                   ;                   8                  24
+                 INT                 int                   8                  25
+                  ID                  f4                   8                  29                   1      0x7fffc746a408
+           SEMICOLON                   ;                   8                  31
+                 INT                 int                   9                   4
+                  ID                  g1                   9                   8                   1      0x7fffc746a018
+           SEMICOLON                   ;                   9                  10
+                 INT                 int                   9                  11
+                  ID                  g2                   9                  15                   1      0x7fffc746a168
+           SEMICOLON                   ;                   9                  17
+                 INT                 int                   9                  18
+                  ID                  g3                   9                  22                   1      0x7fffc746a658
+           SEMICOLON                   ;                   9                  24
+                 INT                 int                   9                  25
+                  ID                  g4                   9                  29                   1      0x7fffc7469678
+           SEMICOLON                   ;                   9                  31
+                 INT                 int                  10                   4
+                  ID                  h1                  10                   8                   1      0x7fffc74699f8
+           SEMICOLON                   ;                  10                  10
+                 INT                 int                  10                  11
+                  ID                  h2                  10                  15                   1      0x7fffc746aac8
+           SEMICOLON                   ;                  10                  17
+                 INT                 int                  10                  18
+                  ID                  h3                  10                  22                   1      0x7fffc746b3f8
+           SEMICOLON                   ;                  10                  24
+                 INT                 int                  10                  25
+                  ID                  h4                  10                  29                   1      0x7fffc746af28
+           SEMICOLON                   ;                  10                  31
+                 INT                 int                  11                   4
+                  ID                  i1                  11                   8                   1      0x7fffc746b158
+           SEMICOLON                   ;                  11                  10
+                 INT                 int                  11                  11
+                  ID                  i2                  11                  15                   1      0x7fffc746b008
+           SEMICOLON                   ;                  11                  17
+                 INT                 int                  11                  18
+                  ID                  i3                  11                  22                   1      0x7fffc746b0e8
+           SEMICOLON                   ;                  11                  24
+                 INT                 int                  11                  25
+                  ID                  i4                  11                  29                   1      0x7fffc746a398
+           SEMICOLON                   ;                  11                  31
+                 INT                 int                  12                   4
+                  ID                  j1                  12                   8                   1      0x7fffc7469988
+           SEMICOLON                   ;                  12                  10
+                 INT                 int                  12                  11
+                  ID                  j2                  12                  15                   1      0x7fffc746b548
+           SEMICOLON                   ;                  12                  17
+                 INT                 int                  12                  18
+                  ID                  j3                  12                  22                   1      0x7fffc746c418
+           SEMICOLON                   ;                  12                  24
+                 INT                 int                  12                  25
+                  ID                  j4                  12                  29                   1      0x7fffc746b9a8
+           SEMICOLON                   ;                  12                  31
+                 INT                 int                  13                   4
+                  ID                  k1                  13                   8                   1      0x7fffc746bf98
+           SEMICOLON                   ;                  13                  10
+                 INT                 int                  13                  11
+                  ID                  k2                  13                  15                   1      0x7fffc746ba88
+           SEMICOLON                   ;                  13                  17
+                 INT                 int                  13                  18
+                  ID                  k3                  13                  22                   1      0x7fffc746bf28
+           SEMICOLON                   ;                  13                  24
+                 INT                 int                  13                  25
+                  ID                  k4                  13                  29                   1      0x7fffc7469f38
+           SEMICOLON                   ;                  13                  31
+                  ID                  c1                  14                   4                   1      0x7fffc7469598
+              ASSIGN                   =                  14                   7
+            DECIMIAL                   1                  14                   9
+           SEMICOLON                   ;                  14                  10
+                  ID                  c2                  14                  11                   1      0x7fffc74696e8
+              ASSIGN                   =                  14                  14
+            DECIMIAL                   2                  14                  16
+           SEMICOLON                   ;                  14                  17
+                  ID                  c3                  14                  18                   1      0x7fffc7469758
+              ASSIGN                   =                  14                  21
+            DECIMIAL                   3                  14                  23
+           SEMICOLON                   ;                  14                  24
+                  ID                  c4                  14                  25                   1      0x7fffc7469288
+              ASSIGN                   =                  14                  28
+            DECIMIAL                   4                  14                  30
+           SEMICOLON                   ;                  14                  31
+                  ID                  d1                  15                   4                   1      0x7fffc7469448
+              ASSIGN                   =                  15                   7
+            DECIMIAL                   1                  15                   9
+                PLUS                   +                  15                  11
+                  ID                  c1                  15                  13                   1      0x7fffc7469598
+           SEMICOLON                   ;                  15                  15
+                  ID                  d2                  15                  16                   1      0x7fffc7469608
+              ASSIGN                   =                  15                  19
+            DECIMIAL                   2                  15                  21
+                PLUS                   +                  15                  23
+                  ID                  c2                  15                  25                   1      0x7fffc74696e8
+           SEMICOLON                   ;                  15                  27
+                  ID                  d3                  15                  28                   1      0x7fffc7469b48
+              ASSIGN                   =                  15                  31
+            DECIMIAL                   3                  15                  33
+                PLUS                   +                  15                  35
+                  ID                  c3                  15                  37                   1      0x7fffc7469758
+           SEMICOLON                   ;                  15                  39
+                  ID                  d4                  15                  40                   1      0x7fffc74697c8
+              ASSIGN                   =                  15                  43
+            DECIMIAL                   4                  15                  45
+                PLUS                   +                  15                  47
+                  ID                  c4                  15                  49                   1      0x7fffc7469288
+           SEMICOLON                   ;                  15                  51
+                  ID                  e1                  16                   4                   1      0x7fffc74698a8
+              ASSIGN                   =                  16                   7
+            DECIMIAL                   1                  16                   9
+                PLUS                   +                  16                  11
+                  ID                  d1                  16                  13                   1      0x7fffc7469448
+           SEMICOLON                   ;                  16                  15
+                  ID                  e2                  16                  16                   1      0x7fffc7469008
+              ASSIGN                   =                  16                  19
+            DECIMIAL                   2                  16                  21
+                PLUS                   +                  16                  23
+                  ID                  d2                  16                  25                   1      0x7fffc7469608
+           SEMICOLON                   ;                  16                  27
+                  ID                  e3                  16                  28                   1      0x7fffc7469a68
+              ASSIGN                   =                  16                  31
+            DECIMIAL                   3                  16                  33
+                PLUS                   +                  16                  35
+                  ID                  d3                  16                  37                   1      0x7fffc7469b48
+           SEMICOLON                   ;                  16                  39
+                  ID                  e4                  16                  40                   1      0x7fffc7469c28
+              ASSIGN                   =                  16                  43
+            DECIMIAL                   4                  16                  45
+                PLUS                   +                  16                  47
+                  ID                  d4                  16                  49                   1      0x7fffc74697c8
+           SEMICOLON                   ;                  16                  51
+                  ID                  f1                  17                   4                   1      0x7fffc7469bb8
+              ASSIGN                   =                  17                   7
+            DECIMIAL                   1                  17                   9
+                PLUS                   +                  17                  11
+                  ID                  e1                  17                  13                   1      0x7fffc74698a8
+           SEMICOLON                   ;                  17                  15
+                  ID                  f2                  17                  16                   1      0x7fffc7469c98
+              ASSIGN                   =                  17                  19
+            DECIMIAL                   2                  17                  21
+                PLUS                   +                  17                  23
+                  ID                  e2                  17                  25                   1      0x7fffc7469008
+           SEMICOLON                   ;                  17                  27
+                  ID                  f3                  17                  28                   1      0x7fffc746a978
+              ASSIGN                   =                  17                  31
+            DECIMIAL                   3                  17                  33
+                PLUS                   +                  17                  35
+                  ID                  e3                  17                  37                   1      0x7fffc7469a68
+           SEMICOLON                   ;                  17                  39
+                  ID                  f4                  17                  40                   1      0x7fffc746a408
+              ASSIGN                   =                  17                  43
+            DECIMIAL                   4                  17                  45
+                PLUS                   +                  17                  47
+                  ID                  e4                  17                  49                   1      0x7fffc7469c28
+           SEMICOLON                   ;                  17                  51
+                  ID                  g1                  18                   4                   1      0x7fffc746a018
+              ASSIGN                   =                  18                   7
+            DECIMIAL                   1                  18                   9
+                PLUS                   +                  18                  11
+                  ID                  f1                  18                  13                   1      0x7fffc7469bb8
+           SEMICOLON                   ;                  18                  15
+                  ID                  g2                  18                  16                   1      0x7fffc746a168
+              ASSIGN                   =                  18                  19
+            DECIMIAL                   2                  18                  21
+                PLUS                   +                  18                  23
+                  ID                  f2                  18                  25                   1      0x7fffc7469c98
+           SEMICOLON                   ;                  18                  27
+                  ID                  g3                  18                  28                   1      0x7fffc746a658
+              ASSIGN                   =                  18                  31
+            DECIMIAL                   3                  18                  33
+                PLUS                   +                  18                  35
+                  ID                  f3                  18                  37                   1      0x7fffc746a978
+           SEMICOLON                   ;                  18                  39
+                  ID                  g4                  18                  40                   1      0x7fffc7469678
+              ASSIGN                   =                  18                  43
+            DECIMIAL                   4                  18                  45
+                PLUS                   +                  18                  47
+                  ID                  f4                  18                  49                   1      0x7fffc746a408
+           SEMICOLON                   ;                  18                  51
+                  ID                  h1                  19                   4                   1      0x7fffc74699f8
+              ASSIGN                   =                  19                   7
+            DECIMIAL                   1                  19                   9
+                PLUS                   +                  19                  11
+                  ID                  g1                  19                  13                   1      0x7fffc746a018
+           SEMICOLON                   ;                  19                  15
+                  ID                  h2                  19                  16                   1      0x7fffc746aac8
+              ASSIGN                   =                  19                  19
+            DECIMIAL                   2                  19                  21
+                PLUS                   +                  19                  23
+                  ID                  g2                  19                  25                   1      0x7fffc746a168
+           SEMICOLON                   ;                  19                  27
+                  ID                  h3                  19                  28                   1      0x7fffc746b3f8
+              ASSIGN                   =                  19                  31
+            DECIMIAL                   3                  19                  33
+                PLUS                   +                  19                  35
+                  ID                  g3                  19                  37                   1      0x7fffc746a658
+           SEMICOLON                   ;                  19                  39
+                  ID                  h4                  19                  40                   1      0x7fffc746af28
+              ASSIGN                   =                  19                  43
+            DECIMIAL                   4                  19                  45
+                PLUS                   +                  19                  47
+                  ID                  g4                  19                  49                   1      0x7fffc7469678
+           SEMICOLON                   ;                  19                  51
+                  ID                  i1                  20                   4                   1      0x7fffc746b158
+              ASSIGN                   =                  20                   7
+            DECIMIAL                   1                  20                   9
+                PLUS                   +                  20                  11
+                  ID                  h1                  20                  13                   1      0x7fffc74699f8
+           SEMICOLON                   ;                  20                  15
+                  ID                  i2                  20                  16                   1      0x7fffc746b008
+              ASSIGN                   =                  20                  19
+            DECIMIAL                   2                  20                  21
+                PLUS                   +                  20                  23
+                  ID                  h2                  20                  25                   1      0x7fffc746aac8
+           SEMICOLON                   ;                  20                  27
+                  ID                  i3                  20                  28                   1      0x7fffc746b0e8
+              ASSIGN                   =                  20                  31
+            DECIMIAL                   3                  20                  33
+                PLUS                   +                  20                  35
+                  ID                  h3                  20                  37                   1      0x7fffc746b3f8
+           SEMICOLON                   ;                  20                  39
+                  ID                  i4                  20                  40                   1      0x7fffc746a398
+              ASSIGN                   =                  20                  43
+            DECIMIAL                   4                  20                  45
+                PLUS                   +                  20                  47
+                  ID                  h4                  20                  49                   1      0x7fffc746af28
+           SEMICOLON                   ;                  20                  51
+                  ID                  j1                  21                   4                   1      0x7fffc7469988
+              ASSIGN                   =                  21                   7
+            DECIMIAL                   1                  21                   9
+                PLUS                   +                  21                  11
+                  ID                  i1                  21                  13                   1      0x7fffc746b158
+           SEMICOLON                   ;                  21                  15
+                  ID                  j2                  21                  16                   1      0x7fffc746b548
+              ASSIGN                   =                  21                  19
+            DECIMIAL                   2                  21                  21
+                PLUS                   +                  21                  23
+                  ID                  i2                  21                  25                   1      0x7fffc746b008
+           SEMICOLON                   ;                  21                  27
+                  ID                  j3                  21                  28                   1      0x7fffc746c418
+              ASSIGN                   =                  21                  31
+            DECIMIAL                   3                  21                  33
+                PLUS                   +                  21                  35
+                  ID                  i3                  21                  37                   1      0x7fffc746b0e8
+           SEMICOLON                   ;                  21                  39
+                  ID                  j4                  21                  40                   1      0x7fffc746b9a8
+              ASSIGN                   =                  21                  43
+            DECIMIAL                   4                  21                  45
+                PLUS                   +                  21                  47
+                  ID                  i4                  21                  49                   1      0x7fffc746a398
+           SEMICOLON                   ;                  21                  51
+                  ID                  k1                  22                   4                   1      0x7fffc746bf98
+              ASSIGN                   =                  22                   7
+            DECIMIAL                   1                  22                   9
+                PLUS                   +                  22                  11
+                  ID                  j1                  22                  13                   1      0x7fffc7469988
+           SEMICOLON                   ;                  22                  15
+                  ID                  k2                  22                  16                   1      0x7fffc746ba88
+              ASSIGN                   =                  22                  19
+            DECIMIAL                   2                  22                  21
+                PLUS                   +                  22                  23
+                  ID                  j2                  22                  25                   1      0x7fffc746b548
+           SEMICOLON                   ;                  22                  27
+                  ID                  k3                  22                  28                   1      0x7fffc746bf28
+              ASSIGN                   =                  22                  31
+            DECIMIAL                   3                  22                  33
+                PLUS                   +                  22                  35
+                  ID                  j3                  22                  37                   1      0x7fffc746c418
+           SEMICOLON                   ;                  22                  39
+                  ID                  k4                  22                  40                   1      0x7fffc7469f38
+              ASSIGN                   =                  22                  43
+            DECIMIAL                   4                  22                  45
+                PLUS                   +                  22                  47
+                  ID                  j4                  22                  49                   1      0x7fffc746b9a8
+           SEMICOLON                   ;                  22                  51
+                  ID                   i                  24                   4                   1      0x7fffcee67510
+              ASSIGN                   =                  24                   6
+                  ID                   a                  24                   8                   1      0x7fffc7469368
+               MINUS                   -                  24                  10
+                  ID                   b                  24                  12                   1      0x7fffc74694b8
+                PLUS                   +                  24                  14
+            DECIMIAL                  10                  24                  16
+           SEMICOLON                   ;                  24                  18
+                  ID                  k1                  25                   4                   1      0x7fffc746bf98
+              ASSIGN                   =                  25                   7
+            DECIMIAL                   1                  25                   9
+                PLUS                   +                  25                  11
+                  ID                  j1                  25                  13                   1      0x7fffc7469988
+           SEMICOLON                   ;                  25                  15
+                  ID                  k2                  25                  16                   1      0x7fffc746ba88
+              ASSIGN                   =                  25                  19
+            DECIMIAL                   2                  25                  21
+                PLUS                   +                  25                  23
+                  ID                  j2                  25                  25                   1      0x7fffc746b548
+           SEMICOLON                   ;                  25                  27
+                  ID                  k3                  25                  28                   1      0x7fffc746bf28
+              ASSIGN                   =                  25                  31
+            DECIMIAL                   3                  25                  33
+                PLUS                   +                  25                  35
+                  ID                  j3                  25                  37                   1      0x7fffc746c418
+           SEMICOLON                   ;                  25                  39
+                  ID                  k4                  25                  40                   1      0x7fffc7469f38
+              ASSIGN                   =                  25                  43
+            DECIMIAL                   4                  25                  45
+                PLUS                   +                  25                  47
+                  ID                  j4                  25                  49                   1      0x7fffc746b9a8
+           SEMICOLON                   ;                  25                  51
+                  ID                  j1                  26                   4                   1      0x7fffc7469988
+              ASSIGN                   =                  26                   7
+            DECIMIAL                   1                  26                   9
+                PLUS                   +                  26                  11
+                  ID                  i1                  26                  13                   1      0x7fffc746b158
+           SEMICOLON                   ;                  26                  15
+                  ID                  j2                  26                  16                   1      0x7fffc746b548
+              ASSIGN                   =                  26                  19
+            DECIMIAL                   2                  26                  21
+                PLUS                   +                  26                  23
+                  ID                  i2                  26                  25                   1      0x7fffc746b008
+           SEMICOLON                   ;                  26                  27
+                  ID                  j3                  26                  28                   1      0x7fffc746c418
+              ASSIGN                   =                  26                  31
+            DECIMIAL                   3                  26                  33
+                PLUS                   +                  26                  35
+                  ID                  i3                  26                  37                   1      0x7fffc746b0e8
+           SEMICOLON                   ;                  26                  39
+                  ID                  j4                  26                  40                   1      0x7fffc746b9a8
+              ASSIGN                   =                  26                  43
+            DECIMIAL                   4                  26                  45
+                PLUS                   +                  26                  47
+                  ID                  i4                  26                  49                   1      0x7fffc746a398
+           SEMICOLON                   ;                  26                  51
+                  ID                  i1                  27                   4                   1      0x7fffc746b158
+              ASSIGN                   =                  27                   7
+            DECIMIAL                   1                  27                   9
+                PLUS                   +                  27                  11
+                  ID                  h1                  27                  13                   1      0x7fffc74699f8
+           SEMICOLON                   ;                  27                  15
+                  ID                  i2                  27                  16                   1      0x7fffc746b008
+              ASSIGN                   =                  27                  19
+            DECIMIAL                   2                  27                  21
+                PLUS                   +                  27                  23
+                  ID                  h2                  27                  25                   1      0x7fffc746aac8
+           SEMICOLON                   ;                  27                  27
+                  ID                  i3                  27                  28                   1      0x7fffc746b0e8
+              ASSIGN                   =                  27                  31
+            DECIMIAL                   3                  27                  33
+                PLUS                   +                  27                  35
+                  ID                  h3                  27                  37                   1      0x7fffc746b3f8
+           SEMICOLON                   ;                  27                  39
+                  ID                  i4                  27                  40                   1      0x7fffc746a398
+              ASSIGN                   =                  27                  43
+            DECIMIAL                   4                  27                  45
+                PLUS                   +                  27                  47
+                  ID                  h4                  27                  49                   1      0x7fffc746af28
+           SEMICOLON                   ;                  27                  51
+                  ID                  h1                  28                   4                   1      0x7fffc74699f8
+              ASSIGN                   =                  28                   7
+            DECIMIAL                   1                  28                   9
+                PLUS                   +                  28                  11
+                  ID                  g1                  28                  13                   1      0x7fffc746a018
+           SEMICOLON                   ;                  28                  15
+                  ID                  h2                  28                  16                   1      0x7fffc746aac8
+              ASSIGN                   =                  28                  19
+            DECIMIAL                   2                  28                  21
+                PLUS                   +                  28                  23
+                  ID                  g2                  28                  25                   1      0x7fffc746a168
+           SEMICOLON                   ;                  28                  27
+                  ID                  h3                  28                  28                   1      0x7fffc746b3f8
+              ASSIGN                   =                  28                  31
+            DECIMIAL                   3                  28                  33
+                PLUS                   +                  28                  35
+                  ID                  g3                  28                  37                   1      0x7fffc746a658
+           SEMICOLON                   ;                  28                  39
+                  ID                  h4                  28                  40                   1      0x7fffc746af28
+              ASSIGN                   =                  28                  43
+            DECIMIAL                   4                  28                  45
+                PLUS                   +                  28                  47
+                  ID                  g4                  28                  49                   1      0x7fffc7469678
+           SEMICOLON                   ;                  28                  51
+                  ID                  g1                  29                   4                   1      0x7fffc746a018
+              ASSIGN                   =                  29                   7
+            DECIMIAL                   1                  29                   9
+                PLUS                   +                  29                  11
+                  ID                  f1                  29                  13                   1      0x7fffc7469bb8
+           SEMICOLON                   ;                  29                  15
+                  ID                  g2                  29                  16                   1      0x7fffc746a168
+              ASSIGN                   =                  29                  19
+            DECIMIAL                   2                  29                  21
+                PLUS                   +                  29                  23
+                  ID                  f2                  29                  25                   1      0x7fffc7469c98
+           SEMICOLON                   ;                  29                  27
+                  ID                  g3                  29                  28                   1      0x7fffc746a658
+              ASSIGN                   =                  29                  31
+            DECIMIAL                   3                  29                  33
+                PLUS                   +                  29                  35
+                  ID                  f3                  29                  37                   1      0x7fffc746a978
+           SEMICOLON                   ;                  29                  39
+                  ID                  g4                  29                  40                   1      0x7fffc7469678
+              ASSIGN                   =                  29                  43
+            DECIMIAL                   4                  29                  45
+                PLUS                   +                  29                  47
+                  ID                  f4                  29                  49                   1      0x7fffc746a408
+           SEMICOLON                   ;                  29                  51
+                  ID                  f1                  30                   4                   1      0x7fffc7469bb8
+              ASSIGN                   =                  30                   7
+            DECIMIAL                   1                  30                   9
+                PLUS                   +                  30                  11
+                  ID                  e1                  30                  13                   1      0x7fffc74698a8
+           SEMICOLON                   ;                  30                  15
+                  ID                  f2                  30                  16                   1      0x7fffc7469c98
+              ASSIGN                   =                  30                  19
+            DECIMIAL                   2                  30                  21
+                PLUS                   +                  30                  23
+                  ID                  e2                  30                  25                   1      0x7fffc7469008
+           SEMICOLON                   ;                  30                  27
+                  ID                  f3                  30                  28                   1      0x7fffc746a978
+              ASSIGN                   =                  30                  31
+            DECIMIAL                   3                  30                  33
+                PLUS                   +                  30                  35
+                  ID                  e3                  30                  37                   1      0x7fffc7469a68
+           SEMICOLON                   ;                  30                  39
+                  ID                  f4                  30                  40                   1      0x7fffc746a408
+              ASSIGN                   =                  30                  43
+            DECIMIAL                   4                  30                  45
+                PLUS                   +                  30                  47
+                  ID                  e4                  30                  49                   1      0x7fffc7469c28
+           SEMICOLON                   ;                  30                  51
+                  ID                  e1                  31                   4                   1      0x7fffc74698a8
+              ASSIGN                   =                  31                   7
+            DECIMIAL                   1                  31                   9
+                PLUS                   +                  31                  11
+                  ID                  d1                  31                  13                   1      0x7fffc7469448
+           SEMICOLON                   ;                  31                  15
+                  ID                  e2                  31                  16                   1      0x7fffc7469008
+              ASSIGN                   =                  31                  19
+            DECIMIAL                   2                  31                  21
+                PLUS                   +                  31                  23
+                  ID                  d2                  31                  25                   1      0x7fffc7469608
+           SEMICOLON                   ;                  31                  27
+                  ID                  e3                  31                  28                   1      0x7fffc7469a68
+              ASSIGN                   =                  31                  31
+            DECIMIAL                   3                  31                  33
+                PLUS                   +                  31                  35
+                  ID                  d3                  31                  37                   1      0x7fffc7469b48
+           SEMICOLON                   ;                  31                  39
+                  ID                  e4                  31                  40                   1      0x7fffc7469c28
+              ASSIGN                   =                  31                  43
+            DECIMIAL                   4                  31                  45
+                PLUS                   +                  31                  47
+                  ID                  d4                  31                  49                   1      0x7fffc74697c8
+           SEMICOLON                   ;                  31                  51
+                  ID                  d1                  32                   4                   1      0x7fffc7469448
+              ASSIGN                   =                  32                   7
+            DECIMIAL                   1                  32                   9
+                PLUS                   +                  32                  11
+                  ID                  c1                  32                  13                   1      0x7fffc7469598
+           SEMICOLON                   ;                  32                  15
+                  ID                  d2                  32                  16                   1      0x7fffc7469608
+              ASSIGN                   =                  32                  19
+            DECIMIAL                   2                  32                  21
+                PLUS                   +                  32                  23
+                  ID                  c2                  32                  25                   1      0x7fffc74696e8
+           SEMICOLON                   ;                  32                  27
+                  ID                  d3                  32                  28                   1      0x7fffc7469b48
+              ASSIGN                   =                  32                  31
+            DECIMIAL                   3                  32                  33
+                PLUS                   +                  32                  35
+                  ID                  c3                  32                  37                   1      0x7fffc7469758
+           SEMICOLON                   ;                  32                  39
+                  ID                  d4                  32                  40                   1      0x7fffc74697c8
+              ASSIGN                   =                  32                  43
+            DECIMIAL                   4                  32                  45
+                PLUS                   +                  32                  47
+                  ID                  c4                  32                  49                   1      0x7fffc7469288
+           SEMICOLON                   ;                  32                  51
+                  ID                  c1                  33                   4                   1      0x7fffc7469598
+              ASSIGN                   =                  33                   7
+            DECIMIAL                   1                  33                   9
+                PLUS                   +                  33                  11
+                  ID                  k1                  33                  13                   1      0x7fffc746bf98
+           SEMICOLON                   ;                  33                  15
+                  ID                  c2                  33                  16                   1      0x7fffc74696e8
+              ASSIGN                   =                  33                  19
+            DECIMIAL                   2                  33                  21
+                PLUS                   +                  33                  23
+                  ID                  k2                  33                  25                   1      0x7fffc746ba88
+           SEMICOLON                   ;                  33                  27
+                  ID                  c3                  33                  28                   1      0x7fffc7469758
+              ASSIGN                   =                  33                  31
+            DECIMIAL                   3                  33                  33
+                PLUS                   +                  33                  35
+                  ID                  k3                  33                  37                   1      0x7fffc746bf28
+           SEMICOLON                   ;                  33                  39
+                  ID                  c4                  33                  40                   1      0x7fffc7469288
+              ASSIGN                   =                  33                  43
+            DECIMIAL                   4                  33                  45
+                PLUS                   +                  33                  47
+                  ID                  k4                  33                  49                   1      0x7fffc7469f38
+           SEMICOLON                   ;                  33                  51
+              RETURN              return                  34                   4
+                  ID                   i                  34                  11                   1      0x7fffcee67510
+                PLUS                   +                  34                  13
+                  ID                  c1                  34                  15                   1      0x7fffc7469598
+                PLUS                   +                  34                  18
+                  ID                  c2                  34                  20                   1      0x7fffc74696e8
+                PLUS                   +                  34                  23
+                  ID                  c3                  34                  25                   1      0x7fffc7469758
+                PLUS                   +                  34                  28
+                  ID                  c4                  34                  30                   1      0x7fffc7469288
+               MINUS                   -                  35                   8
+                  ID                  d1                  35                  10                   1      0x7fffc7469448
+               MINUS                   -                  35                  13
+                  ID                  d2                  35                  15                   1      0x7fffc7469608
+               MINUS                   -                  35                  18
+                  ID                  d3                  35                  20                   1      0x7fffc7469b48
+               MINUS                   -                  35                  23
+                  ID                  d4                  35                  25                   1      0x7fffc74697c8
+                PLUS                   +                  36                   8
+                  ID                  e1                  36                  10                   1      0x7fffc74698a8
+                PLUS                   +                  36                  13
+                  ID                  e2                  36                  15                   1      0x7fffc7469008
+                PLUS                   +                  36                  18
+                  ID                  e3                  36                  20                   1      0x7fffc7469a68
+                PLUS                   +                  36                  23
+                  ID                  e4                  36                  25                   1      0x7fffc7469c28
+               MINUS                   -                  37                   8
+                  ID                  f1                  37                  10                   1      0x7fffc7469bb8
+               MINUS                   -                  37                  13
+                  ID                  f2                  37                  15                   1      0x7fffc7469c98
+               MINUS                   -                  37                  18
+                  ID                  f3                  37                  20                   1      0x7fffc746a978
+               MINUS                   -                  37                  23
+                  ID                  f4                  37                  25                   1      0x7fffc746a408
+                PLUS                   +                  38                   8
+                  ID                  g1                  38                  10                   1      0x7fffc746a018
+                PLUS                   +                  38                  13
+                  ID                  g2                  38                  15                   1      0x7fffc746a168
+                PLUS                   +                  38                  18
+                  ID                  g3                  38                  20                   1      0x7fffc746a658
+                PLUS                   +                  38                  23
+                  ID                  g4                  38                  25                   1      0x7fffc7469678
+               MINUS                   -                  39                   8
+                  ID                  h1                  39                  10                   1      0x7fffc74699f8
+               MINUS                   -                  39                  13
+                  ID                  h2                  39                  15                   1      0x7fffc746aac8
+               MINUS                   -                  39                  18
+                  ID                  h3                  39                  20                   1      0x7fffc746b3f8
+               MINUS                   -                  39                  23
+                  ID                  h4                  39                  25                   1      0x7fffc746af28
+                PLUS                   +                  40                   8
+                  ID                  i1                  40                  10                   1      0x7fffc746b158
+                PLUS                   +                  40                  13
+                  ID                  i2                  40                  15                   1      0x7fffc746b008
+                PLUS                   +                  40                  18
+                  ID                  i3                  40                  20                   1      0x7fffc746b0e8
+                PLUS                   +                  40                  23
+                  ID                  i4                  40                  25                   1      0x7fffc746a398
+               MINUS                   -                  41                   8
+                  ID                  j1                  41                  10                   1      0x7fffc7469988
+               MINUS                   -                  41                  13
+                  ID                  j2                  41                  15                   1      0x7fffc746b548
+               MINUS                   -                  41                  18
+                  ID                  j3                  41                  20                   1      0x7fffc746c418
+               MINUS                   -                  41                  23
+                  ID                  j4                  41                  25                   1      0x7fffc746b9a8
+                PLUS                   +                  42                   8
+                  ID                  k1                  42                  10                   1      0x7fffc746bf98
+                PLUS                   +                  42                  13
+                  ID                  k2                  42                  15                   1      0x7fffc746ba88
+                PLUS                   +                  42                  18
+                  ID                  k3                  42                  20                   1      0x7fffc746bf28
+                PLUS                   +                  42                  23
+                  ID                  k4                  42                  25                   1      0x7fffc7469f38
+           SEMICOLON                   ;                  42                  28
+              RBRACE                   }                  43                   0
+                 INT                 int                  45                   0
+                  ID                main                  45                   4                   0      0x7fffc746ae48
+              LPAREN                   (                  45                   8
+              RPAREN                   )                  45                   9
+              LBRACE                   {                  45                  10
+                 INT                 int                  46                   4
+                  ID                   a                  46                   8                   2      0x7fffcee67510
+           SEMICOLON                   ;                  46                   9
+                 INT                 int                  47                   4
+                  ID                   b                  47                   8                   2      0x7fffc746cb88
+           SEMICOLON                   ;                  47                   9
+                  ID                   a                  48                   4                   2      0x7fffcee67510
+              ASSIGN                   =                  48                   6
+            DECIMIAL                   1                  48                   8
+           SEMICOLON                   ;                  48                   9
+                  ID                   b                  49                   4                   2      0x7fffc746cb88
+              ASSIGN                   =                  49                   6
+                  ID                   a                  49                   8                   2      0x7fffcee67510
+                PLUS                   +                  49                  10
+            DECIMIAL                   2                  49                  12
+                 MUL                   *                  49                  13
+            DECIMIAL                   9                  49                  14
+           SEMICOLON                   ;                  49                  15
+              RETURN              return                  51                   4
+                  ID                func                  51                  11                   2      0x7fffc746b078
+              LPAREN                   (                  51                  15
+                  ID                   a                  51                  16                   2      0x7fffcee67510
+               COMMA                   ,                  51                  17
+                  ID                   b                  51                  19                   2      0x7fffc746cb88
+              RPAREN                   )                  51                  20
+           SEMICOLON                   ;                  51                  21
+              RBRACE                   }                  52                   0

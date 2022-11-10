@@ -1,0 +1,25 @@
+[DEBUG LAB4]:	Token		Lexeme		Lineno		Offset		Scope		Addr
+[DEBUG LAB4]: 	CONST		const		2		0
+[DEBUG LAB4]: 	INT		int		2		6
+[DEBUG LAB4]: 	ID		a		2		10		0		0x7f00e3bc90a0
+[DEBUG LAB4]: 	ASSIGN		=		2		12
+[DEBUG LAB4]: 	DECIMIAL		10		2		14
+[DEBUG LAB4]: 	SEMICOLON	;		2		16
+[DEBUG LAB4]: 	INT		int		3		0
+[DEBUG LAB4]: 	ID		main		3		4		0		0x7f00e3bc9108
+[DEBUG LAB4]: 	LPAREN		(		3		8
+[DEBUG LAB4]: 	RPAREN		)		3		9
+[DEBUG LAB4]: 	LBRACE		{		3		10
+[DEBUG LAB4]: 	INT		int		4		4
+[DEBUG LAB4]: 	ID		b		4		8		1		0x7f00e3bcb120
+[DEBUG LAB4]: 	SEMICOLON	;		4		9
+[DEBUG LAB4]: 	ID		b		5		4		1		0x7f00e3bcb120
+[DEBUG LAB4]: 	ASSIGN		=		5		6
+[DEBUG LAB4]: 	DECIMIAL		2		5		8
+[DEBUG LAB4]: 	SEMICOLON	;		5		9
+[DEBUG LAB4]: 	RETURN		return		6		4
+[DEBUG LAB4]: 	ID		b		6		11		1		0x7f00e3bcb120
+[DEBUG LAB4]: 	MINUS		-		6		13
+[DEBUG LAB4]: 	ID		a		6		15		1		0x7f00e3bcb188
+[DEBUG LAB4]: 	SEMICOLON	;		6		16
+[DEBUG LAB4]: 	RBRACE		}		7		0

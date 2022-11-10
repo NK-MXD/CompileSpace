@@ -1,0 +1,113 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         2         0
+        ID      main         2         4         0      0x7f9227165e47
+    LPAREN         (         2         9
+    RPAREN         )         2        10
+    LBRACE         {         2        12
+       INT       int         3         4
+        ID         a         3         8         1      0x7fffee0b91a8
+ SEMICOLON         ;         3         9
+       INT       int         4         4
+        ID         b         4         8         1      0x7f9226ee94a0
+ SEMICOLON         ;         4         9
+       INT       int         5         4
+        ID         c         5         8         1      0x7fffee0b9368
+ SEMICOLON         ;         5         9
+       INT       int         6         4
+        ID         d         6         8         1      0x7fffee0b94b8
+ SEMICOLON         ;         6         9
+       INT       int         7         4
+        ID    result         7         8         1      0x7fffee0b9608
+ SEMICOLON         ;         7        14
+        ID         a         8         4         1      0x7fffee0b91a8
+    ASSIGN         =         8         6
+  DECIMIAL         5         8         8
+ SEMICOLON         ;         8         9
+        ID         b         9         4         1      0x7f9226ee94a0
+    ASSIGN         =         9         6
+  DECIMIAL         5         9         8
+ SEMICOLON         ;         9         9
+        ID         c        10         4         1      0x7fffee0b9368
+    ASSIGN         =        10         6
+  DECIMIAL         1        10         8
+ SEMICOLON         ;        10         9
+        ID         d        11         4         1      0x7fffee0b94b8
+    ASSIGN         =        11         6
+     MINUS         -        11         8
+  DECIMIAL         2        11         9
+ SEMICOLON         ;        11        10
+        ID    result        12         4         1      0x7fffee0b9608
+    ASSIGN         =        12        11
+    LPAREN         (        12        13
+        ID         d        12        14         1      0x7fffee0b94b8
+       MUL         *        12        16
+  DECIMIAL         1        12        18
+       DIV         /        12        20
+  DECIMIAL         2        12        22
+    RPAREN         )        12        23
+      PLUS         +        12        26
+    LPAREN         (        12        28
+        ID         a        12        29         1      0x7fffee0b91a8
+     MINUS         -        12        31
+        ID         b        12        33         1      0x7f9226ee94a0
+    RPAREN         )        12        34
+     MINUS         -        12        36
+     MINUS         -        12        38
+    LPAREN         (        12        39
+        ID         c        12        40         1      0x7fffee0b9368
+      PLUS         +        12        42
+  DECIMIAL         3        12        44
+    RPAREN         )        12        45
+       MOD         %        12        47
+  DECIMIAL         2        12        49
+ SEMICOLON         ;        12        50
+        ID    putint        13         4         1      0x7fffee0b9678
+    LPAREN         (        13        10
+        ID    result        13        11         1      0x7fffee0b9608
+    RPAREN         )        13        17
+ SEMICOLON         ;        13        18
+        ID    result        14         4         1      0x7fffee0b9608
+    ASSIGN         =        14        11
+    LPAREN         (        14        13
+    LPAREN         (        14        14
+        ID         d        14        15         1      0x7fffee0b94b8
+       MOD         %        14        17
+  DECIMIAL         2        14        19
+      PLUS         +        14        21
+  DECIMIAL        67        14        23
+    RPAREN         )        14        25
+      PLUS         +        14        27
+     MINUS         -        14        29
+    LPAREN         (        14        30
+        ID         a        14        31         1      0x7fffee0b91a8
+     MINUS         -        14        33
+        ID         b        14        35         1      0x7f9226ee94a0
+    RPAREN         )        14        36
+     MINUS         -        14        38
+     MINUS         -        14        40
+    LPAREN         (        14        41
+    LPAREN         (        14        42
+        ID         c        14        43         1      0x7fffee0b9368
+      PLUS         +        14        45
+  DECIMIAL         2        14        47
+    RPAREN         )        14        48
+       MOD         %        14        50
+  DECIMIAL         2        14        52
+    RPAREN         )        14        53
+    RPAREN         )        14        54
+ SEMICOLON         ;        14        55
+        ID    result        15         4         1      0x7fffee0b9608
+    ASSIGN         =        15        11
+        ID    result        15        13         1      0x7fffee0b9608
+      PLUS         +        15        20
+  DECIMIAL         3        15        22
+ SEMICOLON         ;        15        23
+        ID    putint        16         4         1      0x7fffee0b9678
+    LPAREN         (        16        10
+        ID    result        16        11         1      0x7fffee0b9608
+    RPAREN         )        16        17
+ SEMICOLON         ;        16        18
+    RETURN    return        17         4
+  DECIMIAL         0        17        11
+ SEMICOLON         ;        17        12
+    RBRACE         }        18         0

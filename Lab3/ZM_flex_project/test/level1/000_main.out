@@ -1,0 +1,10 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID      main         1         4         0      0x7f1de61fbe47
+    LPAREN         (         1         8
+    RPAREN         )         1         9
+    LBRACE         {         1        10
+    RETURN    return         2         4
+  DECIMIAL         3         2        11
+ SEMICOLON         ;         2        12
+    RBRACE         }         3         0

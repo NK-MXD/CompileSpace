@@ -1,0 +1,124 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         2         0
+        ID      main         2         4         0      0x7f00355a1e47
+    LPAREN         (         2         9
+    RPAREN         )         2        10
+    LBRACE         {         2        12
+       INT       int         3         4
+        ID         a         3         8         1      0x7fffe07c41a8
+ SEMICOLON         ;         3         9
+       INT       int         4         4
+        ID         b         4         8         1      0x7f00353294a0
+ SEMICOLON         ;         4         9
+       INT       int         5         4
+        ID         c         5         8         1      0x7fffe07c4368
+ SEMICOLON         ;         5         9
+       INT       int         6         4
+        ID         d         6         8         1      0x7fffe07c44b8
+ SEMICOLON         ;         6         9
+       INT       int         7         4
+        ID    result         7         8         1      0x7fffe07c4608
+ SEMICOLON         ;         7        14
+        ID         a         8         4         1      0x7fffe07c41a8
+    ASSIGN         =         8         6
+  DECIMIAL         5         8         8
+ SEMICOLON         ;         8         9
+        ID         b         9         4         1      0x7f00353294a0
+    ASSIGN         =         9         6
+  DECIMIAL         5         9         8
+ SEMICOLON         ;         9         9
+        ID         c        10         4         1      0x7fffe07c4368
+    ASSIGN         =        10         6
+  DECIMIAL         1        10         8
+ SEMICOLON         ;        10         9
+        ID         d        11         4         1      0x7fffe07c44b8
+    ASSIGN         =        11         6
+     MINUS         -        11         8
+  DECIMIAL         2        11         9
+ SEMICOLON         ;        11        10
+        ID    result        12         4         1      0x7fffe07c4608
+    ASSIGN         =        12        11
+  DECIMIAL         2        12        13
+ SEMICOLON         ;        12        14
+        IF        if        13         4
+    LPAREN         (        13         7
+    LPAREN         (        13         8
+        ID         d        13         9         1      0x7fffe07c44b8
+       MUL         *        13        11
+  DECIMIAL         1        13        13
+       DIV         /        13        15
+  DECIMIAL         2        13        17
+    RPAREN         )        13        18
+      LESS         <        13        20
+  DECIMIAL         0        13        22
+        OR        ||        13        24
+    LPAREN         (        13        27
+        ID         a        13        28         1      0x7fffe07c41a8
+     MINUS         -        13        30
+        ID         b        13        32         1      0x7f00353294a0
+    RPAREN         )        13        33
+  NOTEQUAL        !=        13        35
+  DECIMIAL         0        13        38
+       AND        &&        13        40
+    LPAREN         (        13        43
+        ID         c        13        44         1      0x7fffe07c4368
+      PLUS         +        13        46
+  DECIMIAL         3        13        48
+    RPAREN         )        13        49
+       MOD         %        13        51
+  DECIMIAL         2        13        53
+  NOTEQUAL        !=        13        55
+  DECIMIAL         0        13        58
+    RPAREN         )        13        59
+    LBRACE         {        13        61
+        ID    putint        14         8         2      0x7fffe79b2870
+    LPAREN         (        14        14
+        ID    result        14        15         2      0x7fffe07c4678
+    RPAREN         )        14        21
+ SEMICOLON         ;        14        22
+    RBRACE         }        15         4
+        IF        if        16         4
+    LPAREN         (        16         7
+    LPAREN         (        16         8
+        ID         d        16         9         1      0x7fffe07c44b8
+       MOD         %        16        11
+  DECIMIAL         2        16        13
+      PLUS         +        16        15
+  DECIMIAL        67        16        17
+    RPAREN         )        16        19
+      LESS         <        16        21
+  DECIMIAL         0        16        23
+        OR        ||        16        25
+    LPAREN         (        16        28
+        ID         a        16        29         1      0x7fffe07c41a8
+     MINUS         -        16        31
+        ID         b        16        33         1      0x7f00353294a0
+    RPAREN         )        16        34
+  NOTEQUAL        !=        16        36
+  DECIMIAL         0        16        39
+       AND        &&        16        41
+    LPAREN         (        16        44
+        ID         c        16        45         1      0x7fffe07c4368
+      PLUS         +        16        47
+  DECIMIAL         2        16        49
+    RPAREN         )        16        50
+       MOD         %        16        52
+  DECIMIAL         2        16        54
+  NOTEQUAL        !=        16        56
+  DECIMIAL         0        16        59
+    RPAREN         )        16        60
+    LBRACE         {        16        62
+        ID    result        17         8         3      0x7fffe79b2870
+    ASSIGN         =        17        15
+  DECIMIAL         4        17        17
+ SEMICOLON         ;        17        18
+        ID    putint        18         8         3      0x7fffe07c4758
+    LPAREN         (        18        14
+        ID    result        18        15         3      0x7fffe79b2870
+    RPAREN         )        18        21
+ SEMICOLON         ;        18        22
+    RBRACE         }        19         4
+    RETURN    return        20         4
+  DECIMIAL         0        20        11
+ SEMICOLON         ;        20        12
+    RBRACE         }        21         0

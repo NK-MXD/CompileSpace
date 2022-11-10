@@ -1,0 +1,66 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID      main         1         4         0      0x7fe652a12e47
+    LPAREN         (         1         8
+    RPAREN         )         1         9
+    LBRACE         {         1        11
+       INT       int         2         4
+        ID         a         2         8         1      0x7fffee3f91a8
+     COMMA         ,         2         9
+        ID         b         2        11         1      0x7fe6527994a0
+ SEMICOLON         ;         2        12
+        ID         a         3         4         1      0x7fffee3f91a8
+    ASSIGN         =         3         6
+     OCTAL        56         3         8
+ SEMICOLON         ;         3        11
+        ID         b         4         4         1      0x7fe6527994a0
+    ASSIGN         =         4         6
+HEXADECIMAL         4         4         8
+ SEMICOLON         ;         4        11
+        ID         a         5         4         1      0x7fffee3f91a8
+    ASSIGN         =         5         6
+        ID         a         5         8         1      0x7fffee3f91a8
+     MINUS         -         5        10
+     MINUS         -         5        12
+  DECIMIAL         4         5        14
+      PLUS         +         5        16
+      PLUS         +         5        18
+        ID         b         5        20         1      0x7fe6527994a0
+ SEMICOLON         ;         5        21
+        IF        if         6         4
+    LPAREN         (         6         7
+      PLUS         +         6         8
+     MINUS         -         6         9
+       NOT         !         6        10
+       NOT         !         6        11
+       NOT         !         6        12
+        ID         a         6        13         1      0x7fffee3f91a8
+    RPAREN         )         6        14
+    LBRACE         {         6        16
+        ID         a         7         8         2      0x7ffff59c7c80
+    ASSIGN         =         7        10
+     MINUS         -         7        12
+     MINUS         -         7        14
+     MINUS         -         7        16
+  DECIMIAL         1         7        17
+ SEMICOLON         ;         7        18
+    RBRACE         }         8         4
+      ELSE      else         9         4
+    LBRACE         {         9         9
+        ID         a        10         8         3      0x7fffee3f94b8
+    ASSIGN         =        10        10
+  DECIMIAL         0        10        12
+      PLUS         +        10        14
+      PLUS         +        10        16
+        ID         b        10        18         3      0x7fffee3f9368
+ SEMICOLON         ;        10        19
+    RBRACE         }        11         4
+        ID    putint        12         4         1      0x7fffee3f9668
+    LPAREN         (        12        10
+        ID         a        12        11         1      0x7fffee3f91a8
+    RPAREN         )        12        12
+ SEMICOLON         ;        12        13
+    RETURN    return        13         4
+  DECIMIAL         0        13        11
+ SEMICOLON         ;        13        12
+    RBRACE         }        14         0

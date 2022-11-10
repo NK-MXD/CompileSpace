@@ -1,0 +1,74 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID         n         1         4         0      0x7fa3fce18e47
+ SEMICOLON         ;         1         5
+       INT       int         3         0
+        ID      main         3         4         0      0x7fa3fcb994a0
+    LPAREN         (         3         8
+    RPAREN         )         3         9
+    LBRACE         {         4         0
+       INT       int         6         4
+        ID         i         6         8         1      0x7ffff99f7560
+ SEMICOLON         ;         6         9
+       INT       int         7         4
+        ID         j         7         8         1      0x7ffff1c25218
+ SEMICOLON         ;         7         9
+        ID         i        10         4         1      0x7ffff99f7560
+    ASSIGN         =        10         5
+        ID    getint        10         6         1      0x7ffff1c252f8
+    LPAREN         (        10        12
+    RPAREN         )        10        13
+ SEMICOLON         ;        10        14
+        ID         j        11         4         1      0x7ffff1c25218
+    ASSIGN         =        11         5
+        ID    getint        11         6         1      0x7ffff1c252f8
+    LPAREN         (        11        12
+    RPAREN         )        11        13
+ SEMICOLON         ;        11        14
+       INT       int        12         4
+        ID      temp        12         8         1      0x7ffff1c25528
+ SEMICOLON         ;        12        12
+        ID      temp        13         4         1      0x7ffff1c25528
+    ASSIGN         =        13         8
+        ID         i        13         9         1      0x7ffff99f7560
+ SEMICOLON         ;        13        10
+        ID         i        14         4         1      0x7ffff99f7560
+    ASSIGN         =        14         5
+        ID         j        14         6         1      0x7ffff1c25218
+ SEMICOLON         ;        14         7
+        ID         j        15         4         1      0x7ffff1c25218
+    ASSIGN         =        15         5
+        ID      temp        15         6         1      0x7ffff1c25528
+ SEMICOLON         ;        15        10
+        ID    putint        17         4         1      0x7ffff1c24f98
+    LPAREN         (        17        10
+        ID         i        17        11         1      0x7ffff99f7560
+    RPAREN         )        17        12
+ SEMICOLON         ;        17        13
+        ID      temp        18         4         1      0x7ffff1c25528
+    ASSIGN         =        18         9
+  DECIMIAL        10        18        11
+ SEMICOLON         ;        18        13
+        ID     putch        19         4         1      0x7ffff1c25448
+    LPAREN         (        19         9
+        ID      temp        19        10         1      0x7ffff1c25528
+    RPAREN         )        19        14
+ SEMICOLON         ;        19        15
+        ID    putint        20         4         1      0x7ffff1c24f98
+    LPAREN         (        20        10
+        ID         j        20        11         1      0x7ffff1c25218
+    RPAREN         )        20        12
+ SEMICOLON         ;        20        13
+        ID      temp        21         4         1      0x7ffff1c25528
+    ASSIGN         =        21         9
+  DECIMIAL        10        21        11
+ SEMICOLON         ;        21        13
+        ID     putch        22         4         1      0x7ffff1c25448
+    LPAREN         (        22         9
+        ID      temp        22        10         1      0x7ffff1c25528
+    RPAREN         )        22        14
+ SEMICOLON         ;        22        15
+    RETURN    return        24         4
+  DECIMIAL         0        24        11
+ SEMICOLON         ;        24        12
+    RBRACE         }        25         0

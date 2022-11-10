@@ -1,0 +1,41 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         2         0
+        ID      main         2         4         0      0x7fc9fa524e47
+    LPAREN         (         2         8
+    RPAREN         )         2         9
+    LBRACE         {         2        10
+       INT       int         3         4
+        ID         a         3         8         1      0x7fffba2811a8
+     COMMA         ,         3         9
+        ID         b         3        11         1      0x7fc9fa2a94a0
+     COMMA         ,         3        12
+        ID         c         3        14         1      0x7fffba281368
+     COMMA         ,         3        15
+        ID         d         3        17         1      0x7fffba2814b8
+ SEMICOLON         ;         3        18
+        ID         a         4         4         1      0x7fffba2811a8
+    ASSIGN         =         4         6
+  DECIMIAL        10         4         8
+ SEMICOLON         ;         4        10
+        ID         b         5         4         1      0x7fc9fa2a94a0
+    ASSIGN         =         5         6
+  DECIMIAL         4         5         8
+ SEMICOLON         ;         5         9
+        ID         c         6         4         1      0x7fffba281368
+    ASSIGN         =         6         6
+  DECIMIAL         2         6         8
+ SEMICOLON         ;         6         9
+        ID         d         7         4         1      0x7fffba2814b8
+    ASSIGN         =         7         6
+  DECIMIAL         2         7         8
+ SEMICOLON         ;         7         9
+    RETURN    return         8         4
+        ID         c         8        11         1      0x7fffba281368
+      PLUS         +         8        13
+        ID         a         8        15         1      0x7fffba2811a8
+       MUL         *         8        17
+        ID         b         8        19         1      0x7fc9fa2a94a0
+     MINUS         -         8        21
+        ID         d         8        23         1      0x7fffba2814b8
+ SEMICOLON         ;         8        24
+    RBRACE         }         9         0

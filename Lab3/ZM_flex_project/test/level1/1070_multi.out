@@ -1,0 +1,49 @@
+     token    lexeme    lineno    offset  scope_no    pointer_to_scope
+       INT       int         1         0
+        ID      main         1         4         0      0x7f540a00ce47
+    LPAREN         (         1         8
+    RPAREN         )         1         9
+    LBRACE         {         2         0
+       INT       int         4         4
+        ID         i         4         8         1      0x7fffd9b4e1a8
+ SEMICOLON         ;         4         9
+       INT       int         5         4
+        ID       sum         5         8         1      0x7f5409d894a0
+ SEMICOLON         ;         5        11
+        ID       sum         6         4         1      0x7f5409d894a0
+    ASSIGN         =         6         7
+  DECIMIAL         0         6         8
+ SEMICOLON         ;         6         9
+        ID         i         9         4         1      0x7fffd9b4e1a8
+    ASSIGN         =         9         5
+  DECIMIAL         0         9         6
+ SEMICOLON         ;         9         7
+     WHILE     while        10         4
+    LPAREN         (        10         9
+        ID         i        10        10         1      0x7fffd9b4e1a8
+      LESS         <        10        11
+  DECIMIAL        21        10        12
+    RPAREN         )        10        14
+    LBRACE         {        11         4
+        ID       sum        12         8         2      0x7fffe0ef7530
+    ASSIGN         =        12        11
+        ID       sum        12        12         2      0x7fffe0ef7530
+       MUL         *        12        15
+        ID         i        12        16         2      0x7fffd9b4e368
+ SEMICOLON         ;        12        17
+        ID         i        13         8         2      0x7fffd9b4e368
+    ASSIGN         =        13         9
+        ID         i        13        10         2      0x7fffd9b4e368
+      PLUS         +        13        11
+  DECIMIAL         1        13        12
+ SEMICOLON         ;        13        13
+    RBRACE         }        14         4
+        ID    putint        16         4         1      0x7fffd9b4e528
+    LPAREN         (        16        10
+        ID       sum        16        11         1      0x7f5409d894a0
+    RPAREN         )        16        14
+ SEMICOLON         ;        16        15
+    RETURN    return        18         4
+  DECIMIAL         0        18        11
+ SEMICOLON         ;        18        12
+    RBRACE         }        19         0
