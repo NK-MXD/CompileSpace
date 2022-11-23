@@ -106,6 +106,7 @@ public:
     int getIntValue() const { return value;};
     float getFloatValue() const { return fvalue;};  
     bool isConstant() const {return idtype == IdentSystem::constant;};
+    // void changeType(Type *type){this->type == type;};
     // You can add any function you need here.
 };
 

@@ -12,7 +12,7 @@
 # define print(str) //
 # endif
 
-# define DEBUG_SWITCH_M 0
+# define DEBUG_SWITCH_M 1
 # if DEBUG_SWITCH_M
 # define printinfo(str)\
         printf("%s\n",str);
@@ -73,6 +73,17 @@ private:
 public:
     enum {PLUS, UMINUS, NOT,FUNC};
     UnaryExpr(SymbolEntry *se, int op, ExprNode*expr1) : ExprNode(se), op(op), expr1(expr1){};
+    void output(int level);
+};
+
+/*m1123 定义类型转换*/
+class CastExpr : public ExprNode
+{
+private:
+    SymbolEntry *old;
+    ExprNode *expr1;
+public:
+    CastExpr(SymbolEntry *se, SymbolEntry *se_old, ExprNode*expr1) : ExprNode(se), old(se_old), expr1(expr1){};
     void output(int level);
 };
 

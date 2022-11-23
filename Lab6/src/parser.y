@@ -38,7 +38,7 @@
 
 
 %nterm <stmttype> Stmts Stmt AssignStmt BlockStmt IfStmt ReturnStmt  FuncDef 
-%nterm <exprtype> Exp AddExp Cond LOrExp PrimaryExp LVal RelExp LAndExp ConstExp
+%nterm <exprtype> Exp AddExp Cond LOrExp PrimaryExp LVal RelExp LAndExp ConstExp CastExp
 
 /* new */
 %nterm <exprtype>  FuncCall FuncRParam ArrayIndices UnaryExp MulExp EqExp ConstExpInitList ArrAssignExp ArrayIndex 
@@ -161,7 +161,7 @@ LVal
             tmp=(ExprNode *)tmp->getNext();
         }
         Array * arrType = (Array *)se->getType();
-
+        printinfo(arrType->getEleType()->toStr().c_str());
         if(sliceCnt!=arrType->getDimen()){
             if(check_on){
                 fprintf(stderr, "Cannot assign an address!\n");
@@ -169,8 +169,28 @@ LVal
             }
         }
         $$ = new Id(se);
+        /*m1122 数组: 需要将对应的元素取出来*/
+        /*m1122 函数: 需要将对应的返回值返回*/
+        // SymbolEntry* index = $2->getSymbolEntry();
+        // if(index->isConstant()){
+        //     ConstantSymbolEntry *cs = dynamic_cast<ConstantSymbolEntry*>index;
+        // }
+        // if(dynamic_cast<IdentifierSymbolEntry*>(se)->isConstant()){
+        //     if(se->getType() == TypeSystem::intType){
+        //         SymbolEntry *newse = new ConstantSymbolEntry(TypeSystem::intType, dynamic_cast<IdentifierSymbolEntry*>(se)->getIntValue());
+        //     }
+        //     else{
+        //         SymbolEntry *newse = new ConstantSymbolEntry(TypeSystem::intType, dynamic_cast<IdentifierSymbolEntry*>(se)->getIntValue());
+        //     }
+        // }
+        // else{
+
+        // }
         delete []$1;
         // may detele $2
+    }
+    | FuncCall{
+        $$ = $1;
     }
     ;
 
@@ -443,11 +463,27 @@ Exp
     : AddExp {
         $$ = $1;
     }
+    // | LOrExp{
+    //     $$ = $1;
+    // }
     ;
 Cond
     :
     LOrExp {$$ = $1;}
     ;
+
+Type
+    : INT {
+        $$ = TypeSystem::intType;
+    }
+    | VOID {
+        $$ = TypeSystem::voidType;
+    }
+    | FLOAT {
+        $$ = TypeSystem::floatType;
+    }
+    ;
+
 PrimaryExp
     :
     /*m1104 这里修正*/
@@ -456,24 +492,40 @@ PrimaryExp
     }
     |
     LVal {
-        /*m1104 常量表达式的计算fix1*/
-        /*m1105 常量表达式的计算fix2*/
-        /*m1106 常量表达式的计算fix3*/
-        /*m1107 常量表达式的计算fix4*/
+        /*m1104~m1107 常量表达式的计算以及修正*/
         SymbolEntry *se = $1->getSymbolEntry();
         if(dynamic_cast<IdentifierSymbolEntry*>(se)->isConstant()){
             ConstantSymbolEntry *cs;
             if(se->getType() == TypeSystem::intType){
+                printinfo("int");
                 cs = new ConstantSymbolEntry(TypeSystem::intType, dynamic_cast<IdentifierSymbolEntry*>(se)->getIntValue());
             }
-            // else if(se->getType() == TypeSystem::arrayType)
-            //     cs = new ConstantSymbolEntry(TypeSystem::arrayType, dynamic_cast<IdentifierSymbolEntry*>(se)->getIntValue());
-            // }
-            else{
+            /*m1122 处理数组情况: 思路是将对应的数组的值 在LVal中获得*/
+            else if(se->getType()->isArray()){
+                printinfo("array");
+                // Array * arrType = (Array *)se->getType();
+                std::cout<<dynamic_cast<IdentifierSymbolEntry*>(se)->getIntValue()<<std::endl;
+                cs = new ConstantSymbolEntry(TypeSystem::intType, dynamic_cast<IdentifierSymbolEntry*>(se)->getIntValue());
+            }
+            else if(se->getType() == TypeSystem::floatType){
+                printinfo("float");
                 cs = new ConstantSymbolEntry(TypeSystem::floatType, dynamic_cast<IdentifierSymbolEntry*>(se)->getFloatValue());
+            }
+            /*m1122 处理为函数的情况: 思路是将对应函数的计算结果存在 LVal中*/
+            else{
+                if(check_on){
+                    fprintf(stderr, "Val type is not int or float!\n");
+                }
             }
             $$ = new ConstNode($1, cs);
         }else{
+            /*处理void情况*/
+            if(se->getType()->isVoid()){
+                if(check_on){
+                    fprintf(stderr, "Cannot compute void type!\n");
+                    assert(se->getType()->isVoid() == 0);
+                }
+            }
             $$ = $1;
         }
     }
@@ -497,30 +549,32 @@ PrimaryExp
         ConstantSymbolEntry *se = new ConstantSymbolEntry(TypeSystem::floatType, $1);
         $$ = new Constant(se);
     }
-    
     ;
 UnaryExp
     :
     // z1104
     /* z1108 fix:这块之后函数call的返回值需要处理下*/
-    FuncCall{
-        // SymbolEntry* se = (SymbolEntry*)$1->getSymbolEntry();
-        // $$ = new UnaryExpr(se, UnaryExpr::FUNC, nullptr);
-        $$ = $1;
-    }
+    // FuncCall{
+    //     $$ = $1;
+    // }
     /*m1102 单目运算符*/
-    | PrimaryExp {$$ = $1;}
+    PrimaryExp {$$ = $1;}
     | ADD UnaryExp %prec PLUS{
         if($2->getSymbolEntry()->isConstant()){
             ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($2->getSymbolEntry());
             ConstantSymbolEntry *cs;
             if(se->getType() == TypeSystem::intType){
                 cs = new ConstantSymbolEntry(TypeSystem::intType,se->getIntValue());
-            }else{
+            }else if(se->getType() == TypeSystem::floatType){
                 cs = new ConstantSymbolEntry(TypeSystem::floatType,se->getFloatValue());
+            }else{
+                if(check_on){
+                    fprintf(stderr, "The type can't compute!\n");
+                }
             }
             $$ = new UnaryExpr(cs, UnaryExpr::PLUS, $2);
         }
+        /*m1122 检查非常量的类型*/
         else{
             SymbolEntry *se = new TemporarySymbolEntry($2->getSymbolEntry()->getType(), SymbolTable::getLabel());
             $$ = new UnaryExpr(se, UnaryExpr::PLUS, $2);
@@ -532,8 +586,12 @@ UnaryExp
             ConstantSymbolEntry *cs;
             if(se->getType() == TypeSystem::intType){
                 cs = new ConstantSymbolEntry(TypeSystem::intType,-se->getIntValue());
-            }else{
+            }else if(se->getType() == TypeSystem::floatType){
                 cs = new ConstantSymbolEntry(TypeSystem::floatType,-se->getFloatValue());
+            }else{
+                if(check_on){
+                    fprintf(stderr, "The type can't compute!\n");
+                }
             }
             $$ = new UnaryExpr(cs, UnaryExpr::UMINUS, $2);
         }
@@ -550,10 +608,11 @@ UnaryExp
             if(se->getType() == TypeSystem::intType){
                 cs = new ConstantSymbolEntry(TypeSystem::intType,!se->getIntValue());
             }
-            else{
+            else if(se->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,!se->getFloatValue());
+            }else{
                 if(check_on){
-                fprintf(stderr, "error! unaryexp use float Type");
-                assert(se->getType() == TypeSystem::intType);
+                    fprintf(stderr, "The type can't compute!\n");
                 }
             }
             $$ = new UnaryExpr(cs, UnaryExpr::NOT, $2);
@@ -564,11 +623,49 @@ UnaryExp
         }
     }
     ;
+
+CastExp
+    :
+    /*m1123 添加显示类型转换*/
+    UnaryExp {$$ = $1;}
+    | LPAREN Type RPAREN CastExp{
+        if($4->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($4->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(se->getType() == TypeSystem::intType){
+                if($2 == TypeSystem::intType)
+                    cs = new ConstantSymbolEntry(TypeSystem::intType,se->getIntValue());
+                else
+                    cs = new ConstantSymbolEntry(TypeSystem::floatType,(float)se->getIntValue());
+            }
+            else if(se->getType() == TypeSystem::floatType){
+                if($2 == TypeSystem::intType)
+                    cs = new ConstantSymbolEntry(TypeSystem::intType,(int)se->getFloatValue());
+                else
+                    cs = new ConstantSymbolEntry(TypeSystem::floatType,se->getFloatValue());
+            }else{
+                if(check_on){
+                    fprintf(stderr, "The type can't be casted!\n");
+                }
+            }
+            $$ = new CastExpr(cs, $4->getSymbolEntry(), $4);
+        }else{
+            //类型转换要添加到对应的符号表的项目中吗?不需要,当前临时变量做调整即可
+            SymbolEntry *ts = new TemporarySymbolEntry($2, SymbolTable::getLabel());
+            $$ = new CastExpr(ts, $4->getSymbolEntry(), $4);
+        }
+    }
+    // void转换这里有问题
+    // | LPAREN VOID RPAREN CastExp{
+
+    // }
+    ;
+
 MulExp
     :
     /*m1102 乘法运算符*/
-    UnaryExp {$$ = $1;}
-    | MulExp MUL UnaryExp{
+    CastExp {$$ = $1;}
+    | MulExp MUL CastExp{
         if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
             ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
             ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
@@ -582,8 +679,12 @@ MulExp
             else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
                 cs = new ConstantSymbolEntry(TypeSystem::floatType,ts2->getFloatValue()*ts1->getIntValue());
             }
-            else{
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::intType){
                 cs = new ConstantSymbolEntry(TypeSystem::intType,ts2->getIntValue()*ts1->getIntValue());
+            }else{
+                if(check_on){
+                    fprintf(stderr, "The type can't compute!\n");
+                }
             }
             $$ = new BinaryExpr(cs, BinaryExpr::MUL, $1, $3);
         }
@@ -599,33 +700,42 @@ MulExp
             $$ = new BinaryExpr(se, BinaryExpr::MUL, $1, $3);
         }        
     }
-    | MulExp DIV UnaryExp{
+    | MulExp DIV CastExp{
         if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
             ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
             ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
             ConstantSymbolEntry *cs;
             if(ts1->getType()!=TypeSystem::intType||ts2->getType()!=TypeSystem::intType){
                 if(check_on){
-                fprintf(stderr, "error! div use float Type");
-                assert(ts1->getType()==TypeSystem::intType);
-                assert(ts2->getType()==TypeSystem::intType);
+                    fprintf(stderr, "error! div only can use int type");
+                    assert(ts1->getType()==TypeSystem::intType);
+                    assert(ts2->getType()==TypeSystem::intType);
                 }
             }
             if(ts2->getIntValue() == 0){
                 if(check_on){
-                fprintf(stderr, "error! the disivor is 0");
-                assert(ts2->getIntValue()!=0);
+                    fprintf(stderr, "error! the disivor is 0");
+                    assert(ts2->getIntValue()!=0);
                 }
             }
             cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()/ts2->getIntValue());
             $$ = new BinaryExpr(cs, BinaryExpr::DIV, $1, $3);
         }
         else{
+            SymbolEntry *se1 = $1->getSymbolEntry();
+            SymbolEntry *se2 = $3->getSymbolEntry();
+            if(se1->getType()!=TypeSystem::intType||se2->getType()!=TypeSystem::intType){
+                if(check_on){
+                    fprintf(stderr, "error! div only can use int type");
+                    assert(se1->getType()==TypeSystem::intType);
+                    assert(se2->getType()==TypeSystem::intType);
+                }
+            }
             SymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
             $$ = new BinaryExpr(se, BinaryExpr::DIV, $1, $3);
         } 
     }
-    | MulExp MOD UnaryExp{
+    | MulExp MOD CastExp{
         if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
             ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
             ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
@@ -647,6 +757,15 @@ MulExp
             $$ = new BinaryExpr(cs, BinaryExpr::MOD, $1, $3);
         }
         else{
+            SymbolEntry *se1 = $1->getSymbolEntry();
+            SymbolEntry *se2 = $3->getSymbolEntry();
+            if(se1->getType()!=TypeSystem::intType||se2->getType()!=TypeSystem::intType){
+                if(check_on){
+                    fprintf(stderr, "error! div only can use int type");
+                    assert(se1->getType()==TypeSystem::intType);
+                    assert(se2->getType()==TypeSystem::intType);
+                }
+            }
             SymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
             $$ = new BinaryExpr(se, BinaryExpr::MOD, $1, $3);
         }
@@ -736,88 +855,302 @@ ConstExp
             $$ = new ExprNode(cs);
         }
         else{
-            if(check_on)
-            fprintf(stderr, "The expression is not const\n");
+            if(check_on){
+                fprintf(stderr, "The expression is not const\n");
+                assert($1->getSymbolEntry()->isConstant());
+            }
         }
     }
     ;
 RelExp
     :
     /*m1101 关系运算符补充*/
-    AddExp {$$ = $1;}
+    /*m1122 关系运算符类型检查与转换*/
+    AddExp {
+        if($1->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *cs;
+            ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            if(se->getType()==TypeSystem::intType){
+                cs = new ConstantSymbolEntry(se->getType(), se->getIntValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(se->getType(), se->getFloatValue());
+            }
+            $$ = new ConstNode($1, cs);
+        }
+        else{
+            /*计算结果类型检查*/
+            $$ = $1;
+        }
+    }
     |
     RelExp LESS AddExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::LESS, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()<ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()<ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()<ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()<ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::LESS, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::LESS, $1, $3);
+        }
     }
     |
     RelExp GREATER AddExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::GREATER, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()>ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()>ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()>ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()>ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::GREATER, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::GREATER, $1, $3);
+        }
     }
     |
     RelExp LESSEQUAL AddExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::LESSEQUAL, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()<=ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()<=ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()<=ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()<=ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::LESSEQUAL, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::LESSEQUAL, $1, $3);
+        }
     }
     |
     RelExp GREATEREQUAL AddExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::GREATEREQUAL, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()>=ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()>=ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()>=ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()>=ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::GREATEREQUAL, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::GREATEREQUAL, $1, $3);
+        }
     }
     ;
 EqExp
     :
-    RelExp {$$ = $1;}
+    RelExp {
+        if($1->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *cs;
+            ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            if(se->getType()==TypeSystem::intType){
+                cs = new ConstantSymbolEntry(se->getType(), se->getIntValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(se->getType(), se->getFloatValue());
+            }
+            $$ = new ConstNode($1, cs);
+        }
+        else{
+            $$ = $1;
+        }
+    }
     | 
     EqExp EQUAL RelExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::EQUAL, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()==ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()==ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()==ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()==ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::EQUAL, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::EQUAL, $1, $3);
+        }
     }
     | 
     EqExp NOTEQUAL RelExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::NOTEQUAL, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()!=ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()!=ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()!=ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()!=ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::NOTEQUAL, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::NOTEQUAL, $1, $3);
+        }
     }
     ;
 LAndExp
     :
-    EqExp {$$ = $1;}
+    EqExp {
+        if($1->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *cs;
+            ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            if(se->getType()==TypeSystem::intType){
+                cs = new ConstantSymbolEntry(se->getType(), se->getIntValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(se->getType(), se->getFloatValue());
+            }
+            $$ = new ConstNode($1, cs);
+        }
+        else{
+            $$ = $1;
+        }
+    }
     |
     LAndExp AND EqExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::AND, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()&&ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()&&ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()&&ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()&&ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::AND, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::AND, $1, $3);
+        }
     }
     ;
 LOrExp
     :
-    LAndExp {$$ = $1;}
+    LAndExp {
+        if($1->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *cs;
+            ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            if(se->getType()==TypeSystem::intType){
+                cs = new ConstantSymbolEntry(se->getType(), se->getIntValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(se->getType(), se->getFloatValue());
+            }
+            $$ = new ConstNode($1, cs);
+        }
+        else{
+            $$ = $1;
+        }
+    }
     |
     LOrExp OR LAndExp
     {
-        TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
-        $$ = new BinaryExpr(se, BinaryExpr::OR, $1, $3);
+        if($1->getSymbolEntry()->isConstant()&&$3->getSymbolEntry()->isConstant()){
+            ConstantSymbolEntry *ts1 = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
+            ConstantSymbolEntry *ts2 = dynamic_cast<ConstantSymbolEntry*>($3->getSymbolEntry());
+            ConstantSymbolEntry *cs;
+            if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()||ts2->getFloatValue());
+            }
+            else if(ts1->getType() == TypeSystem::floatType && ts2->getType() == TypeSystem::intType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getFloatValue()||ts2->getIntValue());
+            }
+            else if(ts1->getType() == TypeSystem::intType && ts2->getType() == TypeSystem::floatType){
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()||ts1->getFloatValue());
+            }
+            else{
+                cs = new ConstantSymbolEntry(TypeSystem::intType,ts1->getIntValue()||ts2->getIntValue());
+            }
+            $$ = new BinaryExpr(cs, BinaryExpr::OR, $1, $3);
+        }
+        else{
+            TemporarySymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+            $$ = new BinaryExpr(se, BinaryExpr::OR, $1, $3);
+        }
     }
     ;
 
-Type
-    : INT {
-        $$ = TypeSystem::intType;
-    }
-    | VOID {
-        $$ = TypeSystem::voidType;
-    }
-    | FLOAT {
-        $$ = TypeSystem::floatType;
-    }
-    ;
+
 
 /* Z1102 add声明同时初始化 */
 /* z1103 被之后的更新reduce */

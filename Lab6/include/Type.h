@@ -22,7 +22,6 @@ public:
     bool isFunc() const {return kind == FUNC;};
     bool isArray() const {return kind == ARRAY;};
     int getSize() const { return size; };
-
 };
 
 
@@ -122,11 +121,13 @@ private:
     static VoidType commonVoid;
     static FloatType commonFloat;
     static Array commonARRAY;
+    static FunctionType commonFunc;
 public:
     static Type *intType;
     static Type *voidType;
     static Type *floatType;
     static Type *arrayType;
+    static Type *funcType;
 };
 
 #endif

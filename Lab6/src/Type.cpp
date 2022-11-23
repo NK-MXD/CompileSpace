@@ -5,11 +5,13 @@ IntType TypeSystem::commonInt = IntType(4);
 VoidType TypeSystem::commonVoid = VoidType();
 FloatType TypeSystem::commonFloat = FloatType(8);
 Array TypeSystem::commonARRAY = Array(nullptr);
+// FunctionType TypeSystem::commonFunc = FunctionType(nullptr,nullptr);
 
 Type* TypeSystem::intType = &commonInt;
 Type* TypeSystem::voidType = &commonVoid;
 Type* TypeSystem::floatType = &commonFloat;
 Type* TypeSystem::arrayType = &commonARRAY;
+// Type* TypeSystem::funcType = &commonFunc;
 
 std::string IntType::toStr()
 {

@@ -51,6 +51,34 @@ void UnaryExpr::output(int level)
         expr1->output(level + 4);
 }
 
+void CastExpr::output(int level)
+{
+    print("CastExpr");
+    std::string op_str;
+    std::string tname;
+    if(this->symbolEntry->getType() == TypeSystem::intType){
+        if(this->old->getType() == TypeSystem::intType){
+            tname = "int";
+            op_str = "Noop";
+        }else{
+            tname = "int";
+            op_str = "floatToint";
+        }
+    }
+    if(this->symbolEntry->getType() == TypeSystem::floatType){
+        if(this->old->getType() == TypeSystem::intType){
+            tname = "float";
+            op_str = "intTofloat";
+        }else{
+            tname = "float";
+            op_str = "Noop";
+        }
+    }
+    fprintf(yyout, "%*cCastExpr\ttype: %s\t\top: %s\n", level, ' ', tname.c_str(), op_str.c_str());
+    if(expr1)
+        expr1->output(level + 4);
+}
+
 void BinaryExpr::output(int level)
 {
     print("BinaryExpr");
