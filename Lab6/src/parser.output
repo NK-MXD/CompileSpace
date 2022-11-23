@@ -1,0 +1,5352 @@
+Terminals unused in grammar
+
+    PUTF
+    FOR
+    DO
+
+
+State 176 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: Stmts
+
+    2 Stmts: Stmt
+    3      | Stmts Stmt
+
+    4 Stmt: AssignStmt
+    5     | BlockStmt
+    6     | IfStmt
+    7     | ReturnStmt
+    8     | DeclStmt
+    9     | FuncDef
+   10     | DeclInitStmt
+   11     | WhileStmt
+   12     | BreakStmt
+   13     | ContinueStmt
+   14     | ExprStmt
+   15     | FuncDecl
+
+   16 ExprStmt: Exp SEMICOLON
+
+   17 ArrayIndices: LBRACKET ConstExp RBRACKET
+   18             | ArrayIndices LBRACKET ConstExp RBRACKET
+
+   19 LVal: ID
+   20     | ID ArrayIndices
+
+   21 IdList: IdList COMMA ID
+   22       | ID
+   23       | ArrInit
+   24       | IdList COMMA ArrInit
+
+   25 ConstExpList: ConstExp
+   26             | ConstExpList COMMA ConstExp
+
+   27 ArrAssignExp: LBRACE ConstExpList RBRACE
+   28             | LBRACE RBRACE
+
+   29 ArrInit: ID ArrayIndices
+   30        | ID ArrayIndices ASSIGN ArrAssignExp
+
+   31 InitStmt: ID ASSIGN Exp
+   32         | InitStmt COMMA ID ASSIGN Exp
+   33         | InitStmt COMMA IdList
+
+   34 ConstDeclInitStmt: CONST Type InitStmt SEMICOLON
+
+   35 DeclInitStmt: Type InitStmt SEMICOLON
+   36             | ConstDeclInitStmt
+
+   37 AssignStmt: LVal ASSIGN Exp SEMICOLON
+
+   38 $@1: %empty
+
+   39 BlockStmt: LBRACE $@1 Stmts RBRACE
+   40          | LBRACE RBRACE
+
+   41 IfStmt: IF LPAREN Cond RPAREN Stmt
+   42       | IF LPAREN Cond RPAREN Stmt ELSE Stmt
+
+   43 BreakStmt: BREAK SEMICOLON
+
+   44 ContinueStmt: CONTINUE SEMICOLON
+
+   45 ReturnStmt: RETURN Exp SEMICOLON
+
+   46 Exp: AddExp
+
+   47 Cond: LOrExp
+
+   48 PrimaryExp: LPAREN Exp RPAREN
+   49           | LVal
+   50           | INTEGER
+   51           | OCTAL
+   52           | HEXADECIMAL
+   53           | DECIMAL_FLOAT
+   54           | HEXADECIMAL_FLOAT
+
+   55 UnaryExp: FuncCall
+   56         | PrimaryExp
+   57         | ADD UnaryExp
+   58         | SUB UnaryExp
+   59         | NOT UnaryExp
+
+   60 MulExp: UnaryExp
+   61       | MulExp MUL UnaryExp
+   62       | MulExp DIV UnaryExp
+   63       | MulExp MOD UnaryExp
+
+   64 AddExp: MulExp
+   65       | AddExp ADD MulExp
+   66       | AddExp SUB MulExp
+
+   67 ConstExp: AddExp
+
+   68 RelExp: AddExp
+   69       | RelExp LESS AddExp
+   70       | RelExp GREATER AddExp
+   71       | RelExp LESSEQUAL AddExp
+   72       | RelExp GREATEREQUAL AddExp
+
+   73 EqExp: RelExp
+   74      | EqExp EQUAL RelExp
+   75      | EqExp NOTEQUAL RelExp
+
+   76 LAndExp: EqExp
+   77        | LAndExp AND EqExp
+
+   78 LOrExp: LAndExp
+   79       | LOrExp OR LAndExp
+
+   80 Type: INT
+   81     | VOID
+   82     | FLOAT
+
+   83 ConstDeclStmt: CONST Type IdList SEMICOLON
+
+   84 DeclStmt: ConstDeclStmt
+   85         | Type IdList SEMICOLON
+
+   86 WhileStmt: WHILE LPAREN Cond RPAREN Stmt
+
+   87 FuncFParamList: FuncFParam
+   88               | FuncFParamList COMMA FuncFParam
+   89               | %empty
+
+   90 FuncRParam: Exp
+   91           | FuncRParam COMMA Exp
+   92           | %empty
+
+   93 FuncFParam: Type ID
+
+   94 FuncHead: Type ID
+
+   95 FuncDecl: FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+
+   96 $@2: %empty
+
+   97 FuncDef: FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+
+   98 FuncCall: ID LPAREN FuncRParam RPAREN
+   99         | GETINT LPAREN FuncRParam RPAREN
+  100         | GETCH LPAREN FuncRParam RPAREN
+  101         | GETFLOAT LPAREN FuncRParam RPAREN
+  102         | GETARRAY LPAREN FuncRParam RPAREN
+  103         | GETFARRAY LPAREN FuncRParam RPAREN
+  104         | PUTINT LPAREN FuncRParam RPAREN
+  105         | PUTCH LPAREN FuncRParam RPAREN
+  106         | PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | PUTARRAY LPAREN FuncRParam RPAREN
+  108         | PUTFARRAY LPAREN FuncRParam RPAREN
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    ID <strtype> (258) 19 20 21 22 29 30 31 32 93 94 98
+    GETINT <strtype> (259) 99
+    GETFLOAT <strtype> (260) 101
+    GETARRAY <strtype> (261) 102
+    PUTINT <strtype> (262) 104
+    PUTFLOAT <strtype> (263) 106
+    PUTARRAY <strtype> (264) 107
+    PUTFARRAY <strtype> (265) 108
+    GETCH <strtype> (266) 100
+    GETFARRAY <strtype> (267) 103
+    PUTCH <strtype> (268) 105
+    PUTF <strtype> (269)
+    INTEGER <itype> (270) 50
+    OCTAL <itype> (271) 51
+    HEXADECIMAL <itype> (272) 52
+    DECIMAL_FLOAT <ftype> (273) 53
+    HEXADECIMAL_FLOAT <ftype> (274) 54
+    IF (275) 41 42
+    ELSE (276) 42
+    WHILE (277) 86
+    FOR (278)
+    DO (279)
+    BREAK (280) 43
+    CONTINUE (281) 44
+    INT (282) 80
+    VOID (283) 81
+    FLOAT (284) 82
+    LPAREN (285) 41 42 48 86 95 97 98 99 100 101 102 103 104 105 106 107 108
+    RPAREN (286) 41 42 48 86 95 97 98 99 100 101 102 103 104 105 106 107 108
+    LBRACE (287) 27 28 39 40
+    RBRACE (288) 27 28 39 40
+    SEMICOLON (289) 16 34 35 37 43 44 45 83 85 95
+    LBRACKET (290) 17 18
+    RBRACKET (291) 17 18
+    COMMA (292) 21 24 26 32 33 88 91
+    AND (293) 77
+    OR (294) 79
+    EQUAL (295) 74
+    NOTEQUAL (296) 75
+    LESSEQUAL (297) 71
+    GREATEREQUAL (298) 72
+    ADD (299) 57 65
+    SUB (300) 58 66
+    LESS (301) 69
+    ASSIGN (302) 30 31 32 37
+    GREATER (303) 70
+    MUL (304) 61
+    DIV (305) 62
+    MOD (306) 63
+    PLUS (307)
+    UMINUS (308)
+    NOT (309) 59
+    CONST (310) 34 83
+    RETURN (311) 45
+    THEN (312)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (58)
+        on left: 0
+    Stmts <stmttype> (59)
+        on left: 2 3
+        on right: 1 3 39
+    Stmt <stmttype> (60)
+        on left: 4 5 6 7 8 9 10 11 12 13 14 15
+        on right: 2 3 41 42 86
+    AssignStmt <stmttype> (61)
+        on left: 37
+        on right: 4
+    BlockStmt <stmttype> (62)
+        on left: 39 40
+        on right: 5 97
+    IfStmt <stmttype> (63)
+        on left: 41 42
+        on right: 6
+    ReturnStmt <stmttype> (64)
+        on left: 45
+        on right: 7
+    DeclStmt <stmttype> (65)
+        on left: 84 85
+        on right: 8
+    FuncDef <stmttype> (66)
+        on left: 97
+        on right: 9
+    Exp <exprtype> (67)
+        on left: 46
+        on right: 16 31 32 37 45 48 90 91
+    AddExp <exprtype> (68)
+        on left: 64 65 66
+        on right: 46 65 66 67 68 69 70 71 72
+    Cond <exprtype> (69)
+        on left: 47
+        on right: 41 42 86
+    LOrExp <exprtype> (70)
+        on left: 78 79
+        on right: 47 79
+    PrimaryExp <exprtype> (71)
+        on left: 48 49 50 51 52 53 54
+        on right: 56
+    LVal <exprtype> (72)
+        on left: 19 20
+        on right: 37 49
+    RelExp <exprtype> (73)
+        on left: 68 69 70 71 72
+        on right: 69 70 71 72 73 74 75
+    LAndExp <exprtype> (74)
+        on left: 76 77
+        on right: 77 78 79
+    ConstExp <exprtype> (75)
+        on left: 67
+        on right: 17 18 25 26
+    IdList <exprtype> (76)
+        on left: 21 22 23 24
+        on right: 21 24 33 83 85
+    FuncCall <exprtype> (77)
+        on left: 98 99 100 101 102 103 104 105 106 107 108
+        on right: 55
+    FuncRParam <exprtype> (78)
+        on left: 90 91 92
+        on right: 91 98 99 100 101 102 103 104 105 106 107 108
+    ArrayIndices <exprtype> (79)
+        on left: 17 18
+        on right: 18 20 29 30
+    UnaryExp <exprtype> (80)
+        on left: 55 56 57 58 59
+        on right: 57 58 59 60 61 62 63
+    MulExp <exprtype> (81)
+        on left: 60 61 62 63
+        on right: 61 62 63 64 65 66
+    EqExp <exprtype> (82)
+        on left: 73 74 75
+        on right: 74 75 76 77
+    ConstExpList <exprtype> (83)
+        on left: 25 26
+        on right: 26 27
+    ArrAssignExp <exprtype> (84)
+        on left: 27 28
+        on right: 30
+    InitStmt <stmttype> (85)
+        on left: 31 32 33
+        on right: 32 33 34 35
+    DeclInitStmt <stmttype> (86)
+        on left: 35 36
+        on right: 10
+    ConstDeclStmt <stmttype> (87)
+        on left: 83
+        on right: 84
+    ConstDeclInitStmt <stmttype> (88)
+        on left: 34
+        on right: 36
+    FuncFParam <stmttype> (89)
+        on left: 93
+        on right: 87 88
+    FuncFParamList <stmttype> (90)
+        on left: 87 88 89
+        on right: 88 95 97
+    WhileStmt <stmttype> (91)
+        on left: 86
+        on right: 11
+    BreakStmt <stmttype> (92)
+        on left: 43
+        on right: 12
+    ContinueStmt <stmttype> (93)
+        on left: 44
+        on right: 13
+    ExprStmt <stmttype> (94)
+        on left: 16
+        on right: 14
+    FuncDecl <stmttype> (95)
+        on left: 95
+        on right: 15
+    FuncHead <stmttype> (96)
+        on left: 94
+        on right: 95 97
+    ArrInit <stmttype> (97)
+        on left: 29 30
+        on right: 23 24
+    Type <type> (98)
+        on left: 80 81 82
+        on right: 34 35 83 85 93 94
+    Program (99)
+        on left: 1
+        on right: 0
+    $@1 (100)
+        on left: 38
+        on right: 39
+    $@2 (101)
+        on left: 96
+        on right: 97
+
+
+State 0
+
+    0 $accept: . Program $end
+    1 Program: . Stmts
+    2 Stmts: . Stmt
+    3      | . Stmts Stmt
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    Stmts              go to state 31
+    Stmt               go to state 32
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+    Program            go to state 56
+
+
+State 1
+
+   17 ArrayIndices: . LBRACKET ConstExp RBRACKET
+   18             | . ArrayIndices LBRACKET ConstExp RBRACKET
+   19 LVal: ID .  [RPAREN, RBRACE, SEMICOLON, RBRACKET, COMMA, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, ADD, SUB, LESS, ASSIGN, GREATER, MUL, DIV, MOD]
+   20     | ID . ArrayIndices
+   98 FuncCall: ID . LPAREN FuncRParam RPAREN
+
+    LPAREN    shift, and go to state 57
+    LBRACKET  shift, and go to state 58
+
+    $default  reduce using rule 19 (LVal)
+
+    ArrayIndices  go to state 59
+
+
+State 2
+
+   99 FuncCall: GETINT . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 60
+
+
+State 3
+
+  101 FuncCall: GETFLOAT . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 61
+
+
+State 4
+
+  102 FuncCall: GETARRAY . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 62
+
+
+State 5
+
+  104 FuncCall: PUTINT . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 63
+
+
+State 6
+
+  106 FuncCall: PUTFLOAT . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 64
+
+
+State 7
+
+  107 FuncCall: PUTARRAY . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 65
+
+
+State 8
+
+  108 FuncCall: PUTFARRAY . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 66
+
+
+State 9
+
+  100 FuncCall: GETCH . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 67
+
+
+State 10
+
+  103 FuncCall: GETFARRAY . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 68
+
+
+State 11
+
+  105 FuncCall: PUTCH . LPAREN FuncRParam RPAREN
+
+    LPAREN  shift, and go to state 69
+
+
+State 12
+
+   50 PrimaryExp: INTEGER .
+
+    $default  reduce using rule 50 (PrimaryExp)
+
+
+State 13
+
+   51 PrimaryExp: OCTAL .
+
+    $default  reduce using rule 51 (PrimaryExp)
+
+
+State 14
+
+   52 PrimaryExp: HEXADECIMAL .
+
+    $default  reduce using rule 52 (PrimaryExp)
+
+
+State 15
+
+   53 PrimaryExp: DECIMAL_FLOAT .
+
+    $default  reduce using rule 53 (PrimaryExp)
+
+
+State 16
+
+   54 PrimaryExp: HEXADECIMAL_FLOAT .
+
+    $default  reduce using rule 54 (PrimaryExp)
+
+
+State 17
+
+   41 IfStmt: IF . LPAREN Cond RPAREN Stmt
+   42       | IF . LPAREN Cond RPAREN Stmt ELSE Stmt
+
+    LPAREN  shift, and go to state 70
+
+
+State 18
+
+   86 WhileStmt: WHILE . LPAREN Cond RPAREN Stmt
+
+    LPAREN  shift, and go to state 71
+
+
+State 19
+
+   43 BreakStmt: BREAK . SEMICOLON
+
+    SEMICOLON  shift, and go to state 72
+
+
+State 20
+
+   44 ContinueStmt: CONTINUE . SEMICOLON
+
+    SEMICOLON  shift, and go to state 73
+
+
+State 21
+
+   80 Type: INT .
+
+    $default  reduce using rule 80 (Type)
+
+
+State 22
+
+   81 Type: VOID .
+
+    $default  reduce using rule 81 (Type)
+
+
+State 23
+
+   82 Type: FLOAT .
+
+    $default  reduce using rule 82 (Type)
+
+
+State 24
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   48           | LPAREN . Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    Exp         go to state 74
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 25
+
+   38 $@1: . %empty  [ID, GETINT, GETFLOAT, GETARRAY, PUTINT, PUTFLOAT, PUTARRAY, PUTFARRAY, GETCH, GETFARRAY, PUTCH, INTEGER, OCTAL, HEXADECIMAL, DECIMAL_FLOAT, HEXADECIMAL_FLOAT, IF, WHILE, BREAK, CONTINUE, INT, VOID, FLOAT, LPAREN, LBRACE, ADD, SUB, NOT, CONST, RETURN]
+   39 BlockStmt: LBRACE . $@1 Stmts RBRACE
+   40          | LBRACE . RBRACE
+
+    RBRACE  shift, and go to state 76
+
+    $default  reduce using rule 38 ($@1)
+
+    $@1  go to state 77
+
+
+State 26
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   57         | ADD . UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 78
+
+
+State 27
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   58         | SUB . UnaryExp
+   59         | . NOT UnaryExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 79
+
+
+State 28
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   59         | NOT . UnaryExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 80
+
+
+State 29
+
+   34 ConstDeclInitStmt: CONST . Type InitStmt SEMICOLON
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: CONST . Type IdList SEMICOLON
+
+    INT    shift, and go to state 21
+    VOID   shift, and go to state 22
+    FLOAT  shift, and go to state 23
+
+    Type  go to state 81
+
+
+State 30
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   45 ReturnStmt: RETURN . Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    Exp         go to state 82
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 31
+
+    1 Program: Stmts .  [$end]
+    3 Stmts: Stmts . Stmt
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    $default  reduce using rule 1 (Program)
+
+    Stmt               go to state 83
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+
+
+State 32
+
+    2 Stmts: Stmt .
+
+    $default  reduce using rule 2 (Stmts)
+
+
+State 33
+
+    4 Stmt: AssignStmt .
+
+    $default  reduce using rule 4 (Stmt)
+
+
+State 34
+
+    5 Stmt: BlockStmt .
+
+    $default  reduce using rule 5 (Stmt)
+
+
+State 35
+
+    6 Stmt: IfStmt .
+
+    $default  reduce using rule 6 (Stmt)
+
+
+State 36
+
+    7 Stmt: ReturnStmt .
+
+    $default  reduce using rule 7 (Stmt)
+
+
+State 37
+
+    8 Stmt: DeclStmt .
+
+    $default  reduce using rule 8 (Stmt)
+
+
+State 38
+
+    9 Stmt: FuncDef .
+
+    $default  reduce using rule 9 (Stmt)
+
+
+State 39
+
+   16 ExprStmt: Exp . SEMICOLON
+
+    SEMICOLON  shift, and go to state 84
+
+
+State 40
+
+   46 Exp: AddExp .  [RPAREN, SEMICOLON, COMMA]
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 46 (Exp)
+
+
+State 41
+
+   56 UnaryExp: PrimaryExp .
+
+    $default  reduce using rule 56 (UnaryExp)
+
+
+State 42
+
+   37 AssignStmt: LVal . ASSIGN Exp SEMICOLON
+   49 PrimaryExp: LVal .  [SEMICOLON, ADD, SUB, MUL, DIV, MOD]
+
+    ASSIGN  shift, and go to state 87
+
+    $default  reduce using rule 49 (PrimaryExp)
+
+
+State 43
+
+   55 UnaryExp: FuncCall .
+
+    $default  reduce using rule 55 (UnaryExp)
+
+
+State 44
+
+   60 MulExp: UnaryExp .
+
+    $default  reduce using rule 60 (MulExp)
+
+
+State 45
+
+   61 MulExp: MulExp . MUL UnaryExp
+   62       | MulExp . DIV UnaryExp
+   63       | MulExp . MOD UnaryExp
+   64 AddExp: MulExp .  [RPAREN, RBRACE, SEMICOLON, RBRACKET, COMMA, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, ADD, SUB, LESS, GREATER]
+
+    MUL  shift, and go to state 88
+    DIV  shift, and go to state 89
+    MOD  shift, and go to state 90
+
+    $default  reduce using rule 64 (AddExp)
+
+
+State 46
+
+   10 Stmt: DeclInitStmt .
+
+    $default  reduce using rule 10 (Stmt)
+
+
+State 47
+
+   84 DeclStmt: ConstDeclStmt .
+
+    $default  reduce using rule 84 (DeclStmt)
+
+
+State 48
+
+   36 DeclInitStmt: ConstDeclInitStmt .
+
+    $default  reduce using rule 36 (DeclInitStmt)
+
+
+State 49
+
+   11 Stmt: WhileStmt .
+
+    $default  reduce using rule 11 (Stmt)
+
+
+State 50
+
+   12 Stmt: BreakStmt .
+
+    $default  reduce using rule 12 (Stmt)
+
+
+State 51
+
+   13 Stmt: ContinueStmt .
+
+    $default  reduce using rule 13 (Stmt)
+
+
+State 52
+
+   14 Stmt: ExprStmt .
+
+    $default  reduce using rule 14 (Stmt)
+
+
+State 53
+
+   15 Stmt: FuncDecl .
+
+    $default  reduce using rule 15 (Stmt)
+
+
+State 54
+
+   95 FuncDecl: FuncHead . LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: FuncHead . LPAREN FuncFParamList RPAREN $@2 BlockStmt
+
+    LPAREN  shift, and go to state 91
+
+
+State 55
+
+   21 IdList: . IdList COMMA ID
+   22       | . ID
+   23       | . ArrInit
+   24       | . IdList COMMA ArrInit
+   29 ArrInit: . ID ArrayIndices
+   30        | . ID ArrayIndices ASSIGN ArrAssignExp
+   31 InitStmt: . ID ASSIGN Exp
+   32         | . InitStmt COMMA ID ASSIGN Exp
+   33         | . InitStmt COMMA IdList
+   35 DeclInitStmt: Type . InitStmt SEMICOLON
+   85 DeclStmt: Type . IdList SEMICOLON
+   94 FuncHead: Type . ID
+
+    ID  shift, and go to state 92
+
+    IdList    go to state 93
+    InitStmt  go to state 94
+    ArrInit   go to state 95
+
+
+State 56
+
+    0 $accept: Program . $end
+
+    $end  shift, and go to state 96
+
+
+State 57
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   98         | ID LPAREN . FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 98
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 58
+
+   17 ArrayIndices: LBRACKET . ConstExp RBRACKET
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   67 ConstExp: . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 99
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    ConstExp    go to state 100
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 59
+
+   18 ArrayIndices: ArrayIndices . LBRACKET ConstExp RBRACKET
+   20 LVal: ID ArrayIndices .  [RPAREN, RBRACE, SEMICOLON, RBRACKET, COMMA, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, ADD, SUB, LESS, ASSIGN, GREATER, MUL, DIV, MOD]
+
+    LBRACKET  shift, and go to state 101
+
+    $default  reduce using rule 20 (LVal)
+
+
+State 60
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+   99         | GETINT LPAREN . FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 102
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 61
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  101         | GETFLOAT LPAREN . FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 103
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 62
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  102         | GETARRAY LPAREN . FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 104
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 63
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  104         | PUTINT LPAREN . FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 105
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 64
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  106         | PUTFLOAT LPAREN . FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 106
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 65
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  107         | PUTARRAY LPAREN . FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 107
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 66
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+  108         | PUTFARRAY LPAREN . FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 108
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 67
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  100         | GETCH LPAREN . FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 109
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 68
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  103         | GETFARRAY LPAREN . FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 110
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 69
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   90 FuncRParam: . Exp
+   91           | . FuncRParam COMMA Exp
+   92           | . %empty  [RPAREN, COMMA]
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  105         | PUTCH LPAREN . FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    $default  reduce using rule 92 (FuncRParam)
+
+    Exp         go to state 97
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    FuncRParam  go to state 111
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 70
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   41 IfStmt: IF LPAREN . Cond RPAREN Stmt
+   42       | IF LPAREN . Cond RPAREN Stmt ELSE Stmt
+   47 Cond: . LOrExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   68 RelExp: . AddExp
+   69       | . RelExp LESS AddExp
+   70       | . RelExp GREATER AddExp
+   71       | . RelExp LESSEQUAL AddExp
+   72       | . RelExp GREATEREQUAL AddExp
+   73 EqExp: . RelExp
+   74      | . EqExp EQUAL RelExp
+   75      | . EqExp NOTEQUAL RelExp
+   76 LAndExp: . EqExp
+   77        | . LAndExp AND EqExp
+   78 LOrExp: . LAndExp
+   79       | . LOrExp OR LAndExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 112
+    Cond        go to state 113
+    LOrExp      go to state 114
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    RelExp      go to state 115
+    LAndExp     go to state 116
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+    EqExp       go to state 117
+
+
+State 71
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   47 Cond: . LOrExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   68 RelExp: . AddExp
+   69       | . RelExp LESS AddExp
+   70       | . RelExp GREATER AddExp
+   71       | . RelExp LESSEQUAL AddExp
+   72       | . RelExp GREATEREQUAL AddExp
+   73 EqExp: . RelExp
+   74      | . EqExp EQUAL RelExp
+   75      | . EqExp NOTEQUAL RelExp
+   76 LAndExp: . EqExp
+   77        | . LAndExp AND EqExp
+   78 LOrExp: . LAndExp
+   79       | . LOrExp OR LAndExp
+   86 WhileStmt: WHILE LPAREN . Cond RPAREN Stmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 112
+    Cond        go to state 118
+    LOrExp      go to state 114
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    RelExp      go to state 115
+    LAndExp     go to state 116
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+    EqExp       go to state 117
+
+
+State 72
+
+   43 BreakStmt: BREAK SEMICOLON .
+
+    $default  reduce using rule 43 (BreakStmt)
+
+
+State 73
+
+   44 ContinueStmt: CONTINUE SEMICOLON .
+
+    $default  reduce using rule 44 (ContinueStmt)
+
+
+State 74
+
+   48 PrimaryExp: LPAREN Exp . RPAREN
+
+    RPAREN  shift, and go to state 119
+
+
+State 75
+
+   49 PrimaryExp: LVal .
+
+    $default  reduce using rule 49 (PrimaryExp)
+
+
+State 76
+
+   40 BlockStmt: LBRACE RBRACE .
+
+    $default  reduce using rule 40 (BlockStmt)
+
+
+State 77
+
+    2 Stmts: . Stmt
+    3      | . Stmts Stmt
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   39          | LBRACE $@1 . Stmts RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    Stmts              go to state 120
+    Stmt               go to state 32
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+
+
+State 78
+
+   57 UnaryExp: ADD UnaryExp .
+
+    $default  reduce using rule 57 (UnaryExp)
+
+
+State 79
+
+   58 UnaryExp: SUB UnaryExp .
+
+    $default  reduce using rule 58 (UnaryExp)
+
+
+State 80
+
+   59 UnaryExp: NOT UnaryExp .
+
+    $default  reduce using rule 59 (UnaryExp)
+
+
+State 81
+
+   21 IdList: . IdList COMMA ID
+   22       | . ID
+   23       | . ArrInit
+   24       | . IdList COMMA ArrInit
+   29 ArrInit: . ID ArrayIndices
+   30        | . ID ArrayIndices ASSIGN ArrAssignExp
+   31 InitStmt: . ID ASSIGN Exp
+   32         | . InitStmt COMMA ID ASSIGN Exp
+   33         | . InitStmt COMMA IdList
+   34 ConstDeclInitStmt: CONST Type . InitStmt SEMICOLON
+   83 ConstDeclStmt: CONST Type . IdList SEMICOLON
+
+    ID  shift, and go to state 121
+
+    IdList    go to state 122
+    InitStmt  go to state 123
+    ArrInit   go to state 95
+
+
+State 82
+
+   45 ReturnStmt: RETURN Exp . SEMICOLON
+
+    SEMICOLON  shift, and go to state 124
+
+
+State 83
+
+    3 Stmts: Stmts Stmt .
+
+    $default  reduce using rule 3 (Stmts)
+
+
+State 84
+
+   16 ExprStmt: Exp SEMICOLON .
+
+    $default  reduce using rule 16 (ExprStmt)
+
+
+State 85
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   65 AddExp: AddExp ADD . MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 125
+
+
+State 86
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   66 AddExp: AddExp SUB . MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 126
+
+
+State 87
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   37 AssignStmt: LVal ASSIGN . Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    Exp         go to state 127
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 88
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   61 MulExp: MulExp MUL . UnaryExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 128
+
+
+State 89
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   62 MulExp: MulExp DIV . UnaryExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 129
+
+
+State 90
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   63 MulExp: MulExp MOD . UnaryExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 130
+
+
+State 91
+
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   87 FuncFParamList: . FuncFParam
+   88               | . FuncFParamList COMMA FuncFParam
+   89               | . %empty  [RPAREN, COMMA]
+   93 FuncFParam: . Type ID
+   95 FuncDecl: FuncHead LPAREN . FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: FuncHead LPAREN . FuncFParamList RPAREN $@2 BlockStmt
+
+    INT    shift, and go to state 21
+    VOID   shift, and go to state 22
+    FLOAT  shift, and go to state 23
+
+    $default  reduce using rule 89 (FuncFParamList)
+
+    FuncFParam      go to state 131
+    FuncFParamList  go to state 132
+    Type            go to state 133
+
+
+State 92
+
+   17 ArrayIndices: . LBRACKET ConstExp RBRACKET
+   18             | . ArrayIndices LBRACKET ConstExp RBRACKET
+   22 IdList: ID .  [SEMICOLON, COMMA]
+   29 ArrInit: ID . ArrayIndices
+   30        | ID . ArrayIndices ASSIGN ArrAssignExp
+   31 InitStmt: ID . ASSIGN Exp
+   94 FuncHead: Type ID .  [LPAREN]
+
+    LBRACKET  shift, and go to state 58
+    ASSIGN    shift, and go to state 134
+
+    LPAREN    reduce using rule 94 (FuncHead)
+    $default  reduce using rule 22 (IdList)
+
+    ArrayIndices  go to state 135
+
+
+State 93
+
+   21 IdList: IdList . COMMA ID
+   24       | IdList . COMMA ArrInit
+   85 DeclStmt: Type IdList . SEMICOLON
+
+    SEMICOLON  shift, and go to state 136
+    COMMA      shift, and go to state 137
+
+
+State 94
+
+   32 InitStmt: InitStmt . COMMA ID ASSIGN Exp
+   33         | InitStmt . COMMA IdList
+   35 DeclInitStmt: Type InitStmt . SEMICOLON
+
+    SEMICOLON  shift, and go to state 138
+    COMMA      shift, and go to state 139
+
+
+State 95
+
+   23 IdList: ArrInit .
+
+    $default  reduce using rule 23 (IdList)
+
+
+State 96
+
+    0 $accept: Program $end .
+
+    $default  accept
+
+
+State 97
+
+   90 FuncRParam: Exp .
+
+    $default  reduce using rule 90 (FuncRParam)
+
+
+State 98
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+   98 FuncCall: ID LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 140
+    COMMA   shift, and go to state 141
+
+
+State 99
+
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+   67 ConstExp: AddExp .  [RBRACE, RBRACKET, COMMA]
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 67 (ConstExp)
+
+
+State 100
+
+   17 ArrayIndices: LBRACKET ConstExp . RBRACKET
+
+    RBRACKET  shift, and go to state 142
+
+
+State 101
+
+   18 ArrayIndices: ArrayIndices LBRACKET . ConstExp RBRACKET
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   67 ConstExp: . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 99
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    ConstExp    go to state 143
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 102
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+   99 FuncCall: GETINT LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 144
+    COMMA   shift, and go to state 141
+
+
+State 103
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  101 FuncCall: GETFLOAT LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 145
+    COMMA   shift, and go to state 141
+
+
+State 104
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  102 FuncCall: GETARRAY LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 146
+    COMMA   shift, and go to state 141
+
+
+State 105
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  104 FuncCall: PUTINT LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 147
+    COMMA   shift, and go to state 141
+
+
+State 106
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  106 FuncCall: PUTFLOAT LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 148
+    COMMA   shift, and go to state 141
+
+
+State 107
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  107 FuncCall: PUTARRAY LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 149
+    COMMA   shift, and go to state 141
+
+
+State 108
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  108 FuncCall: PUTFARRAY LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 150
+    COMMA   shift, and go to state 141
+
+
+State 109
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  100 FuncCall: GETCH LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 151
+    COMMA   shift, and go to state 141
+
+
+State 110
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  103 FuncCall: GETFARRAY LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 152
+    COMMA   shift, and go to state 141
+
+
+State 111
+
+   91 FuncRParam: FuncRParam . COMMA Exp
+  105 FuncCall: PUTCH LPAREN FuncRParam . RPAREN
+
+    RPAREN  shift, and go to state 153
+    COMMA   shift, and go to state 141
+
+
+State 112
+
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+   68 RelExp: AddExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, LESS, GREATER]
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 68 (RelExp)
+
+
+State 113
+
+   41 IfStmt: IF LPAREN Cond . RPAREN Stmt
+   42       | IF LPAREN Cond . RPAREN Stmt ELSE Stmt
+
+    RPAREN  shift, and go to state 154
+
+
+State 114
+
+   47 Cond: LOrExp .  [RPAREN]
+   79 LOrExp: LOrExp . OR LAndExp
+
+    OR  shift, and go to state 155
+
+    $default  reduce using rule 47 (Cond)
+
+
+State 115
+
+   69 RelExp: RelExp . LESS AddExp
+   70       | RelExp . GREATER AddExp
+   71       | RelExp . LESSEQUAL AddExp
+   72       | RelExp . GREATEREQUAL AddExp
+   73 EqExp: RelExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL]
+
+    LESSEQUAL     shift, and go to state 156
+    GREATEREQUAL  shift, and go to state 157
+    LESS          shift, and go to state 158
+    GREATER       shift, and go to state 159
+
+    $default  reduce using rule 73 (EqExp)
+
+
+State 116
+
+   77 LAndExp: LAndExp . AND EqExp
+   78 LOrExp: LAndExp .  [RPAREN, OR]
+
+    AND  shift, and go to state 160
+
+    $default  reduce using rule 78 (LOrExp)
+
+
+State 117
+
+   74 EqExp: EqExp . EQUAL RelExp
+   75      | EqExp . NOTEQUAL RelExp
+   76 LAndExp: EqExp .  [RPAREN, AND, OR]
+
+    EQUAL     shift, and go to state 161
+    NOTEQUAL  shift, and go to state 162
+
+    $default  reduce using rule 76 (LAndExp)
+
+
+State 118
+
+   86 WhileStmt: WHILE LPAREN Cond . RPAREN Stmt
+
+    RPAREN  shift, and go to state 163
+
+
+State 119
+
+   48 PrimaryExp: LPAREN Exp RPAREN .
+
+    $default  reduce using rule 48 (PrimaryExp)
+
+
+State 120
+
+    3 Stmts: Stmts . Stmt
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   39          | LBRACE $@1 Stmts . RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    RBRACE             shift, and go to state 164
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    Stmt               go to state 83
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+
+
+State 121
+
+   17 ArrayIndices: . LBRACKET ConstExp RBRACKET
+   18             | . ArrayIndices LBRACKET ConstExp RBRACKET
+   22 IdList: ID .  [SEMICOLON, COMMA]
+   29 ArrInit: ID . ArrayIndices
+   30        | ID . ArrayIndices ASSIGN ArrAssignExp
+   31 InitStmt: ID . ASSIGN Exp
+
+    LBRACKET  shift, and go to state 58
+    ASSIGN    shift, and go to state 134
+
+    $default  reduce using rule 22 (IdList)
+
+    ArrayIndices  go to state 135
+
+
+State 122
+
+   21 IdList: IdList . COMMA ID
+   24       | IdList . COMMA ArrInit
+   83 ConstDeclStmt: CONST Type IdList . SEMICOLON
+
+    SEMICOLON  shift, and go to state 165
+    COMMA      shift, and go to state 137
+
+
+State 123
+
+   32 InitStmt: InitStmt . COMMA ID ASSIGN Exp
+   33         | InitStmt . COMMA IdList
+   34 ConstDeclInitStmt: CONST Type InitStmt . SEMICOLON
+
+    SEMICOLON  shift, and go to state 166
+    COMMA      shift, and go to state 139
+
+
+State 124
+
+   45 ReturnStmt: RETURN Exp SEMICOLON .
+
+    $default  reduce using rule 45 (ReturnStmt)
+
+
+State 125
+
+   61 MulExp: MulExp . MUL UnaryExp
+   62       | MulExp . DIV UnaryExp
+   63       | MulExp . MOD UnaryExp
+   65 AddExp: AddExp ADD MulExp .  [RPAREN, RBRACE, SEMICOLON, RBRACKET, COMMA, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, ADD, SUB, LESS, GREATER]
+
+    MUL  shift, and go to state 88
+    DIV  shift, and go to state 89
+    MOD  shift, and go to state 90
+
+    $default  reduce using rule 65 (AddExp)
+
+
+State 126
+
+   61 MulExp: MulExp . MUL UnaryExp
+   62       | MulExp . DIV UnaryExp
+   63       | MulExp . MOD UnaryExp
+   66 AddExp: AddExp SUB MulExp .  [RPAREN, RBRACE, SEMICOLON, RBRACKET, COMMA, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, ADD, SUB, LESS, GREATER]
+
+    MUL  shift, and go to state 88
+    DIV  shift, and go to state 89
+    MOD  shift, and go to state 90
+
+    $default  reduce using rule 66 (AddExp)
+
+
+State 127
+
+   37 AssignStmt: LVal ASSIGN Exp . SEMICOLON
+
+    SEMICOLON  shift, and go to state 167
+
+
+State 128
+
+   61 MulExp: MulExp MUL UnaryExp .
+
+    $default  reduce using rule 61 (MulExp)
+
+
+State 129
+
+   62 MulExp: MulExp DIV UnaryExp .
+
+    $default  reduce using rule 62 (MulExp)
+
+
+State 130
+
+   63 MulExp: MulExp MOD UnaryExp .
+
+    $default  reduce using rule 63 (MulExp)
+
+
+State 131
+
+   87 FuncFParamList: FuncFParam .
+
+    $default  reduce using rule 87 (FuncFParamList)
+
+
+State 132
+
+   88 FuncFParamList: FuncFParamList . COMMA FuncFParam
+   95 FuncDecl: FuncHead LPAREN FuncFParamList . RPAREN SEMICOLON
+   97 FuncDef: FuncHead LPAREN FuncFParamList . RPAREN $@2 BlockStmt
+
+    RPAREN  shift, and go to state 168
+    COMMA   shift, and go to state 169
+
+
+State 133
+
+   93 FuncFParam: Type . ID
+
+    ID  shift, and go to state 170
+
+
+State 134
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   31 InitStmt: ID ASSIGN . Exp
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    Exp         go to state 171
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 135
+
+   18 ArrayIndices: ArrayIndices . LBRACKET ConstExp RBRACKET
+   29 ArrInit: ID ArrayIndices .  [SEMICOLON, COMMA]
+   30        | ID ArrayIndices . ASSIGN ArrAssignExp
+
+    LBRACKET  shift, and go to state 101
+    ASSIGN    shift, and go to state 172
+
+    $default  reduce using rule 29 (ArrInit)
+
+
+State 136
+
+   85 DeclStmt: Type IdList SEMICOLON .
+
+    $default  reduce using rule 85 (DeclStmt)
+
+
+State 137
+
+   21 IdList: IdList COMMA . ID
+   24       | IdList COMMA . ArrInit
+   29 ArrInit: . ID ArrayIndices
+   30        | . ID ArrayIndices ASSIGN ArrAssignExp
+
+    ID  shift, and go to state 173
+
+    ArrInit  go to state 174
+
+
+State 138
+
+   35 DeclInitStmt: Type InitStmt SEMICOLON .
+
+    $default  reduce using rule 35 (DeclInitStmt)
+
+
+State 139
+
+   21 IdList: . IdList COMMA ID
+   22       | . ID
+   23       | . ArrInit
+   24       | . IdList COMMA ArrInit
+   29 ArrInit: . ID ArrayIndices
+   30        | . ID ArrayIndices ASSIGN ArrAssignExp
+   32 InitStmt: InitStmt COMMA . ID ASSIGN Exp
+   33         | InitStmt COMMA . IdList
+
+    ID  shift, and go to state 175
+
+    IdList   go to state 176
+    ArrInit  go to state 95
+
+
+State 140
+
+   98 FuncCall: ID LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 98 (FuncCall)
+
+
+State 141
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   91 FuncRParam: FuncRParam COMMA . Exp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    Exp         go to state 177
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 142
+
+   17 ArrayIndices: LBRACKET ConstExp RBRACKET .
+
+    $default  reduce using rule 17 (ArrayIndices)
+
+
+State 143
+
+   18 ArrayIndices: ArrayIndices LBRACKET ConstExp . RBRACKET
+
+    RBRACKET  shift, and go to state 178
+
+
+State 144
+
+   99 FuncCall: GETINT LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 99 (FuncCall)
+
+
+State 145
+
+  101 FuncCall: GETFLOAT LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 101 (FuncCall)
+
+
+State 146
+
+  102 FuncCall: GETARRAY LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 102 (FuncCall)
+
+
+State 147
+
+  104 FuncCall: PUTINT LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 104 (FuncCall)
+
+
+State 148
+
+  106 FuncCall: PUTFLOAT LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 106 (FuncCall)
+
+
+State 149
+
+  107 FuncCall: PUTARRAY LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 107 (FuncCall)
+
+
+State 150
+
+  108 FuncCall: PUTFARRAY LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 108 (FuncCall)
+
+
+State 151
+
+  100 FuncCall: GETCH LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 100 (FuncCall)
+
+
+State 152
+
+  103 FuncCall: GETFARRAY LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 103 (FuncCall)
+
+
+State 153
+
+  105 FuncCall: PUTCH LPAREN FuncRParam RPAREN .
+
+    $default  reduce using rule 105 (FuncCall)
+
+
+State 154
+
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   41       | IF LPAREN Cond RPAREN . Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   42       | IF LPAREN Cond RPAREN . Stmt ELSE Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    Stmt               go to state 179
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+
+
+State 155
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   68 RelExp: . AddExp
+   69       | . RelExp LESS AddExp
+   70       | . RelExp GREATER AddExp
+   71       | . RelExp LESSEQUAL AddExp
+   72       | . RelExp GREATEREQUAL AddExp
+   73 EqExp: . RelExp
+   74      | . EqExp EQUAL RelExp
+   75      | . EqExp NOTEQUAL RelExp
+   76 LAndExp: . EqExp
+   77        | . LAndExp AND EqExp
+   79 LOrExp: LOrExp OR . LAndExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 112
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    RelExp      go to state 115
+    LAndExp     go to state 180
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+    EqExp       go to state 117
+
+
+State 156
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   71 RelExp: RelExp LESSEQUAL . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 181
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 157
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   72 RelExp: RelExp GREATEREQUAL . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 182
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 158
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   69 RelExp: RelExp LESS . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 183
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 159
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   70 RelExp: RelExp GREATER . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 184
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 160
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   68 RelExp: . AddExp
+   69       | . RelExp LESS AddExp
+   70       | . RelExp GREATER AddExp
+   71       | . RelExp LESSEQUAL AddExp
+   72       | . RelExp GREATEREQUAL AddExp
+   73 EqExp: . RelExp
+   74      | . EqExp EQUAL RelExp
+   75      | . EqExp NOTEQUAL RelExp
+   77 LAndExp: LAndExp AND . EqExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 112
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    RelExp      go to state 115
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+    EqExp       go to state 185
+
+
+State 161
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   68 RelExp: . AddExp
+   69       | . RelExp LESS AddExp
+   70       | . RelExp GREATER AddExp
+   71       | . RelExp LESSEQUAL AddExp
+   72       | . RelExp GREATEREQUAL AddExp
+   74 EqExp: EqExp EQUAL . RelExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 112
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    RelExp      go to state 186
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 162
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   68 RelExp: . AddExp
+   69       | . RelExp LESS AddExp
+   70       | . RelExp GREATER AddExp
+   71       | . RelExp LESSEQUAL AddExp
+   72       | . RelExp GREATEREQUAL AddExp
+   75 EqExp: EqExp NOTEQUAL . RelExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 112
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    RelExp      go to state 187
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 163
+
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   86          | WHILE LPAREN Cond RPAREN . Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    Stmt               go to state 188
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+
+
+State 164
+
+   39 BlockStmt: LBRACE $@1 Stmts RBRACE .
+
+    $default  reduce using rule 39 (BlockStmt)
+
+
+State 165
+
+   83 ConstDeclStmt: CONST Type IdList SEMICOLON .
+
+    $default  reduce using rule 83 (ConstDeclStmt)
+
+
+State 166
+
+   34 ConstDeclInitStmt: CONST Type InitStmt SEMICOLON .
+
+    $default  reduce using rule 34 (ConstDeclInitStmt)
+
+
+State 167
+
+   37 AssignStmt: LVal ASSIGN Exp SEMICOLON .
+
+    $default  reduce using rule 37 (AssignStmt)
+
+
+State 168
+
+   95 FuncDecl: FuncHead LPAREN FuncFParamList RPAREN . SEMICOLON
+   96 $@2: . %empty  [LBRACE]
+   97 FuncDef: FuncHead LPAREN FuncFParamList RPAREN . $@2 BlockStmt
+
+    SEMICOLON  shift, and go to state 189
+
+    $default  reduce using rule 96 ($@2)
+
+    $@2  go to state 190
+
+
+State 169
+
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   88 FuncFParamList: FuncFParamList COMMA . FuncFParam
+   93 FuncFParam: . Type ID
+
+    INT    shift, and go to state 21
+    VOID   shift, and go to state 22
+    FLOAT  shift, and go to state 23
+
+    FuncFParam  go to state 191
+    Type        go to state 133
+
+
+State 170
+
+   93 FuncFParam: Type ID .
+
+    $default  reduce using rule 93 (FuncFParam)
+
+
+State 171
+
+   31 InitStmt: ID ASSIGN Exp .
+
+    $default  reduce using rule 31 (InitStmt)
+
+
+State 172
+
+   27 ArrAssignExp: . LBRACE ConstExpList RBRACE
+   28             | . LBRACE RBRACE
+   30 ArrInit: ID ArrayIndices ASSIGN . ArrAssignExp
+
+    LBRACE  shift, and go to state 192
+
+    ArrAssignExp  go to state 193
+
+
+State 173
+
+   17 ArrayIndices: . LBRACKET ConstExp RBRACKET
+   18             | . ArrayIndices LBRACKET ConstExp RBRACKET
+   21 IdList: IdList COMMA ID .  [SEMICOLON, COMMA]
+   29 ArrInit: ID . ArrayIndices
+   30        | ID . ArrayIndices ASSIGN ArrAssignExp
+
+    LBRACKET  shift, and go to state 58
+
+    $default  reduce using rule 21 (IdList)
+
+    ArrayIndices  go to state 135
+
+
+State 174
+
+   24 IdList: IdList COMMA ArrInit .
+
+    $default  reduce using rule 24 (IdList)
+
+
+State 175
+
+   17 ArrayIndices: . LBRACKET ConstExp RBRACKET
+   18             | . ArrayIndices LBRACKET ConstExp RBRACKET
+   22 IdList: ID .  [SEMICOLON, COMMA]
+   29 ArrInit: ID . ArrayIndices
+   30        | ID . ArrayIndices ASSIGN ArrAssignExp
+   32 InitStmt: InitStmt COMMA ID . ASSIGN Exp
+
+    LBRACKET  shift, and go to state 58
+    ASSIGN    shift, and go to state 194
+
+    $default  reduce using rule 22 (IdList)
+
+    ArrayIndices  go to state 135
+
+
+State 176
+
+   21 IdList: IdList . COMMA ID
+   24       | IdList . COMMA ArrInit
+   33 InitStmt: InitStmt COMMA IdList .  [SEMICOLON, COMMA]
+
+    COMMA  shift, and go to state 137
+
+    COMMA     [reduce using rule 33 (InitStmt)]
+    $default  reduce using rule 33 (InitStmt)
+
+
+State 177
+
+   91 FuncRParam: FuncRParam COMMA Exp .
+
+    $default  reduce using rule 91 (FuncRParam)
+
+
+State 178
+
+   18 ArrayIndices: ArrayIndices LBRACKET ConstExp RBRACKET .
+
+    $default  reduce using rule 18 (ArrayIndices)
+
+
+State 179
+
+   41 IfStmt: IF LPAREN Cond RPAREN Stmt .  [$end, ID, GETINT, GETFLOAT, GETARRAY, PUTINT, PUTFLOAT, PUTARRAY, PUTFARRAY, GETCH, GETFARRAY, PUTCH, INTEGER, OCTAL, HEXADECIMAL, DECIMAL_FLOAT, HEXADECIMAL_FLOAT, IF, WHILE, BREAK, CONTINUE, INT, VOID, FLOAT, LPAREN, LBRACE, RBRACE, ADD, SUB, NOT, CONST, RETURN]
+   42       | IF LPAREN Cond RPAREN Stmt . ELSE Stmt
+
+    ELSE  shift, and go to state 195
+
+    $default  reduce using rule 41 (IfStmt)
+
+    Conflict between rule 41 and token ELSE resolved as shift (THEN < ELSE).
+
+
+State 180
+
+   77 LAndExp: LAndExp . AND EqExp
+   79 LOrExp: LOrExp OR LAndExp .  [RPAREN, OR]
+
+    AND  shift, and go to state 160
+
+    $default  reduce using rule 79 (LOrExp)
+
+
+State 181
+
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+   71 RelExp: RelExp LESSEQUAL AddExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, LESS, GREATER]
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 71 (RelExp)
+
+
+State 182
+
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+   72 RelExp: RelExp GREATEREQUAL AddExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, LESS, GREATER]
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 72 (RelExp)
+
+
+State 183
+
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+   69 RelExp: RelExp LESS AddExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, LESS, GREATER]
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 69 (RelExp)
+
+
+State 184
+
+   65 AddExp: AddExp . ADD MulExp
+   66       | AddExp . SUB MulExp
+   70 RelExp: RelExp GREATER AddExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL, LESSEQUAL, GREATEREQUAL, LESS, GREATER]
+
+    ADD  shift, and go to state 85
+    SUB  shift, and go to state 86
+
+    $default  reduce using rule 70 (RelExp)
+
+
+State 185
+
+   74 EqExp: EqExp . EQUAL RelExp
+   75      | EqExp . NOTEQUAL RelExp
+   77 LAndExp: LAndExp AND EqExp .  [RPAREN, AND, OR]
+
+    EQUAL     shift, and go to state 161
+    NOTEQUAL  shift, and go to state 162
+
+    $default  reduce using rule 77 (LAndExp)
+
+
+State 186
+
+   69 RelExp: RelExp . LESS AddExp
+   70       | RelExp . GREATER AddExp
+   71       | RelExp . LESSEQUAL AddExp
+   72       | RelExp . GREATEREQUAL AddExp
+   74 EqExp: EqExp EQUAL RelExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL]
+
+    LESSEQUAL     shift, and go to state 156
+    GREATEREQUAL  shift, and go to state 157
+    LESS          shift, and go to state 158
+    GREATER       shift, and go to state 159
+
+    $default  reduce using rule 74 (EqExp)
+
+
+State 187
+
+   69 RelExp: RelExp . LESS AddExp
+   70       | RelExp . GREATER AddExp
+   71       | RelExp . LESSEQUAL AddExp
+   72       | RelExp . GREATEREQUAL AddExp
+   75 EqExp: EqExp NOTEQUAL RelExp .  [RPAREN, AND, OR, EQUAL, NOTEQUAL]
+
+    LESSEQUAL     shift, and go to state 156
+    GREATEREQUAL  shift, and go to state 157
+    LESS          shift, and go to state 158
+    GREATER       shift, and go to state 159
+
+    $default  reduce using rule 75 (EqExp)
+
+
+State 188
+
+   86 WhileStmt: WHILE LPAREN Cond RPAREN Stmt .
+
+    $default  reduce using rule 86 (WhileStmt)
+
+
+State 189
+
+   95 FuncDecl: FuncHead LPAREN FuncFParamList RPAREN SEMICOLON .
+
+    $default  reduce using rule 95 (FuncDecl)
+
+
+State 190
+
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   40          | . LBRACE RBRACE
+   97 FuncDef: FuncHead LPAREN FuncFParamList RPAREN $@2 . BlockStmt
+
+    LBRACE  shift, and go to state 25
+
+    BlockStmt  go to state 196
+
+
+State 191
+
+   88 FuncFParamList: FuncFParamList COMMA FuncFParam .
+
+    $default  reduce using rule 88 (FuncFParamList)
+
+
+State 192
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   25 ConstExpList: . ConstExp
+   26             | . ConstExpList COMMA ConstExp
+   27 ArrAssignExp: LBRACE . ConstExpList RBRACE
+   28             | LBRACE . RBRACE
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   67 ConstExp: . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    RBRACE             shift, and go to state 197
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp        go to state 99
+    PrimaryExp    go to state 41
+    LVal          go to state 75
+    ConstExp      go to state 198
+    FuncCall      go to state 43
+    UnaryExp      go to state 44
+    MulExp        go to state 45
+    ConstExpList  go to state 199
+
+
+State 193
+
+   30 ArrInit: ID ArrayIndices ASSIGN ArrAssignExp .
+
+    $default  reduce using rule 30 (ArrInit)
+
+
+State 194
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   32 InitStmt: InitStmt COMMA ID ASSIGN . Exp
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    Exp         go to state 200
+    AddExp      go to state 40
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 195
+
+    4 Stmt: . AssignStmt
+    5     | . BlockStmt
+    6     | . IfStmt
+    7     | . ReturnStmt
+    8     | . DeclStmt
+    9     | . FuncDef
+   10     | . DeclInitStmt
+   11     | . WhileStmt
+   12     | . BreakStmt
+   13     | . ContinueStmt
+   14     | . ExprStmt
+   15     | . FuncDecl
+   16 ExprStmt: . Exp SEMICOLON
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   34 ConstDeclInitStmt: . CONST Type InitStmt SEMICOLON
+   35 DeclInitStmt: . Type InitStmt SEMICOLON
+   36             | . ConstDeclInitStmt
+   37 AssignStmt: . LVal ASSIGN Exp SEMICOLON
+   39 BlockStmt: . LBRACE $@1 Stmts RBRACE
+   40          | . LBRACE RBRACE
+   41 IfStmt: . IF LPAREN Cond RPAREN Stmt
+   42       | . IF LPAREN Cond RPAREN Stmt ELSE Stmt
+   42       | IF LPAREN Cond RPAREN Stmt ELSE . Stmt
+   43 BreakStmt: . BREAK SEMICOLON
+   44 ContinueStmt: . CONTINUE SEMICOLON
+   45 ReturnStmt: . RETURN Exp SEMICOLON
+   46 Exp: . AddExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   80 Type: . INT
+   81     | . VOID
+   82     | . FLOAT
+   83 ConstDeclStmt: . CONST Type IdList SEMICOLON
+   84 DeclStmt: . ConstDeclStmt
+   85         | . Type IdList SEMICOLON
+   86 WhileStmt: . WHILE LPAREN Cond RPAREN Stmt
+   94 FuncHead: . Type ID
+   95 FuncDecl: . FuncHead LPAREN FuncFParamList RPAREN SEMICOLON
+   97 FuncDef: . FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    IF                 shift, and go to state 17
+    WHILE              shift, and go to state 18
+    BREAK              shift, and go to state 19
+    CONTINUE           shift, and go to state 20
+    INT                shift, and go to state 21
+    VOID               shift, and go to state 22
+    FLOAT              shift, and go to state 23
+    LPAREN             shift, and go to state 24
+    LBRACE             shift, and go to state 25
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+    CONST              shift, and go to state 29
+    RETURN             shift, and go to state 30
+
+    Stmt               go to state 201
+    AssignStmt         go to state 33
+    BlockStmt          go to state 34
+    IfStmt             go to state 35
+    ReturnStmt         go to state 36
+    DeclStmt           go to state 37
+    FuncDef            go to state 38
+    Exp                go to state 39
+    AddExp             go to state 40
+    PrimaryExp         go to state 41
+    LVal               go to state 42
+    FuncCall           go to state 43
+    UnaryExp           go to state 44
+    MulExp             go to state 45
+    DeclInitStmt       go to state 46
+    ConstDeclStmt      go to state 47
+    ConstDeclInitStmt  go to state 48
+    WhileStmt          go to state 49
+    BreakStmt          go to state 50
+    ContinueStmt       go to state 51
+    ExprStmt           go to state 52
+    FuncDecl           go to state 53
+    FuncHead           go to state 54
+    Type               go to state 55
+
+
+State 196
+
+   97 FuncDef: FuncHead LPAREN FuncFParamList RPAREN $@2 BlockStmt .
+
+    $default  reduce using rule 97 (FuncDef)
+
+
+State 197
+
+   28 ArrAssignExp: LBRACE RBRACE .
+
+    $default  reduce using rule 28 (ArrAssignExp)
+
+
+State 198
+
+   25 ConstExpList: ConstExp .
+
+    $default  reduce using rule 25 (ConstExpList)
+
+
+State 199
+
+   26 ConstExpList: ConstExpList . COMMA ConstExp
+   27 ArrAssignExp: LBRACE ConstExpList . RBRACE
+
+    RBRACE  shift, and go to state 202
+    COMMA   shift, and go to state 203
+
+
+State 200
+
+   32 InitStmt: InitStmt COMMA ID ASSIGN Exp .
+
+    $default  reduce using rule 32 (InitStmt)
+
+
+State 201
+
+   42 IfStmt: IF LPAREN Cond RPAREN Stmt ELSE Stmt .
+
+    $default  reduce using rule 42 (IfStmt)
+
+
+State 202
+
+   27 ArrAssignExp: LBRACE ConstExpList RBRACE .
+
+    $default  reduce using rule 27 (ArrAssignExp)
+
+
+State 203
+
+   19 LVal: . ID
+   20     | . ID ArrayIndices
+   26 ConstExpList: ConstExpList COMMA . ConstExp
+   48 PrimaryExp: . LPAREN Exp RPAREN
+   49           | . LVal
+   50           | . INTEGER
+   51           | . OCTAL
+   52           | . HEXADECIMAL
+   53           | . DECIMAL_FLOAT
+   54           | . HEXADECIMAL_FLOAT
+   55 UnaryExp: . FuncCall
+   56         | . PrimaryExp
+   57         | . ADD UnaryExp
+   58         | . SUB UnaryExp
+   59         | . NOT UnaryExp
+   60 MulExp: . UnaryExp
+   61       | . MulExp MUL UnaryExp
+   62       | . MulExp DIV UnaryExp
+   63       | . MulExp MOD UnaryExp
+   64 AddExp: . MulExp
+   65       | . AddExp ADD MulExp
+   66       | . AddExp SUB MulExp
+   67 ConstExp: . AddExp
+   98 FuncCall: . ID LPAREN FuncRParam RPAREN
+   99         | . GETINT LPAREN FuncRParam RPAREN
+  100         | . GETCH LPAREN FuncRParam RPAREN
+  101         | . GETFLOAT LPAREN FuncRParam RPAREN
+  102         | . GETARRAY LPAREN FuncRParam RPAREN
+  103         | . GETFARRAY LPAREN FuncRParam RPAREN
+  104         | . PUTINT LPAREN FuncRParam RPAREN
+  105         | . PUTCH LPAREN FuncRParam RPAREN
+  106         | . PUTFLOAT LPAREN FuncRParam RPAREN
+  107         | . PUTARRAY LPAREN FuncRParam RPAREN
+  108         | . PUTFARRAY LPAREN FuncRParam RPAREN
+
+    ID                 shift, and go to state 1
+    GETINT             shift, and go to state 2
+    GETFLOAT           shift, and go to state 3
+    GETARRAY           shift, and go to state 4
+    PUTINT             shift, and go to state 5
+    PUTFLOAT           shift, and go to state 6
+    PUTARRAY           shift, and go to state 7
+    PUTFARRAY          shift, and go to state 8
+    GETCH              shift, and go to state 9
+    GETFARRAY          shift, and go to state 10
+    PUTCH              shift, and go to state 11
+    INTEGER            shift, and go to state 12
+    OCTAL              shift, and go to state 13
+    HEXADECIMAL        shift, and go to state 14
+    DECIMAL_FLOAT      shift, and go to state 15
+    HEXADECIMAL_FLOAT  shift, and go to state 16
+    LPAREN             shift, and go to state 24
+    ADD                shift, and go to state 26
+    SUB                shift, and go to state 27
+    NOT                shift, and go to state 28
+
+    AddExp      go to state 99
+    PrimaryExp  go to state 41
+    LVal        go to state 75
+    ConstExp    go to state 204
+    FuncCall    go to state 43
+    UnaryExp    go to state 44
+    MulExp      go to state 45
+
+
+State 204
+
+   26 ConstExpList: ConstExpList COMMA ConstExp .
+
+    $default  reduce using rule 26 (ConstExpList)
