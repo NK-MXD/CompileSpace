@@ -4,6 +4,8 @@
     int yylex();
     int yyerror( char const * );
     bool check_on = 0;
+    extern int yylineno;
+    extern int offsets;
 }
 
 %code requires {
@@ -37,8 +39,8 @@
 %token RETURN
 
 
-%nterm <stmttype> Stmts Stmt AssignStmt BlockStmt IfStmt ReturnStmt  FuncDef 
-%nterm <exprtype> Exp AddExp Cond LOrExp PrimaryExp LVal RelExp LAndExp ConstExp CastExp
+%nterm <stmttype> Stmts Stmt BlockStmt IfStmt ReturnStmt  FuncDef 
+%nterm <exprtype> Exp AddExp Cond LOrExp PrimaryExp LVal RelExp LAndExp ConstExp CastExp AssignExp
 
 /* new */
 %nterm <exprtype>  FuncCall FuncRParam ArrayIndices UnaryExp MulExp EqExp ConstExpInitList ArrAssignExp ArrayIndex 
@@ -60,8 +62,9 @@ Stmts
     }
     ;
 Stmt
-    : AssignStmt {$$=$1;}
-    | BlockStmt {$$=$1;}
+    :
+    // : AssignStmt {$$=$1;}
+    BlockStmt {$$=$1;}
     | IfStmt {$$=$1;}
     | ReturnStmt {$$=$1;}
     //| DeclStmt {$$=(DeclStmt*)$1;}
@@ -94,6 +97,7 @@ ArrayIndices
         if($2->getSymbolEntry()->getType()!=TypeSystem::intType){
             if(check_on){
                 fprintf(stderr, "ArrayIndices is not int\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert($2->getSymbolEntry()->getType()==TypeSystem::intType);
             }
         }
@@ -107,6 +111,7 @@ ArrayIndices
         if($3->getSymbolEntry()->getType()!=TypeSystem::intType){
             if(check_on){
                 fprintf(stderr, "ArrayIndices is not int\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert($3->getSymbolEntry()->getType()==TypeSystem::intType);
             }
         }
@@ -133,6 +138,7 @@ LVal
         {
             if(check_on){
                 fprintf(stderr, "identifier \"%s\" is undefined\n", (char*)$1);
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 delete [](char*)$1;
                 assert(se != nullptr);
             }
@@ -149,6 +155,7 @@ LVal
         {
             if(check_on){
                 fprintf(stderr, "array identifier \"%s\" is undefined\n", (char*)$1);
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 delete [](char*)$1;
                 assert(se != nullptr);
             }
@@ -165,6 +172,7 @@ LVal
         if(sliceCnt!=arrType->getDimen()){
             if(check_on){
                 fprintf(stderr, "Cannot assign an address!\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert(sliceCnt==arrType->getDimen());
             }
         }
@@ -291,6 +299,7 @@ ConstDeclInitStmt
                     if(!constEntry->isConstant()){
                         if(check_on){
                         fprintf(stderr,"ArrayDecl index is not const!\n");
+                        fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                         assert(index->getSymbolEntry()->isConstant());
                         }
                     }
@@ -298,6 +307,7 @@ ConstDeclInitStmt
                     if(constEntry->getIntValue()<=0){
                         if(check_on){
                         fprintf(stderr, "ArrayIndices is can not be negative or zero！\n");
+                        fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                         assert(constEntry->getIntValue()>0);
                         }
                     }
@@ -316,6 +326,7 @@ ConstDeclInitStmt
                     if(expType!=type){
                         if(check_on){
                         fprintf(stderr,"Type not match!\n");
+                        fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                         assert(expType==type);
                         }
                     }
@@ -359,12 +370,14 @@ DeclInitStmt
                     if(!constEntry->isConstant()){
                         if(check_on){
                         fprintf(stderr,"ArrayDecl index is not const!\n");
+                        fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                         assert(index->getSymbolEntry()->isConstant());
                         }
                     }
                     if(constEntry->getIntValue()<=0){
                         if(check_on){
                         fprintf(stderr, "ArrayIndices is can not be negative or zero！\n");
+                        fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                         assert(constEntry->getIntValue()>0);
                         }
                     }
@@ -383,6 +396,7 @@ DeclInitStmt
                     if(expType!=type){
                         if(check_on){
                         fprintf(stderr,"Type not match!\n");
+                        fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                         assert(expType==type);
                         }
                     }
@@ -408,14 +422,14 @@ DeclInitStmt
     }
     | ConstDeclInitStmt
     ;
-AssignStmt
-    :
-    /* 左值直接赋值 */
-    LVal ASSIGN Exp SEMICOLON {
-        print("Direct assignment ");
-        $$ = new AssignStmt($1, $3);
-    }
-    ;
+// AssignStmt
+//     :
+//     /* 左值直接赋值 */
+//     LVal ASSIGN Exp SEMICOLON {
+//         print("Direct assignment ");
+//         $$ = new AssignStmt($1, $3);
+//     }
+//     ;
 BlockStmt
     :   LBRACE 
         {identifiers = new SymbolTable(identifiers);} 
@@ -460,13 +474,27 @@ ReturnStmt
     }
     ;
 Exp
-    : AddExp {
+    : AssignExp {
         $$ = $1;
     }
+    /*m1124 这里需要改为assign expression*/
     // | LOrExp{
     //     $$ = $1;
     // }
     ;
+AssignExp
+    :
+    /*m1124 这里需要做一些类型的检查*/
+    Cond{$$ = $1;}
+    | UnaryExp ASSIGN AssignExp{
+        // SymbolEntry *se1 = $1->getSymbolEntry();
+        // SymbolEntry *se2 = $3->getSymbolEntry();
+        printinfo("heldodo");
+        SymbolEntry *se = new TemporarySymbolEntry(TypeSystem::intType, SymbolTable::getLabel());
+        $$ = new BinaryExpr(se, BinaryExpr::ASSIGN, $1, $3);
+    }
+    ;
+
 Cond
     :
     LOrExp {$$ = $1;}
@@ -494,6 +522,7 @@ PrimaryExp
     LVal {
         /*m1104~m1107 常量表达式的计算以及修正*/
         SymbolEntry *se = $1->getSymbolEntry();
+        
         if(dynamic_cast<IdentifierSymbolEntry*>(se)->isConstant()){
             ConstantSymbolEntry *cs;
             if(se->getType() == TypeSystem::intType){
@@ -515,6 +544,7 @@ PrimaryExp
             else{
                 if(check_on){
                     fprintf(stderr, "Val type is not int or float!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 }
             }
             $$ = new ConstNode($1, cs);
@@ -523,6 +553,7 @@ PrimaryExp
             if(se->getType()->isVoid()){
                 if(check_on){
                     fprintf(stderr, "Cannot compute void type!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                     assert(se->getType()->isVoid() == 0);
                 }
             }
@@ -570,6 +601,7 @@ UnaryExp
             }else{
                 if(check_on){
                     fprintf(stderr, "The type can't compute!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 }
             }
             $$ = new UnaryExpr(cs, UnaryExpr::PLUS, $2);
@@ -591,6 +623,7 @@ UnaryExp
             }else{
                 if(check_on){
                     fprintf(stderr, "The type can't compute!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 }
             }
             $$ = new UnaryExpr(cs, UnaryExpr::UMINUS, $2);
@@ -613,6 +646,7 @@ UnaryExp
             }else{
                 if(check_on){
                     fprintf(stderr, "The type can't compute!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 }
             }
             $$ = new UnaryExpr(cs, UnaryExpr::NOT, $2);
@@ -646,11 +680,12 @@ CastExp
             }else{
                 if(check_on){
                     fprintf(stderr, "The type can't be casted!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 }
             }
             $$ = new CastExpr(cs, $4->getSymbolEntry(), $4);
         }else{
-            //类型转换要添加到对应的符号表的项目中吗?不需要,当前临时变量做调整即可
+            
             SymbolEntry *ts = new TemporarySymbolEntry($2, SymbolTable::getLabel());
             $$ = new CastExpr(ts, $4->getSymbolEntry(), $4);
         }
@@ -684,6 +719,7 @@ MulExp
             }else{
                 if(check_on){
                     fprintf(stderr, "The type can't compute!\n");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 }
             }
             $$ = new BinaryExpr(cs, BinaryExpr::MUL, $1, $3);
@@ -708,6 +744,7 @@ MulExp
             if(ts1->getType()!=TypeSystem::intType||ts2->getType()!=TypeSystem::intType){
                 if(check_on){
                     fprintf(stderr, "error! div only can use int type");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                     assert(ts1->getType()==TypeSystem::intType);
                     assert(ts2->getType()==TypeSystem::intType);
                 }
@@ -715,6 +752,7 @@ MulExp
             if(ts2->getIntValue() == 0){
                 if(check_on){
                     fprintf(stderr, "error! the disivor is 0");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                     assert(ts2->getIntValue()!=0);
                 }
             }
@@ -727,6 +765,7 @@ MulExp
             if(se1->getType()!=TypeSystem::intType||se2->getType()!=TypeSystem::intType){
                 if(check_on){
                     fprintf(stderr, "error! div only can use int type");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                     assert(se1->getType()==TypeSystem::intType);
                     assert(se2->getType()==TypeSystem::intType);
                 }
@@ -743,6 +782,7 @@ MulExp
             if(ts1->getType()!=TypeSystem::intType||ts2->getType()!=TypeSystem::intType){
                 if(check_on){
                 fprintf(stderr, "error! mod use float Type");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert(ts1->getType()==TypeSystem::intType);
                 assert(ts2->getType()==TypeSystem::intType);
                 }
@@ -750,6 +790,7 @@ MulExp
             if(ts2->getIntValue() == 0){
                 if(check_on){
                 fprintf(stderr, "error! the disivor is 0");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert(ts2->getIntValue()!=0);
                 }
             }
@@ -762,6 +803,7 @@ MulExp
             if(se1->getType()!=TypeSystem::intType||se2->getType()!=TypeSystem::intType){
                 if(check_on){
                     fprintf(stderr, "error! div only can use int type");
+                    fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                     assert(se1->getType()==TypeSystem::intType);
                     assert(se2->getType()==TypeSystem::intType);
                 }
@@ -842,7 +884,7 @@ AddExp
     }
     ;
 ConstExp
-    : AddExp {
+    : Cond {
         if($1->getSymbolEntry()->isConstant()){
             ConstantSymbolEntry *cs;
             ConstantSymbolEntry *se = dynamic_cast<ConstantSymbolEntry*>($1->getSymbolEntry());
@@ -857,6 +899,7 @@ ConstExp
         else{
             if(check_on){
                 fprintf(stderr, "The expression is not const\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert($1->getSymbolEntry()->isConstant());
             }
         }
@@ -1211,6 +1254,7 @@ FuncFParam
             if(!constEntry->isConstant()){
                 if(check_on){
                 fprintf(stderr,"ArrayDecl index is not const!\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert(index->getSymbolEntry()->isConstant());
                 }
             }
@@ -1218,6 +1262,7 @@ FuncFParam
             if(constEntry->getIntValue()<=0){
                 if(check_on){
                 fprintf(stderr, "ArrayIndices is can not be negative or zero！\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert(constEntry->getIntValue()>0);
                 }
             }
@@ -1297,6 +1342,7 @@ FuncDef
             if(!check_res){
                 if(check_on){
                 fprintf(stderr,"func def is not match with its decl\n");
+                fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
                 assert(check_res);
                 }
             }
@@ -1325,6 +1371,7 @@ FuncCall
         {
             if(check_on){
             fprintf(stderr, "function \"%s\" is undefined!\n", (char*)$1);
+            fprintf(stderr, "error occurs in <line: %d, col: %d>\n",yylineno,offsets);
             delete [](char*)$1;
             assert(se != nullptr);}
         }

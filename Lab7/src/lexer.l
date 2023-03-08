@@ -241,13 +241,16 @@ LINECOMMENT \/\/[^\n]*
 {DECIMAL_FLOAT} {
     if(dump_tokens)
         DEBUG_FOR_LAB4("DECIMAL_FLOAT\t");
+    
     yylval.ftype = atof(yytext);
+
     return DECIMAL_FLOAT;
 }
 
 {HEXADECIMAL_FLOAT} {
     if(dump_tokens)
         DEBUG_FOR_LAB4("HEXADECIMAL_FLOAT\t");
+    
     yylval.ftype = atof(yytext);
     
     return HEXADECIMAL_FLOAT;
@@ -382,6 +385,26 @@ LINECOMMENT \/\/[^\n]*
     strcpy(lexeme, yytext);
     yylval.strtype = lexeme;
     return PUTF;
+}
+
+"starttime" {
+    if(dump_tokens)
+        DEBUG_FOR_LAB4("starttime\tstarttime");
+    // char *lexeme;
+    // lexeme = new char[strlen(yytext) + 1];
+    // strcpy(lexeme, yytext);
+    yylval.strtype = "_sysy_starttime";
+    return STARTTIME;
+}
+
+"stoptime" {
+    if(dump_tokens)
+        DEBUG_FOR_LAB4("stoptime\tstoptime");
+    // char *lexeme;
+    // lexeme = new char[strlen(yytext) + 1];
+    // strcpy(lexeme, yytext);
+    yylval.strtype = "_sysy_stoptime";
+    return STOPTIME;
 }
 
 <*>{EOL} {
