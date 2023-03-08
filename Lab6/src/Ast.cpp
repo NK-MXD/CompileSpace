@@ -86,43 +86,61 @@ void BinaryExpr::output(int level)
     switch(op)
     {
         case ADD:
-            op_str = "add";
+            op_str = "+";
             break;
         case SUB:
-            op_str = "sub";
+            op_str = "-";
             break;
         case AND:
-            op_str = "and";
+            op_str = "&&";
             break;
         case OR:
-            op_str = "or";
+            op_str = "||";
             break;
         case MUL:
-            op_str = "mul";
+            op_str = "*";
             break;
         case DIV:
-            op_str = "div";
+            op_str = "/";
             break;
         case MOD:
-            op_str = "mod";
+            op_str = "%";
             break;
         case LESS:
-            op_str = "less";
+            op_str = "<";
             break;
         case GREATER:
-            op_str = "greater";
+            op_str = ">";
             break;
         case LESSEQUAL:
-            op_str = "lessequal";
+            op_str = "<=";
             break;
         case GREATEREQUAL:
-            op_str = "greatequal";
+            op_str = ">=";
             break;
         case EQUAL:
-            op_str = "greatequal";
+            op_str = "==";
             break;
         case NOTEQUAL:
-            op_str = "greatequal";
+            op_str = "!=";
+            break;
+        case ASSIGN:
+            op_str = "=";
+            break;
+        case ADDASSIGN:
+            op_str = "+=";
+            break;
+        case SUBASSIGN:
+            op_str = "-=";
+            break;
+        case MULASSIGN:
+            op_str = "*=";
+            break;
+        case DIVASSIGN:
+            op_str = "/=";
+            break;
+        case MODASSIGN:
+            op_str = "%=";
             break;
     }
     fprintf(yyout, "%*cBinaryExpr\top: %s\n", level, ' ', op_str.c_str());
